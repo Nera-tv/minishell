@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/20 16:02:41 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/06/20 16:04:23 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	get_nbr_arg(t_data *data)
 		if (data->cmdl[i] == ' ')
 		{
 			i++;
+			data->cmd.nbr_args++;
 		}
 		i++;
 	}
