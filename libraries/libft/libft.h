@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 11:59:45 by dvilard           #+#    #+#             */
-/*   Updated: 2022/02/21 15:21:04 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:48:16 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef const char*		t_str;
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
+int		ft_isascii_w_sp(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		ft_toupper(int c);
@@ -58,6 +59,7 @@ char	*get_next_line(int fd);
 char	*get_next_line_bis(int fd);
 char	*ft_strdup_gnl(const char *s, char c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_strslasj(char const *str1, char const *str2);
 void	*ft_memset(void *ptr, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);

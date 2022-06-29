@@ -6,61 +6,26 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/20 16:04:23 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/06/22 13:59:08 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	get_nbr_arg(t_data *data)
-{
-	int i;
-
-	i = 0;
-	data->cmd.nbr_args++;
-	while (data->cmdl[i] != '\0')
-	{
-		if (data->cmdl[i] == ' ')
-		{
-			i++;
-			data->cmd.nbr_args++;
-		}
-		i++;
-	}
-}
-
-void	get_cmd_arg(t_data *data)
-{
-	get_nbr_arg(data);
-	data->cmd.nbr_args = 0;
-}
-
-void	read_line(const char *prompt, t_data *data)
-{
-	data->cmdl = readline(prompt);
-	get_cmd_arg(data);
-	if (data->cmdl != NULL && ft_strncmp(data->cmdl, "exit", ft_strlen("exit")) == 0)
-		ft_exit("exit\n", data);
-	if (data->cmdl == NULL)
-		ft_exit("exit\n", data);
-	free(data->cmdl);
-}
-
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
 
 	ft_memset(&data, 0, sizeof(t_data));
-	data.cmd.nbr_args = 0;
+	if (argc != 1)
+		ft_exit("minishell: No argument needed\n", &data);
+	data.exec.envp = env;
+	argv = NULL;
+	data.p_cmd.nbr_args = 0;
+	data.exec.nb_cmd = 0;
 	while (1)
 	{
-		if (data.start == 0)
-		{
-			read_line("$> ", &data);
-			data.start = 1;
-		}
-		else
-			read_line("$> ", &data);
+		read_line("$> ", &data);
 	}
 	return (0);
 }

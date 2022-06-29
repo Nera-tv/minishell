@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putaddress_fd.c                                 :+:      :+:    :+:   */
+/*   get_cmd_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 15:26:30 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/22 12:49:10 by dvilard          ###   ########.fr       */
+/*   Created: 2022/06/22 13:40:29 by dvilard           #+#    #+#             */
+/*   Updated: 2022/06/22 17:55:33 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../includes/minishell.h"
 
-void	ft_putadress_fd(void *ptr, int fd)
+void	get_nbr_arg(t_data *data)
 {
-	unsigned long	adr;
-	char const		*base;
-	int				i;
-	int				nbrf[50];
-
-	adr = (unsigned long)ptr;
-	base = "0123456789abcdef";
-	ft_putstr_fd_pf("0x", fd);
+	int	i;
+	
 	i = 0;
-	if (adr == 0)
-		ft_putchar_fd_pf('0', fd);
-	while (adr)
+	while (data->cmdl[i] == ' ')
+		i++;
+	while (data->cmdl[i])
 	{
-		nbrf[i] = adr % 16;
-		adr = adr / 16;
+		if (data->cmdl[i] == ' ' && data->cmdl[i - 1] != ' ')
+			data->p_cmd.nbr_args++;
 		i++;
 	}
-	while (--i >= 0)
-		ft_putchar_fd_pf(base[nbrf[i]], fd);
+}
+
+void	get_cmd_arg(t_data *data)
+{
+	get_nbr_arg(data);
+	printf("%d\n", data->p_cmd.nbr_args);
 }

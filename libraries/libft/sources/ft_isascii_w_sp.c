@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putaddress_fd.c                                 :+:      :+:    :+:   */
+/*   ft_isascii_w_sp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 15:26:30 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/22 12:49:10 by dvilard          ###   ########.fr       */
+/*   Created: 2022/06/22 13:47:19 by dvilard           #+#    #+#             */
+/*   Updated: 2022/06/22 13:54:28 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "../libft.h"
 
-void	ft_putadress_fd(void *ptr, int fd)
+int	ft_isascii_w_sp(int c)
 {
-	unsigned long	adr;
-	char const		*base;
-	int				i;
-	int				nbrf[50];
-
-	adr = (unsigned long)ptr;
-	base = "0123456789abcdef";
-	ft_putstr_fd_pf("0x", fd);
-	i = 0;
-	if (adr == 0)
-		ft_putchar_fd_pf('0', fd);
-	while (adr)
-	{
-		nbrf[i] = adr % 16;
-		adr = adr / 16;
-		i++;
-	}
-	while (--i >= 0)
-		ft_putchar_fd_pf(base[nbrf[i]], fd);
+	if (c >= 0 && c <= 127 && c != ' ' && ft_isprint(c) == 1)
+		return (1);
+	return (0);
 }

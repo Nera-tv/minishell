@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   access_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/22 12:13:07 by dvilard          ###   ########.fr       */
+/*   Created: 2022/06/22 13:38:14 by dvilard           #+#    #+#             */
+/*   Updated: 2022/06/22 14:50:01 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_exit(char *msg, t_data *data)
+int	access_check(t_data *data, int which_cmd)
 {
-	ft_printf(2, msg);
-	if (data->cmdl)
-		free(data->cmdl);
-	exit(0);
+	int		i;
+	char	*ret;
+
+	i = 0;
+	if (!access(data->cmd[which_cmd][0], R_OK))
+		return (0);
+	while (i < data->nb_env)
+	{
+		ret = ft_strslasj(data->path[i], data->cmd[which_cmd][0]);
+		if (!ret)
+			ft_exit(strerror(errno), data);
+		if (!access(ret, X_OK))
+		{
+			free(data->cmd[which_cmd][0]);
+			return (0);
+		}
+		free(ret);
+		i++;
+	}
+	free(data->cmd[which_cmd][0]);
+	return (1);
 }

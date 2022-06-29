@@ -1,8 +1,11 @@
 .PHONY :	re fclean clean all
 #.SILENT:
 
-LST_SRCS	=	exit.c		\
-				main.c						
+LST_SRCS	=	access_check.c			\
+				exit.c					\
+				ft_readline.c			\
+				get_cmd_info.c			\
+				main.c				
 
 
 P_LIB		:=	libraries/
@@ -24,7 +27,7 @@ NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\
 				${P_INC}struct.h				\
 				${P_INC}error_msg.h				\
-				${P_LFT}libft.h			\
+				${P_LFT}libft.h					\
 				${P_LPF}ft_printf.h
 
 RM			:=	rm -rf
