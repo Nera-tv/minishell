@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-int	ft_print_u(int fd, unsigned int d)
+int	ft_print_u(int fd, int d)
 {
 	unsigned int	u;
 	int				i;

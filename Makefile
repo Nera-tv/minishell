@@ -1,5 +1,5 @@
 .PHONY :	re fclean clean all
-#.SILENT:
+.SILENT:
 
 LST_SRCS	=	exit.c		\
 				main.c						
@@ -24,7 +24,7 @@ NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\
 				${P_INC}struct.h				\
 				${P_INC}error_msg.h				\
-				${P_LFT}libft.h			\
+				${P_LFT}libft.h					\
 				${P_LPF}ft_printf.h
 
 RM			:=	rm -rf
@@ -68,7 +68,7 @@ RST 		=	\033[0m
 all: print_header makelft makelpf ${NAME} usage print_bottom
 
 ${NAME} : ${P_OBJS} ${OBJS} ${HEADER} ${LFTA} ${LPFA}
-	@${CC} ${CFLAGS} ${LFTA} ${LPFA} ${OBJS} -o $(NAME) ${RLOFLAGS}
+	@${CC} ${CFLAGS} ${OBJS} -o $(NAME) ${RLOFLAGS} ${LFTA} ${LPFA}
 	@printf "\n$(GREEN)$(BOLD)Binary $(NAME) created$(RESET)	✅\n"
 
 $(P_OBJS)%.o: $(P_SRCS)%.c $(HEADER) $(LFTA) $(LPFA) Makefile | $(P_OBJS)

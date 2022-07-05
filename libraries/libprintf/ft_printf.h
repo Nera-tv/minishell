@@ -24,7 +24,7 @@ int		ft_print_d(int fd, int d);
 int		ft_print_p(int fd, void *ptr);
 int		ft_print_percent(int fd);
 int		ft_print_s(int fd, char *s);
-int		ft_print_u(int fd, unsigned int d);
+int		ft_print_u(int fd, int d);
 int		ft_print_x(int fd, unsigned int d);
 int		ft_print_upx(int fd, unsigned int d);
 void	ft_put_unsigned_nbr_fd(unsigned int n, int fd);
