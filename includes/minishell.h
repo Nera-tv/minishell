@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apouchin <apouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/20 12:18:09 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/07/13 12:23:09 by apouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # include <readline/history.h>
 
 void	ft_exit(char *msg, t_data *data);
+void	read_line(const char *prompt, t_data *data);
+void	get_cmd_arg(t_data *data);
 
 #endif

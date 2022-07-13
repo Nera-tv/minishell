@@ -2,7 +2,8 @@
 .SILENT:
 
 LST_SRCS	=	exit.c		\
-				main.c						
+				main.c		\
+				readline.c				
 
 
 P_LIB		:=	libraries/

@@ -6,7 +6,7 @@
 /*   By: apouchin <apouchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/05 15:38:12 by apouchin         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:22:18 by apouchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@ void	get_cmd_arg(t_data *data)
 	data->cmd.nbr_args = 0;
 }
 
-void	read_line(const char *prompt, t_data *data)
-{
-	data->cmdl = readline(prompt);
-	get_cmd_arg(data);
-	if (data->cmdl != NULL && ft_strncmp(data->cmdl, "exit", ft_strlen("exit")) == 0)
-		ft_exit("exit\n", data);
-	if (data->cmdl == NULL)
-		ft_exit("exit\n", data);
-	free(data->cmdl);
-}
 
 int	main(void)
 {
