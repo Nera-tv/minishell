@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 21:39:00 by dvilard          ###   ########.fr       */
+/*   Created: 2022/07/20 14:49:46 by dvilard           #+#    #+#             */
+/*   Updated: 2022/07/20 15:02:54 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_exit(char *msg, t_data *data)
+void    exec_builtins(t_data *data)
 {
-	ft_printf(2, msg);
-	free(data->cmdl);
-	exit(0);
+    ft_echo(data);
+}
+
+int		is_builtins(t_data *data)
+{
+	if (ft_strnncmp(data->cmdl, "echo", ft_strlen("echo")) == 0)
+		return (1);
+	return (0);
 }

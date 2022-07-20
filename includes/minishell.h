@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apouchin <apouchin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/13 12:23:09 by apouchin         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:45:10 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+#include <sys/types.h>
+#include <sys/wait.h>
+
 void	ft_exit(char *msg, t_data *data);
 void	read_line(const char *prompt, t_data *data);
 void	get_cmd_arg(t_data *data);
+int		if_only_space(t_data *data);
+void    ft_echo(t_data *data);
+int		is_builtins(t_data *data);
+void    exec_builtins(t_data *data);
 
 #endif

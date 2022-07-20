@@ -13,11 +13,13 @@ LST_SRCS	:=	ft_isalpha.c			\
 				ft_isdigit.c			\
 				ft_memset.c 			\
 				ft_strlen.c				\
+				ft_nstrlen.c			\
 				ft_tolower.c			\
 				ft_bzero.c				\
 				ft_isprint.c			\
 				ft_strchr.c				\
 				ft_strncmp.c			\
+				ft_strnncmp.c			\
 				ft_toupper.c			\
 				ft_calloc.c				\
 				ft_memchr.c				\

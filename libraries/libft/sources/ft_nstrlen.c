@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_nstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 21:39:00 by dvilard          ###   ########.fr       */
+/*   Created: 2022/07/20 16:23:11 by dvilard           #+#    #+#             */
+/*   Updated: 2022/07/20 16:25:16 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../libft.h"
 
-void	ft_exit(char *msg, t_data *data)
+size_t  ft_nstrlen(const char *tab, size_t i)
 {
-	ft_printf(2, msg);
-	free(data->cmdl);
-	exit(0);
+    size_t j;
+
+    j = i;
+	while (tab[i] != '\0')
+		i++;
+	return (i - j);
 }

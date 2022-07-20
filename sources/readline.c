@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apouchin <apouchin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/07/13 12:22:33 by apouchin         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:42:09 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,17 @@ void	read_line(const char *prompt, t_data *data)
 	if (data->cmdl == NULL)
 		ft_exit("exit\n", data);
 	get_cmd_arg(data);
+	/*if (is_builtins(data) > 0)
+		exec_builtins(data);
+	else
+	{
+		//parti execution
+		
+		
+		//preparation pour la commande suivante
+		
+	}*/
+	free(data->cmd); // <!> ne semble pas fonctionner a revoir <!>
+	data->nbr_cmds = 0;
 	free(data->cmdl);
 }

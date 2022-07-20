@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/06/20 11:08:30 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/07/20 20:55:26 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_cmd		t_cmd;
 
 struct s_cmd
 {
+	char	*cmd;
 	char	**args;
 	int		nbr_args;
 	int		s_quotes_indic;
@@ -34,7 +35,8 @@ struct s_cmd
 
 struct s_data
 {
-	t_cmd			cmd;
+	t_cmd			*cmd;
+	int				nbr_cmds;
 	int				start;
 	char			*cmdl;
 	int				error;

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   p_cmd_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 21:39:00 by dvilard          ###   ########.fr       */
+/*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
+/*   Updated: 2022/07/20 21:43:57 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	ft_exit(char *msg, t_data *data)
+int		if_only_space(t_data *data)
 {
-	ft_printf(2, msg);
-	free(data->cmdl);
-	exit(0);
+	int i;
+
+	i = 0;
+	while (data->cmdl[i] != '\0')
+	{
+		if (data->cmdl[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
 }

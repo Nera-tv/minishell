@@ -1,9 +1,18 @@
 .PHONY :	re fclean clean all
 .SILENT:
 
-LST_SRCS	=	exit.c		\
-				main.c		\
-				readline.c				
+LST_SRCS	=	builtins.c			\
+				cd.c				\
+				echo.c				\
+				env.c				\
+				exit.c				\
+				export.c			\
+				main.c				\
+				p_cmd_utils.c		\
+				p_cmd.c				\
+				pwd.c				\
+				readline.c			\
+				unset.c			
 
 
 P_LIB		:=	libraries/
