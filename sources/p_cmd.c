@@ -6,24 +6,11 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/21 00:29:26 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/07/22 13:35:43 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void	get_nbr_cmd(t_data *data)
-{
-	int	i;
-
-	data->nbr_cmds++;
-	i = 0;
-	while (data->cmdl[i++] != '\0')
-	{
-		if (data->cmdl[i] == '|')
-			data->nbr_cmds++;
-	}
-}
 
 void	get_cmd_name(t_data *data, int val)
 {
@@ -33,24 +20,58 @@ void	get_cmd_name(t_data *data, int val)
 
 	i = 0;
 	len = 0;
-	while (data->cmdl[i] == ' ')
+	while (data->cmd[val]._cmd[i] == ' ')
 		i++;
-	while (data->cmdl[i + len] != ' ' && data->cmdl[i + len] != '\0' )
+	while (data->cmd[val]._cmd[i + len] != ' ' && data->cmd[val]._cmd[i + len] != '\0' )
 		len++;
-	data->cmd[val].cmd = malloc(sizeof(char *) * len);
+	data->cmd[val].pos_start_before_cmd_name = i + len;
+	data->cmd[val].cmd = malloc((sizeof(char) * len ) + 1);
 	if (!data->cmd[val].cmd)
 		ft_exit("allocation error", data);
-	while (j < len)
+	j = 0;
+	while (i + j < i + len)
 	{
-		// Copie de cmdl vers cmd.cmd
+		data->cmd[val].cmd[j] = data->cmd[val]._cmd[i + j];
+		j++;
 	}
-	printf("%s\n", data->cmd[val].cmd);
+	data->cmd[val].cmd[j] = '\0';
+	printf("Cmd name %d = %s\n", val, data->cmd[val].cmd);  // COMMANTAIRE ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
 void	init_cmds(t_data *data, int	val)
 {
-	data->cmd = malloc(sizeof(t_cmd *) * data->nbr_cmds); // malloc pour le nombre de commande separe par les |
 	get_cmd_name(data, val);
+	get_args(data, val);
+}
+
+void	sep_cmd_pipe(t_data *data)
+{
+	int	i;
+	int len;
+	int	old_len;
+	int y;
+	
+	i = 0;
+	len = 0;
+	old_len = 0;
+	while (i < data->nbr_cmds)
+	{
+		while (data->cmdl[len] != '|' && data->cmdl[len] != '\0')
+			len++;
+		data->cmd[i]._cmd = malloc(sizeof(char) * ((len - old_len) + 1));
+		if (!data->cmd[i]._cmd)
+			ft_exit("allocation error", data);
+		y = 0;
+		while (old_len + y < len)
+		{
+			data->cmd[i]._cmd[y] = data->cmdl[old_len + y];
+			y++;
+		}
+		data->cmd[i]._cmd[y] = '\0';
+		len++;
+		old_len = len;
+		i++;
+	}
 }
 
 void	get_cmd_arg(t_data *data)
@@ -61,7 +82,11 @@ void	get_cmd_arg(t_data *data)
 	if (if_only_space(data) == 1)
 	{
 		i = 0;
-		while (i <= data->nbr_cmds)
+		data->cmd = malloc(sizeof(t_cmd) * (data->nbr_cmds + 1)); // malloc pour le nombre de commande separe par les |
+		if (!data->cmd)
+			ft_exit("allocation error", data);
+		sep_cmd_pipe(data);
+		while (i < data->nbr_cmds)
 		{
 			init_cmds(data, i);
 			i++;

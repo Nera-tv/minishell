@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 20:55:26 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/07/22 13:07:04 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ typedef struct s_cmd		t_cmd;
 
 struct s_cmd
 {
+	char	*_cmd;
 	char	*cmd;
+	char	opt;
+	char	*_args;
 	char	**args;
 	int		nbr_args;
+	int		pos_start_before_cmd_name;
 	int		s_quotes_indic;
 	int		d_quotes_indic;
 };

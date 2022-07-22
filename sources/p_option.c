@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_cmd_utils.c                                      :+:      :+:    :+:   */
+/*   p_option.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 12:28:50 by dvilard          ###   ########.fr       */
+/*   Created: 2022/07/22 13:47:00 by dvilard           #+#    #+#             */
+/*   Updated: 2022/07/22 13:51:07 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		if_only_space(t_data *data)
+void    get_option(t_data *data)
 {
-	int i;
+    int i;
 
-	i = 0;
-	while (data->cmdl[i] != '\0')
-	{
-		if (data->cmdl[i] != ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	get_nbr_cmd(t_data *data)
-{
-	int	i;
-
-	data->nbr_cmds++;
-	i = 0;
-	while (data->cmdl[i++] != '\0')
-	{
-		if (data->cmdl[i] == '|')
-			data->nbr_cmds++;
-	}
+    i = 0;
+    while (data->cmd[])
+    {
+        
+    }
 }

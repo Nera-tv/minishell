@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_cmd_utils.c                                      :+:      :+:    :+:   */
+/*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 12:28:50 by dvilard          ###   ########.fr       */
+/*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
+/*   Updated: 2022/07/22 13:41:22 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		if_only_space(t_data *data)
+void	free_data_cmd(t_data *data)
 {
 	int i;
 
 	i = 0;
-	while (data->cmdl[i] != '\0')
+	while(i < data->nbr_cmds)
 	{
-		if (data->cmdl[i] != ' ')
-			return (1);
+		free(data->cmd[i].cmd);
+		free(data->cmd[i]._cmd);
+		free(data->cmd[i]._args);
 		i++;
 	}
-	return (0);
-}
-
-void	get_nbr_cmd(t_data *data)
-{
-	int	i;
-
-	data->nbr_cmds++;
-	i = 0;
-	while (data->cmdl[i++] != '\0')
-	{
-		if (data->cmdl[i] == '|')
-			data->nbr_cmds++;
-	}
+	free(data->cmd); // <!> ne semble pas fonctionner pour les leaks, a revoir <!>
+	data->nbr_cmds = 0;
+	free(data->cmdl);
 }

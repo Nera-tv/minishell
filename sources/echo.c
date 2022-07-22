@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 07:55:31 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 15:31:20 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/07/22 13:45:40 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,58 +23,10 @@ void    print_echo(int option, char *msg)
         ft_putstr_fd(msg, 1);
 }
 
-int     if_only_echo(t_data *data)
+void ft_echo(t_data *data, int val)
 {
-    int i;
-    
-    i = 0;
-    while (data->cmdl[i] == ' ')
-        i++;
-    while (data->cmdl[i] == 'e' || data->cmdl[i] == 'c' || data->cmdl[i] == 'h' || data->cmdl[i] == 'o')
-        i++;
-    if (data->cmdl[i] == '\0')
-    {
-        print_echo(0, "");
-        return (1);
-    }
+    if (data->cmd[val].opt == 'n')
+        print_echo(1, data->cmd[val]._args);
     else
-    {
-        i++;
-        if (data->cmdl[i] != '\0' && data->cmdl[i] == '-' && data->cmdl[i + 1] == 'n')
-        {
-            print_echo(1, "");
-            i += 2;
-        }
-        if (data->cmdl[i] == '\0')
-            return (1);
-    }
-    return (0);
-}
-
-void ft_echo(t_data *data)
-{
-    int option;
-    int i;
-    
-    i = 0;
-    if (if_only_echo(data) == 0)
-    {
-        while (data->cmdl[i] == ' ')
-            i++;
-        while (data->cmdl[i] != ' ')
-            i++;
-        while (data->cmdl[i] == ' ')
-            i++;
-        if (data->cmdl[i] == '-' && data->cmdl[i + 1] == 'n')
-        {
-            option = 1;
-            printf("%d\n", option);
-            i += 3;
-        }
-        while (data->cmdl[i] == ' ')
-            i++;
-        while (data->cmdl[i] != '\0')
-            ft_putchar_fd(data->cmdl[i++], 1);
-        ft_putchar_fd('\n', 1);
-    }
+        print_echo(0, data->cmd[val]._args);
 }
