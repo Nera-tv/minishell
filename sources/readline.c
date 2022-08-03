@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/07/22 13:46:02 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/03 07:33:23 by neress           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	exec(t_data *data)
 {
 	int i;
+	int blt;
 
 	i = 0;
 	while (i < data->nbr_cmds)
 	{
-		if (is_builtins(data, i) > 0)
-			exec_builtins(data, i);
+		blt = is_builtins(data, i);
+		if (blt > 0)
+			exec_builtins(data, i, blt);
 		else
 		{
 			//parti execution

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 13:41:22 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/03 07:21:09 by neress           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	free_data_cmd(t_data *data)
 	{
 		free(data->cmd[i].cmd);
 		free(data->cmd[i]._cmd);
-		free(data->cmd[i]._args);
+		if (data->cmd[i]._args)
+			free(data->cmd[i]._args);
 		i++;
 	}
 	free(data->cmd); // <!> ne semble pas fonctionner pour les leaks, a revoir <!>

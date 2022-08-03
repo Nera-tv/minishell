@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 13:07:04 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/03 07:26:07 by neress           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ struct s_data
 	int				nbr_cmds;
 	int				start;
 	char			*cmdl;
+	char			**envp;
+	char			**argv;
 	int				error;
 };
 

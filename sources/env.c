@@ -3,10 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:49:53 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 14:49:54 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/03 07:35:39 by neress           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/minishell.h"
+
+void	ft_env(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->envp[i])
+	{
+		ft_putstr_fd(data->envp[i], 1);
+		ft_putchar_fd('\n', 1);
+		i++;
+	}
+}

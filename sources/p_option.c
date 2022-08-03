@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   p_option.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:47:00 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 13:51:07 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/01 00:39:33 by neress           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*
 void    get_option(t_data *data)
 {
     int i;
@@ -21,4 +21,4 @@ void    get_option(t_data *data)
     {
         
     }
-}
+}*/
