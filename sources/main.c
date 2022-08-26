@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 01:12:14 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:45:47 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	data.nbr_cmds = 0;
 	data.envp = envp;
 	data.argv = argv;
+	data.indic_first_cd = 0;
 	get_pwd(&data);
 	while (1)
 	{

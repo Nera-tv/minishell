@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 14:50:00 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 13:48:15 by dvilard          ###   ########.fr       */
+/*   Created: 2022/08/26 17:25:53 by dvilard           #+#    #+#             */
+/*   Updated: 2022/08/26 19:43:11 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../libft.h"
 
-void	ft_pwd(t_data *data)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (data->envp[i])
+	while (s1[i] == s2[i])
 	{
-		if (ft_strnncmp(data->envp[i], "PWD=", ft_strlen("PWD=")) == 0)
-		{
-			ft_putstr_fd(data->envp[i], 1);
-			ft_putchar_fd('\n', 1);
-		}
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (0);
 		i++;
 	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

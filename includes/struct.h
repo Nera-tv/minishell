@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 01:12:03 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:45:16 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ struct s_cmd
 	char	*cmd;
 	char	opt;
 	char	*_args;
+	char	*arg;
 	char	**args;
 	int		nbr_args;
 	int		pos_start_before_cmd_name;
@@ -45,6 +46,7 @@ struct s_data
 	char			*pwd;
 	char			**envp;
 	char			**argv;
+	int				indic_first_cd;
 	int				error;
 };
 
