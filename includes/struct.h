@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/03 07:26:07 by neress           ###   ########.fr       */
+/*   Updated: 2022/08/26 01:12:03 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ struct s_cmd
 	int		d_quotes_indic;
 };
 
-
 struct s_data
 {
 	t_cmd			*cmd;
 	int				nbr_cmds;
 	int				start;
 	char			*cmdl;
+	char			*pwd;
 	char			**envp;
 	char			**argv;
 	int				error;

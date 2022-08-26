@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/20 21:39:00 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/26 01:26:18 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	ft_exit(char *msg, t_data *data)
 {
 	ft_printf(2, msg);
 	free(data->cmdl);
+	free(data->pwd);
 	exit(0);
 }

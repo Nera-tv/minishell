@@ -6,15 +6,15 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/07/22 12:28:50 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/26 01:12:46 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		if_only_space(t_data *data)
+int	if_only_space(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->cmdl[i] != '\0')

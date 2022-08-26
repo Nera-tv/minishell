@@ -12,6 +12,7 @@ LST_SRCS	=	builtins.c			\
 				p_cmd_utils.c		\
 				p_cmd.c				\
 				p_free_cmd.c		\
+				p_get_pwd.c			\
 				p_option.c			\
 				pwd.c				\
 				readline.c			\

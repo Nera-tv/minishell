@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/08/03 07:33:23 by neress           ###   ########.fr       */
+/*   Updated: 2022/08/26 01:45:46 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	exec(t_data *data)
 {
-	int i;
-	int blt;
+	int	i;
+	int	blt;
 
 	i = 0;
 	while (i < data->nbr_cmds)
@@ -25,11 +25,7 @@ void	exec(t_data *data)
 			exec_builtins(data, i, blt);
 		else
 		{
-			//parti execution
-			
-			
-			//preparation pour la commande suivante
-			
+			printf("execution de la commande\n");
 		}
 		i++;
 	}
@@ -38,7 +34,8 @@ void	exec(t_data *data)
 void	read_line(const char *prompt, t_data *data)
 {
 	data->cmdl = readline(prompt);
-	if (data->cmdl != NULL && ft_strncmp(data->cmdl, "exit", ft_strlen("exit")) == 0)
+	if (data->cmdl != NULL
+		&& ft_strncmp(data->cmdl, "exit", ft_strlen("exit")) == 0)
 		ft_exit("exit\n", data);
 	if (data->cmdl == NULL)
 		ft_exit("exit\n", data);
