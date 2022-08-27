@@ -1,24 +1,26 @@
 .PHONY :	re fclean clean all
 .SILENT:
 
-LST_SRCS	=	builtins.c			\
-				cd_utils.c			\
-				cd.c				\
-				echo.c				\
-				env.c				\
-				exit.c				\
-				export.c			\
-				main.c				\
-				p_args_utils.c		\
-				p_args.c			\
-				p_cmd_utils.c		\
-				p_cmd.c				\
-				p_free_cmd.c		\
-				p_get_pwd.c			\
-				p_option.c			\
-				p_pipe.c			\
-				pwd.c				\
-				readline.c			\
+LST_SRCS	=	builtins.c				\
+				cd_utils.c				\
+				cd.c					\
+				echo.c					\
+				env.c					\
+				exit.c					\
+				export.c				\
+				main.c					\
+				p_args_bis.c			\
+				p_args_utils.c			\
+				p_args.c				\
+				p_cmd.c					\
+				p_free_cmd.c			\
+				p_get_cmd_arg_utils.c	\
+				p_get_cmd_arg.c			\
+				p_get_pwd.c				\
+				p_option.c				\
+				p_pipe.c				\
+				pwd.c					\
+				readline.c				\
 				unset.c			
 
 

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_cmd.c                                            :+:      :+:    :+:   */
+/*   p_args_bis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 21:43:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 15:24:47 by dvilard          ###   ########.fr       */
+/*   Created: 2022/08/26 21:37:38 by dvilard           #+#    #+#             */
+/*   Updated: 2022/08/27 20:54:45 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	get_cmd_name(t_data *data, int val)
+void	check_quotes(t_data *data, int val)
 {
-	int	j;
-	int	len;
+	int	i;
 
-	len = 0;
-	while (data->cmd[val]._cmd[len] != ' '
-		&& data->cmd[val]._cmd[len] != '\0' )
-		len++;
-	data->cmd[val].pos_start_before_cmd_name = len;
-	data->cmd[val].cmd = malloc((sizeof(char) * len) + 1);
-	if (!data->cmd[val].cmd)
-		ft_exit(ERRMEMALLOC, data);
-	j = 0;
-	while (j < len)
+	i = 0;
+	while (data->cmd[val].args[i])
 	{
-		data->cmd[val].cmd[j] = data->cmd[val]._cmd[j];
-		j++;
+		i++;
 	}
-	data->cmd[val].cmd[j] = '\0';
+}
+
+void	check_dbl_quotes(t_data *data, int val)
+{
+	int	i;
+
+	i = 0;
+	while (data->cmd[val].args[i])
+	{
+		i++;
+	}
 }

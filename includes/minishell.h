@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 19:53:16 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 16:05:58 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ size_t	ft_strlen_m(const char *tab);
 
 // parsing
 void	get_cmd_arg(t_data *data);
-void	sep_cmd_pipe(t_data *data);
-void	get_nbr_cmd(t_data *data);
 int		if_only_space(t_data *data);
-void	get_args(t_data *data, int val);
 void	free_data_cmd(t_data *data);
-void	free_args(char **args, int nbr_args);
 void	get_pwd(t_data *data);
+//		pipe
+void	sep_cmd_pipe(t_data *data);
+int		check_line_pipe(t_data *data);
+void	get_nbr_cmd(t_data *data);
+//		cmd
+void	get_cmd_name(t_data *data, int val);
+//		args
+void	get_args(t_data *data, int val);
+void	get_args_len(t_data *data, int val);
+void	free_args(char **args, int nbr_args);
 
 // builtins
 void	ft_echo(t_data *data, int val);

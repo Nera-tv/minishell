@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 07:55:31 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 19:52:32 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:43:36 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_echo(t_data *data, int val)
 
 	i = 0;
 	n_option = 0;
-	if (data->cmd[val].arg != NULL && nb_args(data->cmd[val].args) >= 1)
+	if (data->cmd[val]._args != NULL && nb_args(data->cmd[val].args) >= 1)
 	{
 		while (data->cmd[val].args[i]
 			&& check_dash_n(data->cmd[val].args[i]) == 1)

@@ -6,11 +6,13 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:39 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 01:10:11 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 16:04:53 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_MSG_H
 # define ERROR_MSG_H
+
+# define ERRMEMALLOC "memory allocation error"
 
 #endif

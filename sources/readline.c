@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/08/26 01:45:46 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 13:35:34 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	exec(t_data *data)
 
 void	read_line(const char *prompt, t_data *data)
 {
-	data->cmdl = readline(prompt);
-	if (data->cmdl != NULL
-		&& ft_strncmp(data->cmdl, "exit", ft_strlen("exit")) == 0)
+	data->line = readline(prompt);
+	if (data->line != NULL
+		&& ft_strncmp(data->line, "exit", ft_strlen("exit")) == 0)
 		ft_exit("exit\n", data);
-	if (data->cmdl == NULL)
+	if (data->line == NULL)
 		ft_exit("exit\n", data);
 	get_cmd_arg(data);
 	exec(data);

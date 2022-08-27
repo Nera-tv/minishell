@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 12:36:56 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 14:00:28 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 16:06:50 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void	check_arg(t_data *data, int val)
 	int	i;
 
 	i = 0;
-	while (data->cmd[val].arg[i] != '\0')
+	while (data->cmd[val]._args[i] != '\0')
 	{
 		i++;
-		if (data->cmd[val].arg[i] == ' ' && (data->cmd[val].arg[i + 1] == ' '
-				|| data->cmd[val].arg[i + 1] == '\0'))
-			data->cmd[val].arg[i] = '\0';
+		if (data->cmd[val]._args[i] == ' '
+			&& (data->cmd[val]._args[i + 1] == ' '
+				|| data->cmd[val]._args[i + 1] == '\0'))
+			data->cmd[val]._args[i] = '\0';
 	}
 }
 

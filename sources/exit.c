@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 14:07:10 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/27 13:33:32 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_exit(char *msg, t_data *data)
 	int	j;
 
 	ft_printf(2, msg);
-	free(data->cmdl);
+	free(data->line);
 	free(data->pwd);
 	j = 0;
 	if (data->indic_first_cd == 1)
