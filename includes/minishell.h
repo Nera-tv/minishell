@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 16:05:58 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/31 00:59:52 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,31 @@ void	get_cmd_arg(t_data *data);
 int		if_only_space(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
+
 //		pipe
 void	sep_cmd_pipe(t_data *data);
 int		check_line_pipe(t_data *data);
 void	get_nbr_cmd(t_data *data);
+
 //		cmd
 void	get_cmd_name(t_data *data, int val);
+
 //		args
 void	get_args(t_data *data, int val);
 void	get_args_len(t_data *data, int val);
+char	**set_var_args(t_data *data, int val);
+int		args_count_bis(char const *s, char c, int i);
+void	ft_free_tab_arg(char **tab, int j);
 void	free_args(char **args, int nbr_args);
+
+//		var_env
+void	args_var_env(t_data *data, int val);
+int		if_back_slash(t_data *data, int val, int arg_count);
+char	*ft_replace_word(const char *s, const char *old_w, char *new_w);
+size_t	ft_strlen_c(const char *s, char c);
+int		if_var_env(char *str, char c);
+char	*get_var_env_in_arg(char *str);
+int		ft_cmp_var_env(const char *s1, const char *s2);
 
 // builtins
 void	ft_echo(t_data *data, int val);

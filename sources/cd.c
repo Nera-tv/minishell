@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:49:50 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 15:53:03 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:22:37 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_home(t_data *data, int val, int i)
 	while (data->envp[i][j + len] != '\0')
 		len++;
 	home_tmp[1] = data->cmd[val]._args;
-	home_tmp[0] = malloc(sizeof(char *)
+	home_tmp[0] = malloc(sizeof(char)
 			* (len + ft_strlen(data->cmd[val]._args) + 1));
 	home_tmp[0] = get_home_bis(data, j, i, home_tmp);
 	return (home_tmp[0]);

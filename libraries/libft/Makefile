@@ -22,6 +22,7 @@ LST_SRCS	:=	ft_atoi.c				\
 				ft_putstr_fd.c			\
 				ft_split.c				\
 				ft_strcmp.c				\
+				ft_strcpy.c				\
 				ft_strchr.c				\
 				ft_strdup.c				\
 				ft_striteri.c			\
@@ -31,9 +32,12 @@ LST_SRCS	:=	ft_atoi.c				\
 				ft_strlen.c				\
 				ft_strmapi.c			\
 				ft_strncmp.c			\
+				ft_strncpy.c			\
+				ft_strnlen.c			\
 				ft_strnncmp.c			\
 				ft_strnstr.c			\
 				ft_strrchr.c			\
+				ft_strstr.c				\
 				ft_strtrim.c			\
 				ft_substr.c				\
 				ft_tolower.c			\

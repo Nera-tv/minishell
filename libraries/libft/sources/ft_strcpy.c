@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/06 10:03:01 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/30 17:53:41 by dvilard          ###   ########.fr       */
+/*   Created: 2022/08/30 20:08:44 by dvilard           #+#    #+#             */
+/*   Updated: 2022/08/30 20:14:15 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	int	i;
-
-	i = ft_strlen(s);
-	while (i != 0 && s[i] != (char)c)
-		i--;
-	if (i == 0 && s[i] != (char)c)
-		return (0);
-	return ((char *)s + i);
+	return (ft_memcpy (dest, src, ft_strlen(src) + 1));
 }

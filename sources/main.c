@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 20:54:37 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:19:13 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_data(t_data *data, char **envp, char **argv)
 {
 	ft_memset(data, 0, sizeof(t_data));
+	data->cmd = NULL;
 	data->nbr_cmds = 0;
 	data->start = 0;
 	data->line = NULL;

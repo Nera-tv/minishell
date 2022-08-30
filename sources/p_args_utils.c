@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:27:59 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 19:15:06 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 23:58:13 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	get_args_len(t_data *data, int val)
 	int	i;
 
 	i = 0;
-	data->cmd[val].nbr_args = nb_args(data->cmd[val].args);
-	data->cmd[val].args_len = malloc(sizeof(int) * data->cmd[val].nbr_args);
+	data->cmd[val].args_len = malloc(sizeof(int)
+			* nb_args(data->cmd[val].args));
 	if (!data->cmd[val].args_len)
 		ft_exit(ERRMEMALLOC, data);
-	while (data->cmd[val].args[i])
+	while (i < data->cmd[val].nbr_args)
 	{
 		data->cmd[val].args_len[i] = ft_strlen(data->cmd[val].args[i]);
 		i++;

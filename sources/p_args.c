@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:28:43 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 20:54:14 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/31 00:07:55 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_var_args(t_data *data, int val)
 {
 	data->cmd[val]._args = NULL;
-	data->cmd[val].argl = NULL;
 	data->cmd[val].args = NULL;
 	data->cmd[val].args_len = NULL;
 }
@@ -58,7 +57,8 @@ void	get_args(t_data *data, int val)
 			if (!data->cmd[val]._args)
 				ft_exit(ERRMEMALLOC, data);
 			ft_arg_cpy(data, val, i);
-			data->cmd[val].args = ft_split(data->cmd[val]._args, ' ');
+			data->cmd[val].args = set_var_args(data, val);
+			args_var_env(data, val);
 		}
 	}
 }

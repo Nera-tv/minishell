@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 23:43:45 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/26 01:25:05 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:25:16 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	set_value_pwd(t_data *data, int i, int j, int k)
 {
 	int	v;
 
-	data->pwd = malloc(sizeof(char *) * (k + 1));
+	data->pwd = malloc(sizeof(char) * (k + 1));
 	if (data->pwd == NULL)
-		ft_exit("allocation error", data);
+		ft_exit(ERRMEMALLOC, data);
 	v = 0;
 	while (data->envp[i][j + v] != '\0')
 	{

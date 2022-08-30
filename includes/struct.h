@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 13:30:16 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 23:57:28 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_data		t_data;
 typedef struct s_cmd		t_cmd;
+typedef struct s_arg		t_arg;
 
 struct s_cmd
 {

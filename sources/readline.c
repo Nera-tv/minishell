@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/08/27 13:35:34 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:08:42 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ void	exec(t_data *data)
 	i = 0;
 	while (i < data->nbr_cmds)
 	{
-		blt = is_builtins(data, i);
-		if (blt > 0)
-			exec_builtins(data, i, blt);
-		else
+		if (data->cmd[i].cmd)
 		{
-			printf("execution de la commande\n");
+			blt = is_builtins(data, i);
+			if (blt > 0)
+				exec_builtins(data, i, blt);
+			else
+			{
+				printf("execution de la commande\n");
+			}
 		}
 		i++;
 	}

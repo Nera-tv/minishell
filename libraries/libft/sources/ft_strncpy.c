@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_args_bis.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 21:37:38 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 20:54:45 by dvilard          ###   ########.fr       */
+/*   Created: 2022/08/30 17:48:22 by dvilard           #+#    #+#             */
+/*   Updated: 2022/08/30 18:32:22 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../libft.h"
 
-void	check_quotes(t_data *data, int val)
+char	*ft_strncpy(char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	size;
 
-	i = 0;
-	while (data->cmd[val].args[i])
-	{
-		i++;
-	}
-}
-
-void	check_dbl_quotes(t_data *data, int val)
-{
-	int	i;
-
-	i = 0;
-	while (data->cmd[val].args[i])
-	{
-		i++;
-	}
+	size = ft_strnlen(s2, n);
+	if (size != n)
+		ft_memset(s1 + size, '\0', n - size);
+	ft_memcpy(s1, s2, size);
+	return (s1);
 }

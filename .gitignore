@@ -2,3 +2,4 @@
 .objects
 libft.a
 libftprintf.a
+minishell.h.gch

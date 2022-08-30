@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 13:37:43 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/27 16:06:24 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/08/28 12:19:37 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	get_cmd_arg(t_data *data)
 {
 	int	i;
 
+	data->cmd = NULL;
 	if (check_line_pipe(data) == 0)
 	{
 		get_nbr_cmd(data);

@@ -9,9 +9,11 @@ LST_SRCS	=	builtins.c				\
 				exit.c					\
 				export.c				\
 				main.c					\
-				p_args_bis.c			\
+				p_args_var_env_bis.c	\
+				p_args_var_env.c		\
 				p_args_utils.c			\
 				p_args.c				\
+				p_back_slash.c			\
 				p_cmd.c					\
 				p_free_cmd.c			\
 				p_get_cmd_arg_utils.c	\
@@ -19,6 +21,9 @@ LST_SRCS	=	builtins.c				\
 				p_get_pwd.c				\
 				p_option.c				\
 				p_pipe.c				\
+				p_replace_var_env.c		\
+				p_set_args_bis.c		\
+				p_set_args.c			\
 				pwd.c					\
 				readline.c				\
 				unset.c			
