@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/31 00:59:52 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/20 17:46:40 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	read_line(const char *prompt, t_data *data);
 
 // utils
 size_t	ft_strlen_m(const char *tab);
+int		if_end_var_env(char c);
 
 // parsing
 void	get_cmd_arg(t_data *data);
@@ -49,6 +50,12 @@ void	get_nbr_cmd(t_data *data);
 
 //		cmd
 void	get_cmd_name(t_data *data, int val);
+int		get_cmd_len(t_data *data, int val);
+int		db_quote_in_cmd(t_data *data, int val, int len);
+int		sp_quote_in_cmd(char *line, int len);
+char	*get_var_env_in_cmd(char *str);
+char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env);
+char	*shift_in_tab(char *tab, int i);
 
 //		args
 void	get_args(t_data *data, int val);
@@ -60,7 +67,7 @@ void	free_args(char **args, int nbr_args);
 
 //		var_env
 void	args_var_env(t_data *data, int val);
-int		if_back_slash(t_data *data, int val, int arg_count);
+int		if_back_slash(t_data *data, int val, int arg_count, int i);
 char	*ft_replace_word(const char *s, const char *old_w, char *new_w);
 size_t	ft_strlen_c(const char *s, char c);
 int		if_var_env(char *str, char c);

@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 00:40:30 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/31 01:07:19 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/20 15:24:30 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,26 @@ size_t	ft_strlen_c_to_c(const char *s, char c)
 	return (i);
 }
 
-void	remove_back_slash(t_data *data, int val, int arg_count)
+void	remove_quote_in_back_slash(t_data *data, int val, int arg_count)
 {
-	int		i;
+	int	i;
+
+	i = ft_strlen_c_to_c(data->cmd[val].args[arg_count], '\\');
+	printf("%d\n", i);
+}
+/*
+void	remove_back_slash(t_data *data, int val, int arg_count, int i)
+{
+	
+	
 	int		y;
 	char	*tmp;
 
-	i = 0;
 	y = 0;
 	tmp = data->cmd[val].args[arg_count];
 	while (tmp[i] != '\0')
 	{
-		if (tmp[i] == '\\')
+		if (tmp[i] == '\\' && tmp[i + 1] == '\\')
 			i++;
 		else
 		{
@@ -53,7 +61,7 @@ void	remove_back_slash(t_data *data, int val, int arg_count)
 		}
 	}
 	data->cmd[val].args[arg_count][y] = '\0';
-}
+}*/
 
 void	if_back_slash_bis(t_data *data, int val, int arg_count, char *var_env)
 {
@@ -74,18 +82,19 @@ void	if_back_slash_bis(t_data *data, int val, int arg_count, char *var_env)
 	}
 }
 
-int	if_back_slash(t_data *data, int val, int arg_count)
+int	if_back_slash(t_data *data, int val, int arg_count, int i)
 {
 	int		dollar_count;
 	char	*var_env;
 
 	dollar_count = if_var_env(data->cmd[val].args[arg_count], '\\');
+	printf("%d\n", dollar_count);
 	if (dollar_count != 0)
 	{
 		var_env = get_var_env_in_arg(data->cmd[val].args[arg_count]);
 		if_back_slash_bis(data, val, arg_count, var_env);
 		free(var_env);
 	}
-	remove_back_slash(data, val, arg_count);
-	return (ft_strlen_c(data->cmd[val].args[arg_count], '\\'));
+	printf("%d\n", i);
+	return (ft_strlen(data->cmd[val].args[arg_count]));
 }
