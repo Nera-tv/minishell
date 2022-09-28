@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 23:58:47 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 15:05:29 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/20 22:35:22 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	if_var_env(char *str, char c)
 
 int	if_end_var_env(char c)
 {
-	if (c == '\0' || c == '\\' || c == '\'' || c == '\"')
+	if (c == '\0' || c == '\\' || c == '\'' || c == '\"' || c == '$' || c == '/')
 		return (1);
 	return (0);
 }
@@ -63,6 +63,7 @@ char	*get_var_env_in_arg(char *str)
 	while (str[i] != '$')
 		i++;
 	len = 0;
+	str[i] = 0;
 	while (if_end_var_env(str[i + len]) != 1)
 		len++;
 	env = malloc(sizeof(char) * (len + 1));

@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 17:46:40 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/20 21:21:36 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		sp_quote_in_cmd(char *line, int len);
 char	*get_var_env_in_cmd(char *str);
 char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env);
 char	*shift_in_tab(char *tab, int i);
+char	*del_var_env_in_line(char *line);
 
 //		args
 void	get_args(t_data *data, int val);
