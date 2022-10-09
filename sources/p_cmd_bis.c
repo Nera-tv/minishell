@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:19:01 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/27 15:21:01 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:08:00 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	db_quote_in_cmd(t_data *data, int val, int len)
 			line = db_quote_in_cmd_bis(data, line, var_env);
 			free(var_env);
 		}
-		len++;
 	}
 	line = shift_in_tab(line, len);
 	data->cmd[val].cmd = line;

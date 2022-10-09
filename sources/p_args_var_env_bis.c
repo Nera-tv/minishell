@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 23:58:47 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 22:35:22 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/09/29 13:44:10 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	if_var_env(char *str, char c)
 
 int	if_end_var_env(char c)
 {
-	if (c == '\0' || c == '\\' || c == '\'' || c == '\"' || c == '$' || c == '/')
+	if (ft_isalnum(c) == 0)
 		return (1);
 	return (0);
 }
