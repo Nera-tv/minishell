@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 23:57:28 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/20 14:30:38 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ struct s_data
 	char			**envp;
 	char			**argv;
 	int				indic_first_cd;
-	int				error;
+	//int				error;
 };
 
 #endif

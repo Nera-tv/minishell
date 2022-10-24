@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/29 14:02:07 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/24 14:25:55 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	get_nbr_cmd(t_data *data);
 //		cmd
 void	get_cmd_name(t_data *data, int val);
 int		get_cmd_len(t_data *data, int val);
-int		db_quote_in_cmd(t_data *data, int val, int len);
+char	*ft_str_tolower(char *str);
+//int		db_quote_in_cmd(t_data *data, int val, int len);
 int		sp_quote_in_cmd(char *line, int len);
 char	*get_var_env_in_cmd(char *str);
 char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env);
@@ -70,7 +71,7 @@ void	free_args(char **args, int nbr_args);
 //		var_env
 void	args_var_env(t_data *data, int val);
 int		if_back_slash(t_data *data, int val, int arg_count, int i);
-char	*ft_replace_word(const char *s, const char *old_w, char *new_w);
+char	*ft_replace_word(const char *s, char *old_w, char *new_w);
 size_t	ft_strlen_c(const char *s, char c);
 int		if_var_env(char *str, char c);
 char	*get_var_env_in_arg(char *str);

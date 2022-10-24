@@ -3,79 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   p_cmd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/29 14:00:48 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:15:42 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*var_dollard_dollard(char *line)
+int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 {
-	char	var_env[3];
-	char	*tmp;
-	
-	var_env[0] = '$';
-	var_env[1] = '$';
-	var_env[2] = '\0';
-	tmp = ft_replace_word(line, var_env, "=50");
-	free(line);
-	line = tmp;
-	return (line);
-}
-
-int	check_quote_in_cmd_bis(t_data *data, int val, int len)
-{
-	char	*line;
 	char	*var_env;
 
-	line = data->cmd[val].cmd;
-	if (data->cmd[val].cmd[len] == '\"')
-		len = db_quote_in_cmd(data, val, len);
-	else if (data->cmd[val].cmd[len] == '\'')
-		len = sp_quote_in_cmd(data->cmd[val].cmd, len);
-	else
+	line = shift_in_tab(data->cmd[val].cmd, len);
+	while (line[len] != '\0' && line[len] != '\"')
 	{
-		if (line[len] == '$' && if_end_var_env(line[len + 1]) != 1)
+		if (line[len] == '\\' && line[len + 1] == '\"')
+		{
+			line = shift_in_tab(line, len);
+			len ++;
+		}
+		if (line[len] == '$')
 		{
 			var_env = get_var_env_in_cmd(line);
 			line = db_quote_in_cmd_bis(data, line, var_env);
 			free(var_env);
-			data->cmd[val].cmd = line;
 		}
-		else if (line[len + 1] != '$' && if_end_var_env(line[len + 1]) == 1)
-			len++;
-		else if (line[len + 1] == '$')
-			data->cmd[val].cmd = var_dollard_dollard(line);
+		len++;
 	}
+	line = shift_in_tab(line, len);
+	data->cmd[val].cmd = line;
 	return (len);
 }
 
-void	check_quote_in_cmd(t_data *data, int val)
+int	parsing_cmd_name_bis(t_data *data, int val, int len)
+{
+	char	*var_env;
+	char	*cmd;
+
+	cmd = data->cmd[val].cmd;
+	if (cmd[len] == '\'')
+		len = sp_quote_in_cmd(cmd, len);
+	else if (cmd[len] == '\"')
+	{
+		len = db_quote_in_cmd(data, val, cmd, len);
+		cmd = data->cmd[val].cmd;
+	}
+	else if (cmd[len] == '$')
+	{
+		var_env = get_var_env_in_cmd(cmd);
+		cmd = db_quote_in_cmd_bis(data, cmd, var_env);
+		free(var_env);
+	}
+	data->cmd[val].cmd = cmd;
+	return (len);
+}
+
+char	*parsing_cmd_name(t_data *data, int val)
 {
 	int		len;
+	char	*cmd;
 
 	len = 0;
-	while (data->cmd[val].cmd[len] != '\0')
+	cmd = data->cmd[val].cmd;
+	while (cmd[len] != '\0')
 	{
-		//printf("%d : %c\n",len , data->cmd[val].cmd[len]);
-		//printf("%s\n", data->cmd[val].cmd);
-		if (data->cmd[val].cmd[len] != '\\')
-			len = check_quote_in_cmd_bis(data, val, len);
+		if (cmd[len] != '\\')
+		{
+			len = parsing_cmd_name_bis(data, val, len);
+			cmd = data->cmd[val].cmd;
+		}
 		else
 		{
-			if (data->cmd[val].cmd[len + 1] == '\"'
-				|| data->cmd[val].cmd[len + 1] == '\'')
+			if (cmd[len + 1] == '\'' || cmd[len + 1] == '\"')
 			{
-				data->cmd[val].cmd = shift_in_tab(data->cmd[val].cmd, len);
-				len += 1;
+				cmd = shift_in_tab(cmd, len);
+				len++;
 			}
 		}
-		if (data->cmd[val].cmd[len] != '\0' && data->cmd[val].cmd[len] != '$')
+		if (cmd[len] != '\0')
 			len++;
 	}
+	return (cmd);
 }
 
 void	get_cmd_name(t_data *data, int val)
@@ -95,6 +105,6 @@ void	get_cmd_name(t_data *data, int val)
 		j++;
 	}
 	data->cmd[val].cmd[j] = '\0';
-	check_quote_in_cmd(data, val);
+	data->cmd[val].cmd = parsing_cmd_name(data, val);
 	printf("%s\n", data->cmd[val].cmd);
 }

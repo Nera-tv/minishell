@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_replace_var_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:19:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 15:25:27 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:49:49 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*replace_word_bis(const char *s, const char *old_w,
 	return (result);
 }
 
-char	*ft_replace_word(const char *s, const char *old_w, char *new_w)
+char	*ft_replace_word(const char *s, char *old_w, char *new_w)
 {
 	char	*result;
 	int		i;

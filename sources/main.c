@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 12:19:13 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:55:27 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_data(t_data *data, char **envp, char **argv)
 	data->argv = argv;
 	get_pwd(data);
 	data->indic_first_cd = 0;
-	data->error = 0;
 }
 
 int	main(int argc, char **argv, char **envp)

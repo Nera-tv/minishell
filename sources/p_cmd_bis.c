@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   p_cmd_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:19:01 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/29 14:08:00 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:12:46 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char *shift_in_tab_pro(char *tab)
+char	*shift_in_tab_pro(char *tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i] != '$')
@@ -26,11 +26,10 @@ char *shift_in_tab_pro(char *tab)
 char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env)
 {
 	int		i;
-	int		if_var;
 	char	*tmp;
 
 	i = 0;
-	if_var = 0;
+	tmp = NULL;
 	while (data->envp[i])
 	{
 		if (ft_cmp_var_env(var_env, data->envp[i]) == 0)
@@ -38,15 +37,11 @@ char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env)
 			tmp = ft_replace_word(line,
 					var_env, data->envp[i]);
 			free(line);
-			line = tmp;
-			if_var = 1;
+			return (tmp);
 		}
 		i++;
 	}
-	if (if_var == 1)
-		return (line);
-	else
-		return (del_var_env_in_line(line));
+	return (del_var_env_in_line(line));
 }
 
 char	*get_var_env_in_cmd(char *str)
@@ -74,31 +69,6 @@ char	*get_var_env_in_cmd(char *str)
 	env[0] = '$';
 	str[i] = '$';
 	return (env);
-}
-
-int	db_quote_in_cmd(t_data *data, int val, int len)
-{
-	char	*var_env;
-	char	*line;
-
-	line = shift_in_tab(data->cmd[val].cmd, len);
-	while (line[len] != '\0' && line[len] != '\"')
-	{
-		if (line[len] == '\\' && line[len + 1] == '\"')
-		{
-			line = shift_in_tab(line, len);
-			len ++;
-		}
-		if (line[len] == '$')
-		{
-			var_env = get_var_env_in_cmd(line);
-			line = db_quote_in_cmd_bis(data, line, var_env);
-			free(var_env);
-		}
-	}
-	line = shift_in_tab(line, len);
-	data->cmd[val].cmd = line;
-	return (len - 1);
 }
 
 int	sp_quote_in_cmd(char *line, int len)
