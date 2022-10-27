@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 16:15:42 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 11:48:17 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 			line = db_quote_in_cmd_bis(data, line, var_env);
 			free(var_env);
 		}
-		len++;
+		if (line[len] != '\"' && line[len] != '\0')
+			len++;
 	}
 	line = shift_in_tab(line, len);
 	data->cmd[val].cmd = line;
@@ -106,5 +107,4 @@ void	get_cmd_name(t_data *data, int val)
 	}
 	data->cmd[val].cmd[j] = '\0';
 	data->cmd[val].cmd = parsing_cmd_name(data, val);
-	printf("%s\n", data->cmd[val].cmd);
 }

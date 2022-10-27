@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 14:19:01 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 16:12:46 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:39:36 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env)
 		}
 		i++;
 	}
-	return (del_var_env_in_line(line));
+	tmp = ft_replace_word(line, var_env, "=");
+	free(line);
+	return (tmp);
 }
 
 char	*get_var_env_in_cmd(char *str)

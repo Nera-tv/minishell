@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_back_slash.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 00:40:30 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 15:24:30 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:05:26 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	remove_back_slash(t_data *data, int val, int arg_count, int i)
 		}
 	}
 	data->cmd[val].args[arg_count][y] = '\0';
-}*/
+}*//*
 
 void	if_back_slash_bis(t_data *data, int val, int arg_count, char *var_env)
 {
@@ -98,3 +98,4 @@ int	if_back_slash(t_data *data, int val, int arg_count, int i)
 	printf("%d\n", i);
 	return (ft_strlen(data->cmd[val].args[arg_count]));
 }
+*/

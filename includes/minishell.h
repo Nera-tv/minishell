@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:41 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 14:25:55 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:19:01 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ void	free_args(char **args, int nbr_args);
 
 //		var_env
 void	args_var_env(t_data *data, int val);
-int		if_back_slash(t_data *data, int val, int arg_count, int i);
+//int		if_back_slash(t_data *data, int val, int arg_count, int i);
 char	*ft_replace_word(const char *s, char *old_w, char *new_w);
 size_t	ft_strlen_c(const char *s, char c);
 int		if_var_env(char *str, char c);
-char	*get_var_env_in_arg(char *str);
 int		ft_cmp_var_env(const char *s1, const char *s2);
 
 // builtins

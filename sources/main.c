@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 15:55:27 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:14:19 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
+
+//UPDATE OLDPWD

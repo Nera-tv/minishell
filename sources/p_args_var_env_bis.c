@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   p_args_var_env_bis.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 23:58:47 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/29 13:44:10 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:19:26 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+/*
 size_t	ft_strlen_c(const char *s, char c)
 {
 	size_t	i;
@@ -25,7 +25,7 @@ size_t	ft_strlen_c(const char *s, char c)
 	}
 	return (i);
 }
-
+*/
 int	if_var_env(char *str, char c)
 {
 	int	i;
@@ -50,31 +50,6 @@ int	if_end_var_env(char c)
 	if (ft_isalnum(c) == 0)
 		return (1);
 	return (0);
-}
-
-char	*get_var_env_in_arg(char *str)
-{
-	char	*env;
-	int		i;
-	int		len;
-
-	i = 0;
-	env = NULL;
-	while (str[i] != '$')
-		i++;
-	len = 0;
-	str[i] = 0;
-	while (if_end_var_env(str[i + len]) != 1)
-		len++;
-	env = malloc(sizeof(char) * (len + 1));
-	len = 0;
-	while (if_end_var_env(str[i + len]) != 1)
-	{
-		env[len] = str[i + len];
-		len++;
-	}
-	env[len] = '\0';
-	return (env);
 }
 
 int	ft_cmp_var_env(const char *s1, const char *s2)

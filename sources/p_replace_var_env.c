@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 20:19:03 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 15:49:49 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:31:29 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	*ft_replace_word(const char *s, char *old_w, char *new_w)
 	int		old_w_len;
 
 	cnt = 0;
-	new_w = ft_shiftstr(new_w, '=');
+	if (new_w)
+		new_w = ft_shiftstr(new_w, '=');
 	new_w_len = ft_strlen(new_w);
 	old_w_len = ft_strlen(old_w);
 	i = 0;

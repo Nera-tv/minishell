@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 21:14:35 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 16:08:31 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/10/27 11:22:07 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*del_var_env_in_line(char *line)
 	line = shift_in_tab(line, i);
 	while (if_end_var_env(line[i]) != 1)
 		line = shift_in_tab(line, i);
+	printf("%s\n", line);
 	return (line);
 }
 
