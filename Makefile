@@ -28,7 +28,6 @@ LST_SRCS	=	builtins.c				\
 				p_get_cmd_arg_utils.c	\
 				p_get_cmd_arg.c			\
 				p_get_pwd.c				\
-				p_option.c				\
 				p_pipe.c				\
 				p_replace_var_env.c		\
 				p_set_args_bis.c		\
@@ -51,7 +50,7 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS		:=	-Wall -Wextra -Werror -fsanitize=address -g3
 RLOFLAGS	:=	-lreadline
 NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\
@@ -163,3 +162,8 @@ fclean :
 re :
 	@${MAKE} fclean
 	@${MAKE} all
+
+git :
+	@git add .
+	@git commit 
+	@git push

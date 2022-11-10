@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: neress <neress@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:49:53 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/03 07:35:39 by neress           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:34:57 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@ void	ft_env(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->envp[i])
+	while (i < data->nb_env)
 	{
-		ft_putstr_fd(data->envp[i], 1);
-		ft_putchar_fd('\n', 1);
+		if (data->env[i].content)
+		{
+			ft_putstr_fd(data->env[i].name, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(data->env[i].content, 1);
+			ft_putstr_fd("\n", 1);
+		}
 		i++;
 	}
 }

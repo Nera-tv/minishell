@@ -46,13 +46,11 @@ void	ft_putstr_fd_export(char *s, int fd)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	if (!s || !fd)
 		return ;
 	i = 0;
 	j = 0;
-	c = '\"';
 	while (s[i] != '\0')
 	{
 		write(fd, &s[i], 1);

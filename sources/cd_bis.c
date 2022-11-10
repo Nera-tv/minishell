@@ -12,45 +12,61 @@
 
 #include "../includes/minishell.h"
 
-char	*get_oldpwd(t_data *data, int i)
+int	check_if_dash_bis(t_data *data, int i)
 {
 	char	*tmp;
-	int		j;
-	int		len;
 
-	j = 0;
-	while (data->envp[i][j] != '=')
-		j++;
-	j++;
-	len = 0;
-	while (data->envp[i][j + len] != '\0')
-		len++;
-	tmp = malloc(sizeof(char *) * (len + 1));
-	len = 0;
-	while (data->envp[i][j + len] != '\0')
+	if (ft_strnncmp(data->env[i].name,
+			"OLDPWD", ft_strlen("OLDPWD")) == 0)
 	{
-		tmp[len] = data->envp[i][j + len];
-		len++;
+		if (data->env[i].content)
+		{
+			tmp = ft_strdup(data->env[i].content);
+			change_dir(data, tmp);
+			free(tmp);
+		}
+		else
+		{
+			ft_putstr_fd(data->pwd, 1);
+			ft_putchar_fd('\n', 1);
+		}
+		return (1);
 	}
-	tmp[len] = '\0';
-	return (tmp);
+	return (0);
 }
 
 int	check_if_dash(t_data *data, int val)
 {
-	char	*tmp;
 	int		i;
 
 	if (data->cmd[val]._args[0] == '-')
 	{
 		i = 0;
-		while (data->envp[i])
+		while (i < data->nb_env)
 		{
-			if (ft_strnncmp(data->envp[i], "HOME=", ft_strlen("HOME=")) == 0)
+			if (check_if_dash_bis(data, i) == 1)
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
+
+int	check_if_tilde(t_data *data, int val)
+{
+	int		i;
+
+	if (data->cmd[val]._args[0] == '~')
+	{
+		i = 0;
+		while (i < data->nb_env)
+		{
+			if (ft_strnncmp(data->env[i].name, "HOME", ft_strlen("HOME")) == 0)
 			{
-				tmp = get_oldpwd(data, i);
-				change_dir(data, tmp);
-				free(tmp);
+				if (data->env[i].content)
+					change_dir(data, data->env[i].content);
+				else
+					ft_putstr_fd("\n", 1);
 				return (1);
 			}
 			i++;

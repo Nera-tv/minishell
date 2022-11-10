@@ -48,6 +48,7 @@ void	update_val_env(t_data *data, char *name, char *new_content)
 	}
 	else
 		new_env(data, name, new_content);
+	free(name);
 }
 /*
 void	del_env(t_data *data, char *name)

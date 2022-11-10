@@ -18,7 +18,6 @@ void	init_cmds(t_data *data, int val)
 	get_args(data, val);
 	if (data->cmd[val]._args)
 		get_args_len(data, val);
-	printf("%s\n", data->cmd[val]._args);
 }
 
 void	get_cmd_arg(t_data *data)

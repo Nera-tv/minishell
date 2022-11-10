@@ -95,6 +95,7 @@ void	exec_builtins(t_data *data, int val, int blt);
 void	ft_cd(t_data *data, int val);
 void	change_dir(t_data *data, char *path);
 int		check_if_dash(t_data *data, int val);
+int		check_if_tilde(t_data *data, int val);
 
 // export
 void	ft_export(t_data *data, int val);
