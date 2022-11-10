@@ -163,6 +163,10 @@ re :
 	@${MAKE} fclean
 	@${MAKE} all
 
+test :
+	@${MAKE}
+	@./${NAME}
+
 git :
 	@git add .
 	@git commit 
