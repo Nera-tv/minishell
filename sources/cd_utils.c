@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 12:36:56 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/20 14:03:42 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/08 13:28:42 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ void	change_dir(t_data *data, char *path)
 		ft_putstr_fd(path, 1);
 		ft_putstr_fd(": No such file or directory\n", 1);
 	}
-	getcwd(data->pwd, ft_strlen(data->pwd)
-		+ ft_strlen(path) + 2);
+	getcwd(data->pwd, ft_strlen(data->pwd) + ft_strlen(path) + 2);
 	i = 0;
-	while (data->envp[i])
+	while (data->env[i].name)
 	{
-		if (ft_strnncmp(data->envp[i], "PWD=", ft_strlen("PWD=")) == 0)
+		if (ft_strnncmp(data->env[i].name, "PWD", ft_strlen("PWD")) == 0)
 		{
 			if (data->indic_first_cd == 1 && data->envp[i])
 				free (data->envp[i]);

@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:49:46 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/24 15:55:14 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/07 10:56:50 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	exec_builtins(t_data *data, int val, int blt)
 		ft_pwd(data);
 	if (blt == 4)
 		ft_cd(data, val);
+	if (blt == 5)
+		ft_export(data, val);
 }
 
 int	is_builtins(t_data *data, int val)
@@ -38,5 +40,8 @@ int	is_builtins(t_data *data, int val)
 	if (ft_strnncmp(data->cmd[val].cmd, "cd", ft_strlen("cd")) == 0
 		&& data->cmd[val].cmd[2] == '\0')
 		return (4);
+	if (ft_strnncmp(data->cmd[val].cmd, "export", ft_strlen("export")) == 0
+		&& data->cmd[val].cmd[6] == '\0')
+		return (5);
 	return (0);
 }

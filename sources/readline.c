@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 12:22:21 by apouchin          #+#    #+#             */
-/*   Updated: 2022/08/28 12:08:42 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/07 10:55:54 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	exec(t_data *data)
 		if (data->cmd[i].cmd)
 		{
 			blt = is_builtins(data, i);
+			printf("cmd = %s -- blt = %d\n", data->cmd[i].cmd, blt);
 			if (blt > 0)
 				exec_builtins(data, i, blt);
 			else

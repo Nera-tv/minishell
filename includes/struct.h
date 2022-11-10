@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 14:00:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/27 16:15:27 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/08 11:08:09 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 typedef struct s_data		t_data;
 typedef struct s_cmd		t_cmd;
 typedef struct s_arg		t_arg;
+typedef struct s_list_env	t_list_env;
+
+struct s_list_env
+{
+	char	*name;
+	char	*content;
+};
 
 struct s_cmd
 {
@@ -47,6 +54,8 @@ struct s_data
 	char			*line;
 	char			*pwd;
 	char			**envp;
+	t_list_env		*env;
+	int				nb_env;
 	char			**argv;
 	int				indic_first_cd;
 };

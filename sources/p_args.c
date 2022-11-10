@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 13:28:43 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/27 16:15:35 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/07 13:12:53 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,32 @@ void	ft_arg_cpy(t_data *data, int val, int i)
 	}
 	data->cmd[val]._args[j] = '\0';
 }
+/*
+void	check_args(t_data *data, int val)
+{
+	int	i;
+	int j;
+	int verif;
+
+	j = 0;
+	while (data->cmd[val].args[j])
+	{
+		i = 0;
+		while (data->cmd[val].args[j][i] != '\0' && verif == 0)
+		{
+			if (data->cmd[val].args[j][i] != ' '
+				&& data->cmd[val].args[j][i] != '\0')
+				verif = 1;
+			i++;
+		}
+		if (verif == 0)
+		{
+			
+		}
+		else
+			j++;
+	}
+}*/
 
 void	get_args(t_data *data, int val)
 {

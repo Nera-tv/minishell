@@ -2,15 +2,21 @@
 .SILENT:
 
 LST_SRCS	=	builtins.c				\
+				cd_bis.c				\
 				cd_utils.c				\
 				cd.c					\
 				echo.c					\
 				env.c					\
 				exit.c					\
+				export_utils.c			\
 				export.c				\
+				ft_env.c				\
+				list_env_bis.c			\
+				list_env.c				\
 				main.c					\
 				p_args_var_env_bis.c	\
 				p_args_var_env.c		\
+				p_arg_quote.c			\
 				p_args_utils.c			\
 				p_args.c				\
 				p_back_slash.c			\
@@ -45,7 +51,7 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		:=	-Wall -Wextra -Werror #-fsanitize=address -g3
 RLOFLAGS	:=	-lreadline
 NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\

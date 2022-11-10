@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:45:33 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/27 16:14:19 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/08 10:58:43 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_data(t_data *data, char **envp, char **argv)
 	data->argv = argv;
 	get_pwd(data);
 	data->indic_first_cd = 0;
+	ft_lst_env_fill(data);
 }
 
 int	main(int argc, char **argv, char **envp)

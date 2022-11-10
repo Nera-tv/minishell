@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_get_cmd_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 13:37:43 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 12:19:37 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/07 10:48:34 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_cmds(t_data *data, int val)
 	get_args(data, val);
 	if (data->cmd[val]._args)
 		get_args_len(data, val);
+	printf("%s\n", data->cmd[val]._args);
 }
 
 void	get_cmd_arg(t_data *data)

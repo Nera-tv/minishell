@@ -6,26 +6,12 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 23:58:47 by dvilard           #+#    #+#             */
-/*   Updated: 2022/10/27 17:19:26 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/07 13:15:08 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-/*
-size_t	ft_strlen_c(const char *s, char c)
-{
-	size_t	i;
 
-	i = 0;
-	while (s[i] != c)
-	{
-		if (s[i] == '\0')
-			return (i);
-		i++;
-	}
-	return (i);
-}
-*/
 int	if_var_env(char *str, char c)
 {
 	int	i;
