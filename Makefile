@@ -168,6 +168,7 @@ test :
 	@./${NAME}
 
 git :
+	@${MAKE} fclean
 	@git add .
 	@git commit 
 	@git push

@@ -50,16 +50,23 @@ void	update_val_env(t_data *data, char *name, char *new_content)
 		new_env(data, name, new_content);
 	free(name);
 }
-/*
-void	del_env(t_data *data, char *name)
+
+void	del_env(t_data *data, char *name) // A TESTER
 {
-	t_list_env	*env_tab;
+	t_list_env	*env_tmp;
 	int			i;
 
-	env_tab = malloc(sizeof(t_list_env) * (data->nb_env + 1));
+	env_tmp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
 	i = 0;
-	while (i < data->nb_env
-		&& ft_strnncmp(data->env[i].name, name, ft_strlen(name)) != 0)
+	while (i < data->nb_env)
+	{
+		if (ft_strnncmp(data->env[i].name, name, ft_strlen(name)) != 0)
+		{
+			env_tmp[i].name = data->env[i].name;
+			env_tmp[i].content = data->env[i].content;
+		}
 		i++;
-	
-}*/
+	}
+	free(data->env);
+	data->env = env_tmp;
+}
