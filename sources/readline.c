@@ -23,7 +23,6 @@ void	exec(t_data *data)
 		if (data->cmd[i].cmd)
 		{
 			blt = is_builtins(data, i);
-			printf("cmd = %s -- blt = %d\n", data->cmd[i].cmd, blt);
 			if (blt > 0)
 				exec_builtins(data, i, blt);
 			else

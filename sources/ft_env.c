@@ -51,7 +51,7 @@ void	update_val_env(t_data *data, char *name, char *new_content)
 	free(name);
 }
 
-void	del_env(t_data *data, char *name) // A TESTER
+void	del_env(t_data *data, char *name) // A revoir
 {
 	t_list_env	*env_tmp;
 	int			i;
@@ -69,4 +69,5 @@ void	del_env(t_data *data, char *name) // A TESTER
 	}
 	free(data->env);
 	data->env = env_tmp;
+	data->nb_env--;
 }

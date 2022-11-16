@@ -24,6 +24,8 @@ void	exec_builtins(t_data *data, int val, int blt)
 		ft_cd(data, val);
 	if (blt == 5)
 		ft_export(data, val);
+	if (blt == 6)
+		ft_unset(data, val);
 }
 
 int	is_builtins(t_data *data, int val)
@@ -43,5 +45,8 @@ int	is_builtins(t_data *data, int val)
 	if (ft_strnncmp(data->cmd[val].cmd, "export", ft_strlen("export")) == 0
 		&& data->cmd[val].cmd[6] == '\0')
 		return (5);
+	if (ft_strnncmp(data->cmd[val].cmd, "unset", ft_strlen("unset")) == 0
+		&& data->cmd[val].cmd[5] == '\0')
+		return (6);
 	return (0);
 }

@@ -76,13 +76,14 @@ void	ft_lst_env_fill(t_data *data);
 int		get_len_for_lst_env(t_data *data);
 void	new_env(t_data *data, char *name, char *content);
 void	update_val_env(t_data *data, char *name, char *new_content);
+void	del_env(t_data *data, char *name);
 void	args_var_env(t_data *data, int val);
 char	*ft_replace_word(const char *s, char *old_w, char *new_w);
 size_t	ft_strlen_c(const char *s, char c);
 int		if_var_env(char *str, char c);
 int		ft_cmp_var_env(const char *s1, const char *s2);
 
-// builtins
+//		builtins
 void	ft_echo(t_data *data, int val);
 int		nb_args(char **args);
 void	ft_env(t_data *data);
@@ -91,17 +92,20 @@ void	check_arg(t_data *data, int val);
 int		is_builtins(t_data *data, int val);
 void	exec_builtins(t_data *data, int val, int blt);
 
-//cd
+//		cd
 void	ft_cd(t_data *data, int val);
 void	change_dir(t_data *data, char *path);
 int		check_if_dash(t_data *data, int val);
 int		check_if_tilde(t_data *data, int val);
 
-// export
+//		export
 void	ft_export(t_data *data, int val);
 int		ft_strcmp_export(char *s1, char *s2);
 void	ft_swap(char **a, char **b);
-void	ft_sort_and_print_env(int nb_val, char **env, t_data *data);
+void	ft_sort_and_print_env(t_data *data);
 int		ft_matricelen(char **matrice);
+
+//		unset
+void	ft_unset(t_data *data, int val);
 
 #endif

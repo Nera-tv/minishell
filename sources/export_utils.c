@@ -33,78 +33,69 @@ int	ft_strcmp_export(char *s1, char *s2)
 	return (0);
 }
 
-void	ft_swap(char **a, char **b)
+void	ft_swap_env(t_list_env *a, t_list_env *b)
 {
-	char	*c;
+	t_list_env	c;
 
 	c = *a;
 	*a = *b;
 	*b = c;
 }
 
-void	ft_putstr_fd_export(char *s, int fd)
+void	ft_print_sorted_env(t_list_env	*env, int nb_env)
 {
-	int		i;
-	int		j;
+	int	i;
 
-	if (!s || !fd)
-		return ;
 	i = 0;
-	j = 0;
-	while (s[i] != '\0')
+	while (i < nb_env)
 	{
-		write(fd, &s[i], 1);
-		if (j == 0 && s[i] == '=')
+		ft_putstr_fd("declare -x ", 1);
+		ft_putstr_fd(env[i].name, 1);
+		if (env[i].content)
 		{
-			ft_putchar_fd('\"', fd);
-			j = 1;
+			ft_putstr_fd("=\"", 1);
+			ft_putstr_fd(env[i].content, 1);
+			ft_putchar_fd('\"', 1);
 		}
+		ft_putchar_fd('\n', 1);
 		i++;
 	}
-	ft_putchar_fd('\"', fd);
 }
 
-char	**cp_matrice(char **matrice, int nb_val, t_data *data)
+t_list_env	*cp_list_env(t_data *data)
 {
-	char	**matrice_cp;
-	int		i;
+	t_list_env	*envcp;
+	int			i;
 
-	matrice_cp = malloc(sizeof(char *) * nb_val);
-	if (!matrice_cp)
-		ft_exit(ERRMEMALLOC, data);
+	envcp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
 	i = 0;
-	while (matrice[i])
+	while (i < data->nb_env)
 	{
-		matrice_cp[i] = matrice[i];
+		envcp[i].name = data->env[i].name;
+		envcp[i].content = data->env[i].content;
 		i++;
 	}
-	return (matrice_cp);
+	return (envcp);
 }
 
-void	ft_sort_and_print_env(int nb_val, char **env, t_data *data)
+void	ft_sort_and_print_env(t_data *data)
 {
-	int		i;
-	int		j;
-	char	**envcp;
+	int			i;
+	int			j;
+	t_list_env	*envcp;
 
 	i = 0;
-	envcp = cp_matrice(env, nb_val, data);
-	while (i++ < nb_val)
+	envcp = cp_list_env(data);
+	while (i++ < data->nb_env)
 	{
 		j = i + 1;
-		while (j < nb_val)
+		while (j < data->nb_env)
 		{
-			if (ft_strcmp_export(envcp[i], envcp[j]) == 1)
-				ft_swap(&envcp[i], &envcp[j]);
+			if (ft_strcmp_export(envcp[i].name, envcp[j].name) == 1)
+				ft_swap_env(&envcp[i], &envcp[j]);
 			j++;
 		}
 	}
-	i = 0;
-	while (++i < nb_val)
-	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd_export(envcp[i], 1);
-		write(1, "\n", 1);
-	}
-	free(envcp);
+	ft_print_sorted_env(envcp, data->nb_env);
+	free (envcp);
 }
