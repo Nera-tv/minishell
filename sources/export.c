@@ -45,7 +45,7 @@ int	check_name(t_data *data, char *name, char *content)
 	i = 0;
 	while (i < data->nb_env)
 	{
-		if (ft_strnncmp(data->env[i].name, name, ft_strlen(name)) == 0)
+		if (ft_strnncmp(data->env[i].name, name, ft_strlen(data->env[i].name)) == 0)
 		{
 			if (content != NULL)
 				data->env[i].content = content;
