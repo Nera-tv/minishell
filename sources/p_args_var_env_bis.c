@@ -45,7 +45,7 @@ int	ft_cmp_var_env(const char *s1, const char *s2)
 
 	i = 1;
 	j = 0;
-	while (s2[j] != '=')
+	while (s2[j] != '\0')
 	{
 		if (s1[i] == '\0' && s2[j] != '\0')
 			return (1);

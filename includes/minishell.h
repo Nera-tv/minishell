@@ -53,7 +53,7 @@ void	get_cmd_name(t_data *data, int val);
 int		get_cmd_len(t_data *data, int val);
 char	*ft_str_tolower(char *str);
 int		sp_quote_in_cmd(char *line, int len);
-char	*get_var_env_in_cmd(char *str);
+char	*get_var_env_in_cmd(char *str, t_data *data);
 char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env);
 char	*shift_in_tab(char *tab, int i);
 char	*del_var_env_in_line(char *line);
@@ -69,7 +69,7 @@ void	free_args(char **args, int nbr_args);
 char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env);
 int		sp_quote_in_arg(char *line, int len);
 int		db_quote_in_arg(t_data *data, int val, int len, int arg_count);
-char	*get_var_env_in_arg(char *str);
+char	*get_var_env_in_arg(char *str, t_data *data);
 
 //		var_env
 void	ft_lst_env_fill(t_data *data);
@@ -78,7 +78,7 @@ void	new_env(t_data *data, char *name, char *content);
 void	update_val_env(t_data *data, char *name, char *new_content);
 void	del_env(t_data *data, char *name);
 void	args_var_env(t_data *data, int val);
-char	*ft_replace_word(const char *s, char *old_w, char *new_w);
+char	*ft_replace_word(const char *s, char *old_w, char *new_w, t_data *data);
 size_t	ft_strlen_c(const char *s, char c);
 int		if_var_env(char *str, char c);
 int		ft_cmp_var_env(const char *s1, const char *s2);

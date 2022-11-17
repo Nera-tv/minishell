@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:50:04 by dvilard           #+#    #+#             */
-/*   Updated: 2022/11/16 23:23:40 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/17 14:00:14 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_unset(t_data *data, int val)
 	int		i;
 	int		nbr_args;
 	char	*name;
-	
+
 	if (data->cmd[val].args)
 	{
 		i = 0;

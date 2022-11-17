@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-char	*get_var_env_in_arg(char *str)
+char	*get_var_env_in_arg(char *str, t_data *data)
 {
 	char	*env;
 	int		i;
@@ -27,6 +27,8 @@ char	*get_var_env_in_arg(char *str)
 	while (if_end_var_env(str[i + len]) != 1)
 		len++;
 	env = malloc(sizeof(char) * (len + 1));
+	if (!env)
+		ft_exit(ERRMEMALLOC, data);
 	len = 0;
 	while (if_end_var_env(str[i + len]) != 1)
 	{
@@ -54,7 +56,7 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	}
 	else if (arg[len] == '$')
 	{
-		var_env = get_var_env_in_arg(arg);
+		var_env = get_var_env_in_arg(arg, data);
 		arg = db_quote_in_arg_bis(data, arg, var_env);
 		free(var_env);
 	}

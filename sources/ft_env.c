@@ -18,9 +18,12 @@ void	new_env(t_data *data, char *name, char *content)
 	int			i;
 
 	env_tab = malloc(sizeof(t_list_env) * (data->nb_env + 1));
+	if (!env_tab)
+		ft_exit(ERRMEMALLOC, data);
 	i = 0;
 	while (i < data->nb_env)
 	{
+		ft_putstr_fd("", 1);
 		env_tab[i].name = data->env[i].name;
 		env_tab[i].content = data->env[i].content;
 		i++;
@@ -51,23 +54,39 @@ void	update_val_env(t_data *data, char *name, char *new_content)
 	free(name);
 }
 
-void	del_env(t_data *data, char *name) // A revoir
+void	del_env_bis(t_data *data, char *name, t_list_env *env_tmp)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->nb_env
+		&& ft_strnncmp(env_tmp[i].name, name, ft_strlen(name)) != 0)
+		i++;
+	while (i < data->nb_env - 1)
+	{
+		env_tmp[i] = env_tmp[i + 1];
+		i++;
+	}
+	free(data->env);
+	free(name);
+	data->env = env_tmp;
+	data->nb_env--;
+}
+
+void	del_env(t_data *data, char *name)
 {
 	t_list_env	*env_tmp;
 	int			i;
 
 	env_tmp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
+	if (!env_tmp)
+		ft_exit(ERRMEMALLOC, data);
 	i = 0;
 	while (i < data->nb_env)
 	{
-		if (ft_strnncmp(data->env[i].name, name, ft_strlen(name)) != 0)
-		{
-			env_tmp[i].name = data->env[i].name;
-			env_tmp[i].content = data->env[i].content;
-		}
+		env_tmp[i].name = data->env[i].name;
+		env_tmp[i].content = data->env[i].content;
 		i++;
 	}
-	free(data->env);
-	data->env = env_tmp;
-	data->nb_env--;
+	del_env_bis(data, name, env_tmp);
 }

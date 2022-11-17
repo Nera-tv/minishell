@@ -30,23 +30,23 @@ char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env)
 
 	i = 0;
 	tmp = NULL;
-	while (data->envp[i])
+	while (i < data->nb_env)
 	{
-		if (ft_cmp_var_env(var_env, data->envp[i]) == 0)
+		if (ft_cmp_var_env(var_env, data->env[i].name) == 0)
 		{
 			tmp = ft_replace_word(line,
-					var_env, data->envp[i]);
+					var_env, data->env[i].content, data);
 			free(line);
 			return (tmp);
 		}
 		i++;
 	}
-	tmp = ft_replace_word(line, var_env, "=");
+	tmp = ft_replace_word(line, var_env, "\0", data);
 	free(line);
 	return (tmp);
 }
 
-char	*get_var_env_in_cmd(char *str)
+char	*get_var_env_in_cmd(char *str, t_data *data)
 {
 	char	*env;
 	int		i;
@@ -61,6 +61,8 @@ char	*get_var_env_in_cmd(char *str)
 	while (if_end_var_env(str[i + len]) != 1)
 		len++;
 	env = malloc(sizeof(char) * (len + 1));
+	if (!env)
+		ft_exit(ERRMEMALLOC, data);
 	len = 0;
 	while (if_end_var_env(str[i + len]) != 1)
 	{

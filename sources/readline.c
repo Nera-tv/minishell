@@ -27,7 +27,7 @@ void	exec(t_data *data)
 				exec_builtins(data, i, blt);
 			else
 			{
-				printf("execution de la commande\n");
+				printf("execution de la commande : %s\n", data->cmd[i].cmd);
 			}
 		}
 		i++;
@@ -37,6 +37,8 @@ void	exec(t_data *data)
 void	read_line(const char *prompt, t_data *data)
 {
 	data->line = readline(prompt);
+	if (data->line && *data->line)
+		add_history(data->line);
 	if (data->line != NULL
 		&& ft_strncmp(data->line, "exit", ft_strlen("exit")) == 0)
 		ft_exit("exit\n", data);

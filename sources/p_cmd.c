@@ -26,7 +26,7 @@ int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 		}
 		if (line[len] == '$')
 		{
-			var_env = get_var_env_in_cmd(line);
+			var_env = get_var_env_in_cmd(line, data);
 			line = db_quote_in_cmd_bis(data, line, var_env);
 			free(var_env);
 		}
@@ -53,7 +53,7 @@ int	parsing_cmd_name_bis(t_data *data, int val, int len)
 	}
 	else if (cmd[len] == '$')
 	{
-		var_env = get_var_env_in_cmd(cmd);
+		var_env = get_var_env_in_cmd(cmd, data);
 		cmd = db_quote_in_cmd_bis(data, cmd, var_env);
 		free(var_env);
 	}

@@ -45,7 +45,8 @@ int	check_name(t_data *data, char *name, char *content)
 	i = 0;
 	while (i < data->nb_env)
 	{
-		if (ft_strnncmp(data->env[i].name, name, ft_strlen(data->env[i].name)) == 0)
+		if (ft_strnncmp(data->env[i].name, name,
+				ft_strlen(data->env[i].name)) == 0)
 		{
 			if (content != NULL)
 				data->env[i].content = content;
@@ -64,7 +65,7 @@ void	ft_export(t_data *data, int val)
 	char	*name;
 	char	*content;
 
-	if (!data->cmd[val]._args)
+	if (!data->cmd[val].args)
 		ft_sort_and_print_env(data);
 	else
 	{

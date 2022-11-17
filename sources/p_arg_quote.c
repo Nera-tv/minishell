@@ -19,18 +19,18 @@ char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env)
 
 	i = 0;
 	tmp = NULL;
-	while (data->envp[i])
+	while (i < data->nb_env)
 	{
-		if (ft_cmp_var_env(var_env, data->envp[i]) == 0)
+		if (ft_cmp_var_env(var_env, data->env[i].name) == 0)
 		{
 			tmp = ft_replace_word(line,
-					var_env, data->envp[i]);
+					var_env, data->env[i].content, data);
 			free(line);
 			return (tmp);
 		}
 		i++;
 	}
-	tmp = ft_replace_word(line, var_env, "=");
+	tmp = ft_replace_word(line, var_env, "\0", data);
 	free(line);
 	return (tmp);
 }
@@ -61,7 +61,7 @@ int	db_quote_in_arg(t_data *data, int val, int len, int arg_count)
 		}
 		if (line[len] == '$')
 		{
-			var_env = get_var_env_in_arg(line);
+			var_env = get_var_env_in_arg(line, data);
 			line = db_quote_in_arg_bis(data, line, var_env);
 			free(var_env);
 		}

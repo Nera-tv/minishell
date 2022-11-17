@@ -12,28 +12,13 @@
 
 #include "../includes/minishell.h"
 
-char	*ft_shiftstr(char *str, char c)
+char	*if_no_new_w(char *new_w, t_data *data)
 {
-	int		i;
-	int		y;
-	char	*tmp;
-
-	i = 0;
-	y = 0;
-	while (str[i] != c)
-		i++;
-	i++;
-	while (str[i + y] != '\0')
-		y++;
-	tmp = malloc(sizeof(char) * (y + 1));
-	y = 0;
-	while (str[i + y] != '\0')
-	{
-		tmp[y] = str[i + y];
-		y++;
-	}
-	tmp[y] = '\0';
-	return (tmp);
+	new_w = malloc(sizeof(char) * 1);
+	if (!new_w)
+		ft_exit(ERRMEMALLOC, data);
+	new_w[0] = '\0';
+	return (new_w);
 }
 
 char	*replace_word_bis(const char *s, const char *old_w,
@@ -61,31 +46,45 @@ char	*replace_word_bis(const char *s, const char *old_w,
 	return (result);
 }
 
-char	*ft_replace_word(const char *s, char *old_w, char *new_w)
+int	ft_replace_word_while(const char *s, char *old_w,
+	int old_w_len, t_data *data)
 {
-	char	*result;
-	int		i;
-	int		cnt ;
-	int		new_w_len;
-	int		old_w_len;
+	int	i;
 
-	cnt = 0;
-	if (new_w)
-		new_w = ft_shiftstr(new_w, '=');
-	new_w_len = ft_strlen(new_w);
-	old_w_len = ft_strlen(old_w);
+	data->cnt_replace = 0;
 	i = 0;
 	while (s[i] != '\0')
 	{
 		if (ft_strstr(&s[i], old_w) == &s[i])
 		{
-			cnt++;
+			data->cnt_replace++;
 			i += old_w_len - 1;
 		}
 		i++;
 	}
-	result = malloc(sizeof(char) * (i + cnt * (new_w_len - old_w_len) + 1));
+	return (i);
+}
+
+char	*ft_replace_word(const char *s, char *old_w, char *new_w, t_data *data)
+{
+	char	*result;
+	int		res;
+	int		new_w_len;
+	int		old_w_len;
+
+	if (!new_w)
+	{
+		new_w = if_no_new_w(new_w, data);
+		new_w_len = 1;
+	}
+	else
+		new_w_len = ft_strlen(new_w);
+	old_w_len = ft_strlen(old_w);
+	res = ft_replace_word_while(s, old_w, old_w_len, data);
+	result = malloc(sizeof(char) * (res + data->cnt_replace
+				* (new_w_len - old_w_len) + 1));
+	if (!result)
+		ft_exit(ERRMEMALLOC, data);
 	result = replace_word_bis(s, old_w, new_w, result);
-	free(new_w);
 	return (result);
 }

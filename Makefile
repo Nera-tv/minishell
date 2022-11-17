@@ -164,8 +164,12 @@ re :
 	@${MAKE} all
 
 test :
-	@${MAKE}
+	@${MAKE} re
 	@./${NAME}
+
+leak :
+	@${MAKE}
+	@leaks --atExit -- ./${NAME}
 
 git :
 	@${MAKE} fclean

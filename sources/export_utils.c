@@ -23,13 +23,9 @@ int	ft_strcmp_export(char *s1, char *s2)
 		s2++;
 	}
 	if (((unsigned char) *s1 - (unsigned char) *s2) > 0)
-	{
 		return (1);
-	}
 	else if (((unsigned char) *s1 - (unsigned char) *s2) < 0)
-	{
 		return (-1);
-	}
 	return (0);
 }
 
@@ -68,6 +64,8 @@ t_list_env	*cp_list_env(t_data *data)
 	int			i;
 
 	envcp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
+	if (!envcp)
+		ft_exit(ERRMEMALLOC, data);
 	i = 0;
 	while (i < data->nb_env)
 	{

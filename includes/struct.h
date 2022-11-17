@@ -58,6 +58,7 @@ struct s_data
 	int				nb_env;
 	char			**argv;
 	int				indic_first_cd;
+	int				cnt_replace;
 };
 
 #endif
