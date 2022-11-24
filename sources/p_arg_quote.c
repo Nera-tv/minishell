@@ -42,7 +42,8 @@ int	sp_quote_in_arg(char *line, int len)
 		len++;
 	if (line[len] == '\'')
 		line = shift_in_tab(line, len);
-	len--;
+	if (len > 0)
+		len--;
 	return (len);
 }
 
@@ -54,11 +55,6 @@ int	db_quote_in_arg(t_data *data, int val, int len, int arg_count)
 	line = shift_in_tab(data->cmd[val].args[arg_count], len);
 	while (line[len] != '\0' && line[len] != '\"')
 	{
-		if (line[len] == '\\' && line[len + 1] == '\"')
-		{
-			line = shift_in_tab(line, len);
-			len ++;
-		}
 		if (line[len] == '$')
 		{
 			var_env = get_var_env_in_arg(line, data);
@@ -70,5 +66,7 @@ int	db_quote_in_arg(t_data *data, int val, int len, int arg_count)
 	}
 	line = shift_in_tab(line, len);
 	data->cmd[val].args[arg_count] = line;
+	if (len > 0)
+		len--;
 	return (len);
 }

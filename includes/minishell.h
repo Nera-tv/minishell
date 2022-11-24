@@ -87,7 +87,7 @@ int		ft_cmp_var_env(const char *s1, const char *s2);
 void	ft_echo(t_data *data, int val);
 int		nb_args(char **args);
 void	ft_env(t_data *data);
-void	ft_pwd(t_data *data);
+void	ft_pwd(t_data *data, int val);
 void	check_arg(t_data *data, int val);
 int		is_builtins(t_data *data, int val);
 void	exec_builtins(t_data *data, int val, int blt);

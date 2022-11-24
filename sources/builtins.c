@@ -19,7 +19,7 @@ void	exec_builtins(t_data *data, int val, int blt)
 	if (blt == 2)
 		ft_env(data);
 	if (blt == 3)
-		ft_pwd(data);
+		ft_pwd(data, val);
 	if (blt == 4)
 		ft_cd(data, val);
 	if (blt == 5)

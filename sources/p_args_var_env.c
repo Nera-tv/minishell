@@ -54,7 +54,7 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 		len = db_quote_in_arg(data, val, len, arg_count);
 		arg = data->cmd[val].args[arg_count];
 	}
-	else if (arg[len] == '$')
+	else if (arg[len] == '$' && arg[len + 1] != '\0')
 	{
 		var_env = get_var_env_in_arg(arg, data);
 		arg = db_quote_in_arg_bis(data, arg, var_env);
@@ -73,20 +73,9 @@ char	*parsing_arg(t_data *data, int val, int arg_count)
 	arg = data->cmd[val].args[arg_count];
 	while (arg[len] != '\0')
 	{
-		if (arg[len] != '\\')
-		{
-			len = parsing_arg_bis(data, val, len, arg_count);
-			arg = data->cmd[val].args[arg_count];
-		}
-		else
-		{
-			if (arg[len + 1] == '\'' || arg[len + 1] == '\"')
-			{
-				arg = shift_in_tab(arg, len);
-				len++;
-			}
-		}
-		if (arg[len] != '\0')
+		len = parsing_arg_bis(data, val, len, arg_count);
+		arg = data->cmd[val].args[arg_count];
+		if (arg[len] != '\0' && arg[len] != '\"' && arg[len] != '\'')
 			len++;
 	}
 	return (arg);

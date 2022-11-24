@@ -82,6 +82,7 @@ int	sp_quote_in_cmd(char *line, int len)
 		len++;
 	if (line[len] == '\'')
 		line = shift_in_tab(line, len);
-	len--;
+	if (len > 0)
+		len--;
 	return (len);
 }

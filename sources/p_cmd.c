@@ -19,11 +19,6 @@ int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 	line = shift_in_tab(data->cmd[val].cmd, len);
 	while (line[len] != '\0' && line[len] != '\"')
 	{
-		if (line[len] == '\\' && line[len + 1] == '\"')
-		{
-			line = shift_in_tab(line, len);
-			len ++;
-		}
 		if (line[len] == '$')
 		{
 			var_env = get_var_env_in_cmd(line, data);
@@ -35,6 +30,9 @@ int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 	}
 	line = shift_in_tab(line, len);
 	data->cmd[val].cmd = line;
+	if (len > 0)
+		len--;
+	printf("len = %d\n", len);
 	return (len);
 }
 
@@ -51,7 +49,7 @@ int	parsing_cmd_name_bis(t_data *data, int val, int len)
 		len = db_quote_in_cmd(data, val, cmd, len);
 		cmd = data->cmd[val].cmd;
 	}
-	else if (cmd[len] == '$')
+	else if (cmd[len] == '$' && cmd[len + 1] != '\0')
 	{
 		var_env = get_var_env_in_cmd(cmd, data);
 		cmd = db_quote_in_cmd_bis(data, cmd, var_env);
@@ -70,20 +68,9 @@ char	*parsing_cmd_name(t_data *data, int val)
 	cmd = data->cmd[val].cmd;
 	while (cmd[len] != '\0')
 	{
-		if (cmd[len] != '\\')
-		{
-			len = parsing_cmd_name_bis(data, val, len);
-			cmd = data->cmd[val].cmd;
-		}
-		else
-		{
-			if (cmd[len + 1] == '\'' || cmd[len + 1] == '\"')
-			{
-				cmd = shift_in_tab(cmd, len);
-				len++;
-			}
-		}
-		if (cmd[len] != '\0')
+		len = parsing_cmd_name_bis(data, val, len);
+		cmd = data->cmd[val].cmd;
+		if (cmd[len] != '\0' && cmd[len] != '\"' && cmd[len] != '\'')
 			len++;
 	}
 	return (cmd);
