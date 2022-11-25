@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/11/10 20:28:00 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/25 15:57:32 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	free_data_cmd(t_data *data)
 		free(data->cmd);
 	data->nbr_cmds = 0;
 	free(data->line);
+	free(data->forkid);
 }

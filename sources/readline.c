@@ -18,6 +18,9 @@ void	lancement(t_data *data)
 	int	blt;
 
 	i = 0;
+	data->forkid = malloc(sizeof(int) * data->nbr_cmds);
+	if (!data->forkid)
+		ft_exit(ERRMEMALLOC, data);
 	while (i < data->nbr_cmds)
 	{
 		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
@@ -35,7 +38,7 @@ void	lancement(t_data *data)
 		}
 		i++;
 	}
-	waitpid(data->forkid[i], data->status, 0);
+	waitpid(data->forkid[i - 1], data->status, 0);
 }
 
 void	read_line(const char *prompt, t_data *data)
