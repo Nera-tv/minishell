@@ -10,6 +10,7 @@ LST_SRCS	=	builtins.c				\
 				exit.c					\
 				export_utils.c			\
 				export.c				\
+				exec.c					\
 				ft_env.c				\
 				list_env_bis.c			\
 				list_env.c				\
@@ -32,6 +33,8 @@ LST_SRCS	=	builtins.c				\
 				p_replace_var_env.c		\
 				p_set_args_bis.c		\
 				p_set_args.c			\
+				path.c					\
+				printdata.c				\
 				pwd.c					\
 				readline.c				\
 				unset.c			

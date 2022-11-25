@@ -24,6 +24,8 @@ void	init_data(t_data *data, char **envp, char **argv)
 	get_pwd(data);
 	data->indic_first_cd = 0;
 	ft_lst_env_fill(data);
+	put_path_data(data);
+	data->status = 0;
 }
 
 int	main(int argc, char **argv, char **envp)

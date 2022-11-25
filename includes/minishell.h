@@ -36,6 +36,8 @@ void	read_line(const char *prompt, t_data *data);
 // utils
 size_t	ft_strlen_m(const char *tab);
 int		if_end_var_env(char c);
+char	*realloc_till_char(char *str, int c, int f);// -> realloc_till_char.c
+size_t	len_until_char(char *str, int c);			// -> realloc_till_char.c
 
 // parsing
 void	get_cmd_arg(t_data *data);
@@ -43,10 +45,23 @@ int		if_only_space(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
 
+// exec
+int		ft_execve(t_data *data, int cmd);						// -> exec.c
+int		save_output(t_data *data, int cmd_to_exec);				// -> exec.c
+int		ft_exec(t_data *data, int cmd_to_exec);					// -> exec.c
+void	wait_all_pids(t_data *data);							// -> wait.c
+
 //		pipe
 void	sep_cmd_pipe(t_data *data);
 int		check_line_pipe(t_data *data);
 void	get_nbr_cmd(t_data *data);
+
+//		path
+char	*search_path_env(char **env);								// -> path.c
+int		put_path_data(t_data *data);								// -> path.c
+char	*add_slash_to_path(char *path);								// -> path.c
+int		search_path(t_data *data, int val);							// -> path.c
+char	*access_check(char *cmd, char **path, t_data *data);		// -> path.c
 
 //		cmd
 void	get_cmd_name(t_data *data, int val);
@@ -108,4 +123,6 @@ int		ft_matricelen(char **matrice);
 //		unset
 void	ft_unset(t_data *data, int val);
 
+//		printdata
+void	print_data(t_data *data, int cmd);
 #endif

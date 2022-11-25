@@ -24,6 +24,7 @@ typedef struct s_data		t_data;
 typedef struct s_cmd		t_cmd;
 typedef struct s_arg		t_arg;
 typedef struct s_list_env	t_list_env;
+typedef struct s_pipe		t_pipe;
 
 struct s_list_env
 {
@@ -31,14 +32,22 @@ struct s_list_env
 	char	*content;
 };
 
+struct s_pipe
+{
+	int		pipein[2];
+	int		pipeout[2];
+};
+
 struct s_cmd
 {
 	char	*_cmd;
 	char	*cmd;
+	char	*cmd_wo_file;
 	char	opt;
 	char	*_args;
 	char	*argl;
 	char	**args;
+	char	**cmd_path;
 	int		nbr_args;
 	int		*args_len;
 	int		pos_start_before_cmd_name;
@@ -49,16 +58,20 @@ struct s_cmd
 struct s_data
 {
 	t_cmd			*cmd;
+	t_pipe			pipe;
 	int				nbr_cmds;
 	int				start;
 	char			*line;
 	char			*pwd;
 	char			**envp;
+	char			**path;
 	t_list_env		*env;
 	int				nb_env;
 	char			**argv;
 	int				indic_first_cd;
 	int				cnt_replace;
+	int				*forkid;
+	int				*status;
 };
 
 #endif

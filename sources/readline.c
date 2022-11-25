@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	exec(t_data *data)
+void	lancement(t_data *data)
 {
 	int	i;
 	int	blt;
@@ -20,6 +20,7 @@ void	exec(t_data *data)
 	i = 0;
 	while (i < data->nbr_cmds)
 	{
+		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
 		if (data->cmd[i].cmd)
 		{
 			blt = is_builtins(data, i);
@@ -27,11 +28,14 @@ void	exec(t_data *data)
 				exec_builtins(data, i, blt);
 			else
 			{
-				printf("execution de la commande : %s\n", data->cmd[i].cmd);
+				search_path(data, i);
+				data->forkid[i] = ft_exec(data, i);
+				//print_data(data, i);
 			}
 		}
 		i++;
 	}
+	waitpid(data->forkid[i], data->status, 0);
 }
 
 void	read_line(const char *prompt, t_data *data)
@@ -45,6 +49,6 @@ void	read_line(const char *prompt, t_data *data)
 	if (data->line == NULL)
 		ft_exit("exit\n", data);
 	get_cmd_arg(data);
-	exec(data);
+	lancement(data);
 	free_data_cmd(data);
 }
