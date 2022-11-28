@@ -15,6 +15,8 @@
 void	init_cmds(t_data *data, int val)
 {
 	get_cmd_name(data, val);
+	if (data->cmd[val].cmd[0] == '\0')
+		return ;
 	get_args(data, val);
 	if (data->cmd[val]._args)
 		get_args_len(data, val);

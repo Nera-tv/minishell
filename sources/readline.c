@@ -23,6 +23,8 @@ void	lancement(t_data *data)
 		ft_exit(ERRMEMALLOC, data);
 	while (i < data->nbr_cmds)
 	{
+		if (data->cmd[i].cmd[0] == '\0')
+			return ;
 		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
 		if (data->cmd[i].cmd)
 		{
@@ -33,7 +35,7 @@ void	lancement(t_data *data)
 			{
 				search_path(data, i);
 				data->forkid[i] = ft_exec(data, i);
-				print_data(data, i);
+				//print_data(data, i);
 			}
 		}
 		i++;

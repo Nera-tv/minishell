@@ -65,6 +65,7 @@ struct s_data
 	char			*pwd;
 	char			**envp;
 	char			**path;
+	int				int_path;
 	t_list_env		*env;
 	int				nb_env;
 	char			**argv;

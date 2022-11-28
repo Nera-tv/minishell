@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/11/25 15:57:32 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:58:30 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,23 @@ void	free_data_cmd(t_data *data)
 	i = 0;
 	while (i < data->nbr_cmds)
 	{
+		if (data->cmd[i].cmd[0] != '\0')
+		{
+			if (data->cmd[i]._args)
+				free(data->cmd[i]._args);
+			free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
+			if (data->cmd[i].args_len)
+				free(data->cmd[i].args_len);
+			if (data->int_path == 1 && data->cmd[i].cmd_path[0])
+				free(data->cmd[i].cmd_path[0]);
+			if (data->int_path == 1 && data->cmd[i].cmd_path)
+			{
+				free(data->cmd[i].cmd_path);
+				data->int_path = 0;
+			}
+		}
 		free(data->cmd[i].cmd);
 		free(data->cmd[i]._cmd);
-		if (data->cmd[i]._args)
-			free(data->cmd[i]._args);
-		free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
-		if (data->cmd[i].args_len)
-			free(data->cmd[i].args_len);
 		i++;
 	}
 	if (data->cmd)

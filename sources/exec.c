@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/28 13:54:38 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/11/28 15:24:59 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	save_output(t_data *data, int val)
 	return (0);
 }
 
-void	if_execve_failed(t_data *data)
+void	if_execve_failed(t_data *data, int val)
 {
-	perror("execve");
+	perror(data->cmd[val].cmd);
 	ft_exit(NULL, data);
 }
 
@@ -90,10 +90,7 @@ int	ft_exec(t_data *data, int val)
 	{
 		if (execve(data->cmd[val].cmd_path[0],
 				data->cmd[val].cmd_path, data->envp) < 0)
-		{
-			printf("ici\n");
-			if_execve_failed(data);
-		}
+			if_execve_failed(data, val);
 	}
 	else
 		save_output(data, val);

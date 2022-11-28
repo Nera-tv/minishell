@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 12:11:13 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/29 00:06:15 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ int	check_line_pipe(t_data *data)
 		i++;
 	if (data->line[i] == '|' && data->line[i + 1] != '|')
 	{
+		//mettre la sortie d'erreur sur 2
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 1);
 		return (1);
 	}
 	else if (data->line[i] == '|' && data->line[i + 1] == '|')
 	{
+		//mettre la sortie d'erreur sur 2
 		ft_putstr_fd("minishell: syntax error near unexpected token `||'\n", 1);
 		return (1);
 	}

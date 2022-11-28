@@ -26,6 +26,7 @@ void	init_data(t_data *data, char **envp, char **argv)
 	ft_lst_env_fill(data);
 	put_path_data(data);
 	data->status = 0;
+	data->int_path = 0;
 }
 
 int	main(int argc, char **argv, char **envp)

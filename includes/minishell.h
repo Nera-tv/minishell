@@ -57,10 +57,9 @@ int		check_line_pipe(t_data *data);
 void	get_nbr_cmd(t_data *data);
 
 //		path
-char	*search_path_env(char **env);								// -> path.c
+void	search_path(t_data *data, int val);							// -> path.c
 int		put_path_data(t_data *data);								// -> path.c
 char	*add_slash_to_path(char *path);								// -> path.c
-int		search_path(t_data *data, int val);							// -> path.c
 char	*access_check(char *cmd, char **path, t_data *data);		// -> path.c
 
 //		cmd
@@ -73,6 +72,7 @@ char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env);
 char	*shift_in_tab(char *tab, int i);
 char	*del_var_env_in_line(char *line);
 char	*var_dollard_dollard(char *line);
+void	check_cmd(t_data *data, int val);
 
 //		args
 void	get_args(t_data *data, int val);

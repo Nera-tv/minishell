@@ -32,7 +32,6 @@ int	db_quote_in_cmd(t_data *data, int val, char *line, int len)
 	data->cmd[val].cmd = line;
 	if (len > 0)
 		len--;
-	printf("len = %d\n", len);
 	return (len);
 }
 
@@ -76,6 +75,8 @@ char	*parsing_cmd_name(t_data *data, int val)
 	return (cmd);
 }
 
+
+
 void	get_cmd_name(t_data *data, int val)
 {
 	int	j;
@@ -94,4 +95,5 @@ void	get_cmd_name(t_data *data, int val)
 	}
 	data->cmd[val].cmd[j] = '\0';
 	data->cmd[val].cmd = parsing_cmd_name(data, val);
+	check_cmd(data, val);
 }

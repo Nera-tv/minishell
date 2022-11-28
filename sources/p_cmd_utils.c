@@ -35,7 +35,6 @@ char	*del_var_env_in_line(char *line)
 	line = shift_in_tab(line, i);
 	while (if_end_var_env(line[i]) != 1)
 		line = shift_in_tab(line, i);
-	printf("%s\n", line);
 	return (line);
 }
 

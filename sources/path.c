@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/28 14:50:04 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:01:48 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,16 @@ void	fill_arg_path(t_data *data, int val)
 
 //Demande si c'est une commande, si oui, mets la commande en entier dans
 //cmd_path, si non, erreur
-int	search_path(t_data *data, int val)
+void	search_path(t_data *data, int val)
 {
 	char	*pathok;
 
 	data->cmd[val].cmd_path = malloc(sizeof(char *) * (2 + data->cmd[val].nbr_args));
 	fill_cmd_path(data, val);
-	pathok = access_check(ft_strdup(data->cmd[val].cmd), data->path, data);
+	pathok = access_check(data->cmd[val].cmd, data->path, data);
 	if (!pathok)
-		return (-1);
+		pathok = ft_strdup(data->cmd[val].cmd);
 	data->cmd[val].cmd_path[0] = pathok;
 	fill_arg_path(data, val);
-	return (0);
+	data->int_path = 1;
 }
