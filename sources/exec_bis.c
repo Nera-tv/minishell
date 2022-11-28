@@ -6,26 +6,14 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/23 16:48:49 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:29:32 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	get_me_file_output(t_cmd *cmd)
+int	opening_file_output(char *file_output, char *till_next, int fd)
 {
-	int		fd;
-	size_t	i;
-	char	*file_output;
-	char	*till_next;
-
-	i = 0;
-	fd = 0;
-	file_output = ft_strdup(ft_strchr(cmd->_cmd, '>'));
-	if (!ft_strchr(cmd->_cmd, '>'))
-		return (0);
-	if (!file_output)
-		return (-1);
 	while (file_output)
 	{
 		if (fd)
@@ -46,6 +34,28 @@ int	get_me_file_output(t_cmd *cmd)
 			fd = open(till_next, O_CREAT | O_TRUNC | O_WRONLY,
 					S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
 		}
-	}// need norm
+		if (fd < 0)
+			return (-1);
+	}
+	return (fd);
+}
+
+int	get_me_file_output(t_cmd *cmd)
+{
+	int		fd;
+	size_t	i;
+	char	*file_output;
+	char	*till_next;
+
+	i = 0;
+	fd = 0;
+	file_output = ft_strdup(ft_strchr(cmd->_cmd, '>'));
+	if (!ft_strchr(cmd->_cmd, '>'))
+		return (0);
+	if (!file_output)
+		return (-1);
+	fd = opening_file_output(file_output, till_next, fd);
+	if (fd < 0)
+		return (-1);
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/25 15:41:36 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/11/28 14:50:04 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill_cmd_path(t_data *data, int val)
 	int	i;
 
 	i = 0;
-	while (i < data->cmd[val].nbr_args + 1)
+	while (i < data->cmd[val].nbr_args + 2)
 	{
 		data->cmd[val].cmd_path[i] = NULL;
 		i++;
@@ -120,7 +120,7 @@ int	search_path(t_data *data, int val)
 {
 	char	*pathok;
 
-	data->cmd[val].cmd_path = malloc(sizeof(char *) * (1 + nb_args(data->cmd[val].args)));
+	data->cmd[val].cmd_path = malloc(sizeof(char *) * (2 + data->cmd[val].nbr_args));
 	fill_cmd_path(data, val);
 	pathok = access_check(ft_strdup(data->cmd[val].cmd), data->path, data);
 	if (!pathok)

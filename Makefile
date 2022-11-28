@@ -37,7 +37,8 @@ LST_SRCS	=	builtins.c				\
 				printdata.c				\
 				pwd.c					\
 				readline.c				\
-				unset.c			
+				unset.c					\
+				wait.c					
 
 
 P_LIB		:=	libraries/

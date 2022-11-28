@@ -33,12 +33,12 @@ void	lancement(t_data *data)
 			{
 				search_path(data, i);
 				data->forkid[i] = ft_exec(data, i);
-				//print_data(data, i);
+				print_data(data, i);
 			}
 		}
 		i++;
 	}
-	waitpid(data->forkid[i - 1], data->status, 0);
+	wait_all_pids(data);
 }
 
 void	read_line(const char *prompt, t_data *data)
