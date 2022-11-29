@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/28 17:01:48 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:44:31 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,22 @@ void	fill_arg_path(t_data *data, int val)
 void	search_path(t_data *data, int val)
 {
 	char	*pathok;
+	char	*tmp;
 
 	data->cmd[val].cmd_path = malloc(sizeof(char *) * (2 + data->cmd[val].nbr_args));
 	fill_cmd_path(data, val);
-	pathok = access_check(data->cmd[val].cmd, data->path, data);
+	tmp = ft_strdup(data->cmd[val].cmd);
+	pathok = access_check(tmp, data->path, data);
+	printf("patch.c 128 -- pathok = %p -- tmp = %p\n", pathok, tmp);
 	if (!pathok)
 		pathok = ft_strdup(data->cmd[val].cmd);
+	printf("patch.c 134 -- pathok = %s\n", pathok);
 	data->cmd[val].cmd_path[0] = pathok;
 	fill_arg_path(data, val);
 	data->int_path = 1;
+	if (&tmp < &pathok)
+	{
+		printf("patch.c 137\n");
+		free(tmp);
+	}
 }

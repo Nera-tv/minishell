@@ -14,7 +14,9 @@
 
 void	check_cmd_slash(t_data *data, int val)
 {
-	int	i;
+	int		i;
+	char	*pathok;
+	char	*tmp;
 
 	i = 0;
 	if (data->cmd[val].cmd[0] == '/')
@@ -23,9 +25,16 @@ void	check_cmd_slash(t_data *data, int val)
 		{
 			if (data->cmd[val].cmd[i] != '/')
 			{
-				//mettre la sortie d'erreur sur 126
-				ft_printf(1, "minishell: %s: No such file or directory\n", data->cmd[val].cmd);
-				data->cmd[val].cmd[0] = '\0';
+				tmp = ft_strdup(data->cmd[val].cmd);
+				pathok = access_check(tmp, data->path, data);
+				if (!pathok)
+				{
+					//mettre la sortie d'erreur sur 126
+					ft_printf(1, "minishell: %s: No such file or directory\n", data->cmd[val].cmd);
+					data->cmd[val].cmd[0] = '\0';
+				}
+				printf( "pathok = %s\n", pathok );
+				free(pathok);
 				return ;
 			}
 			i++;
@@ -34,6 +43,7 @@ void	check_cmd_slash(t_data *data, int val)
 		ft_printf(1, "minishell: %s: Is a directory\n", data->cmd[val].cmd);
 		data->cmd[val].cmd[0] = '\0';
 	}
+	
 }
 
 void	check_cmd_and(t_data *data, int val)
