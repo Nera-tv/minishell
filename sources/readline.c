@@ -26,6 +26,7 @@ void	lancement(t_data *data)
 		if (data->cmd[i].cmd[0] == '\0')
 			return ;
 		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
+		data->cmd[i].int_path = 0;
 		if (data->cmd[i].cmd)
 		{
 			blt = is_builtins(data, i);
