@@ -55,7 +55,7 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS		:=	-Wall -Wextra -Werror #-fsanitize=address -g3
 RLOFLAGS	:=	-lreadline
 NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\

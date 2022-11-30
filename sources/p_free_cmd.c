@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/11/29 16:07:16 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:40:49 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	free_data_cmd(t_data *data)
 			free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
 			if (data->cmd[i].args_len)
 				free(data->cmd[i].args_len);
-			if (data->int_path == 1 && data->cmd[i].cmd_path[0])
+			// printf("OSKUR: %p\n", data->cmd[i].cmd_path[0]);
+			if (data->cmd[i].int_path == 1 && data->cmd[i].cmd_path[0])
+				//crash lors de ce if quand exec "pwd | ls"
+				//DOTO il ne faut pas que free le commande il faut aussi free les arg
 				free(data->cmd[i].cmd_path[0]);
-			if (data->int_path == 1 && data->cmd[i].cmd_path)
-			{
+			if (data->cmd[i].int_path == 1 && data->cmd[i].cmd_path)
 				free(data->cmd[i].cmd_path);
-				data->int_path = 0;
-			}
 		}
 		free(data->cmd[i].cmd);
 		free(data->cmd[i]._cmd);

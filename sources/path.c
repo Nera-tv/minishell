@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/29 16:44:31 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:39:20 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	search_path(t_data *data, int val)
 	printf("patch.c 134 -- pathok = %s\n", pathok);
 	data->cmd[val].cmd_path[0] = pathok;
 	fill_arg_path(data, val);
-	data->int_path = 1;
+	data->cmd[val].int_path = 1;
 	if (&tmp < &pathok)
 	{
 		printf("patch.c 137\n");

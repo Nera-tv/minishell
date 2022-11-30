@@ -53,6 +53,7 @@ struct s_cmd
 	int		pos_start_before_cmd_name;
 	int		s_quotes_indic;
 	int		d_quotes_indic;
+	int		int_path;
 };
 
 struct s_data
@@ -65,7 +66,6 @@ struct s_data
 	char			*pwd;
 	char			**envp;
 	char			**path;
-	int				int_path;
 	t_list_env		*env;
 	int				nb_env;
 	char			**argv;
