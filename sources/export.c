@@ -49,7 +49,10 @@ int	check_name(t_data *data, char *name, char *content)
 				ft_strlen(data->env[i].name)) == 0)
 		{
 			if (content != NULL)
+			{
+				free (data->env[i].content);
 				data->env[i].content = content;
+			}
 			free(name);
 			return (1);
 		}

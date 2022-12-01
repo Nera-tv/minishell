@@ -33,8 +33,8 @@ void	check_cmd_slash(t_data *data, int val)
 					ft_printf(1, "minishell: %s: No such file or directory\n", data->cmd[val].cmd);
 					data->cmd[val].cmd[0] = '\0';
 				}
-				printf( "pathok = %s\n", pathok );
-				free(pathok);
+				else
+					free(pathok);
 				return ;
 			}
 			i++;
