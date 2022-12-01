@@ -46,14 +46,7 @@ char	*get_var_env_in_arg(char *str, t_data *data)
 	env = malloc(sizeof(char) * (len + 1));
 	if (!env)
 		ft_exit(ERRMEMALLOC, data, 2);
-	len = 0;
-	while (if_end_var_env(str[i + len]) != 1)
-	{
-		env[len] = str[i + len];
-		len++;
-	}
-	env[len] = '\0';
-	env[0] = '$';
+	env = get_var_env_in_arg_bis(str, env, i);
 	str[i] = '$';
 	return (env);
 }

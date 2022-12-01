@@ -42,6 +42,7 @@ char	*db_quote_in_cmd_bis(t_data *data, char *line, char *var_env)
 
 	i = 0;
 	tmp = NULL;
+	err_val = NULL;
 	if (ft_strnncmp(var_env, "$?", 2) == 0)
 	{
 		err_val = ft_itoa(data->err_nbr);

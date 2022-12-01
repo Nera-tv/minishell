@@ -12,27 +12,41 @@
 
 #include "../includes/minishell.h"
 
+char	*ret_db_quote_in_arg(t_data *data, char *line,
+		char *var_env, char *replace)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	tmp = ft_replace_word(line, var_env, replace, data);
+	free(line);
+	return (tmp);
+}
+
 char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env)
 {
 	int		i;
 	char	*tmp;
+	char	*err_val;
 
 	i = 0;
 	tmp = NULL;
+	err_val = NULL;
+	if (ft_strnncmp(var_env, "$?", 2) == 0)
+	{
+		err_val = ft_itoa(data->err_nbr);
+		tmp = ft_replace_word(line, var_env, err_val, data);
+		free(line);
+		free(err_val);
+		return (tmp);
+	}
 	while (i < data->nb_env)
 	{
 		if (ft_cmp_var_env(var_env, data->env[i].name) == 0)
-		{
-			tmp = ft_replace_word(line,
-					var_env, data->env[i].content, data);
-			free(line);
-			return (tmp);
-		}
+			return (ret_db_quote_in_arg(data, line, var_env, data->env[i].content));
 		i++;
 	}
-	tmp = ft_replace_word(line, var_env, "\0", data);
-	free(line);
-	return (tmp);
+	return (ret_db_quote_in_arg(data, line, var_env, "\0"));
 }
 
 int	sp_quote_in_arg(char *line, int len)

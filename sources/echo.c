@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 07:55:31 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 10:02:43 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 11:51:51 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	ft_echo(t_data *data, int val)
 	}
 	if (n_option == 0)
 		write(1, "\n", 1);
+	//data->err_nbr = 0;
 }
