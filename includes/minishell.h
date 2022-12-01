@@ -73,6 +73,7 @@ char	*shift_in_tab(char *tab, int i);
 char	*del_var_env_in_line(char *line);
 char	*var_dollard_dollard(char *line);
 void	check_cmd(t_data *data, int val);
+void	check_cmd_slash(t_data *data, int val);
 
 //		args
 void	get_args(t_data *data, int val);

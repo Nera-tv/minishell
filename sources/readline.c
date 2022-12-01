@@ -12,10 +12,29 @@
 
 #include "../includes/minishell.h"
 
+void	lancement_bis(t_data *data, int i)
+{
+	int	blt;
+
+	if (data->cmd[i].cmd[0] == '\0')
+		return ;
+	data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
+	if (data->cmd[i].cmd)
+	{
+		blt = is_builtins(data, i);
+		if (blt > 0)
+			exec_builtins(data, i, blt);
+		else
+		{
+			search_path(data, i);
+			data->forkid[i] = ft_exec(data, i);
+		}
+	}
+}
+
 void	lancement(t_data *data)
 {
 	int	i;
-	int	blt;
 
 	i = 0;
 	data->forkid = malloc(sizeof(int) * data->nbr_cmds);
@@ -23,21 +42,7 @@ void	lancement(t_data *data)
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < data->nbr_cmds)
 	{
-		if (data->cmd[i].cmd[0] == '\0')
-			return ;
-		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
-		if (data->cmd[i].cmd)
-		{
-			blt = is_builtins(data, i);
-			if (blt > 0)
-				exec_builtins(data, i, blt);
-			else
-			{
-				search_path(data, i);
-				data->forkid[i] = ft_exec(data, i);
-				//print_data(data, i);
-			}
-		}
+		lancement_bis(data, i);
 		i++;
 	}
 	wait_all_pids(data);

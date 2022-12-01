@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printdata.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:52:25 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/28 13:56:48 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:31:19 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_data(t_data *data, int val)
 {
-	int i;
-	
+	int	i;
+
 	data->cmd[val].nbr_args = nb_args(data->cmd[val].args);
 	printf("------------------------------------------\n");
 	printf("nbr_cmds = %d\n", data->nbr_cmds);

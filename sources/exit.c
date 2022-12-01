@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 10:09:59 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 15:01:59 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ int	if_str_or_nbr(char *args)
 	return (0);
 }
 
+void	exit_if_blt_exit_bis(t_data *data, int val)
+{
+	int	err_val;
+
+	err_val = 0;
+	if (if_str_or_nbr(data->cmd[val].args[0]) == 0)
+	{
+		err_val = ft_atoi(data->cmd[val].args[0]);
+		ft_exit(NULL, data, (err_val % 256));
+	}
+	else
+	{
+		ft_printf(1, "bash: exit: %s: numeric argument required\n", \
+			data->cmd[val].args[0]);
+		ft_exit(NULL, data, 2);
+	}
+}
+
 void	exit_if_blt_exit(t_data *data, int val)
 {
 	int	err_val;
@@ -43,25 +61,14 @@ void	exit_if_blt_exit(t_data *data, int val)
 		}
 		else
 		{
-			ft_printf(1, "bash: exit: %s: numeric argument required\n", data->cmd[val].args[0]);
+			ft_printf(1, "bash: exit: %s: numeric argument required\n", \
+				data->cmd[val].args[0]);
 			ft_exit(NULL, data, 2);
 		}
 	}
 	else if (data->cmd[val].nbr_args == 1)
 	{
-		if (if_str_or_nbr(data->cmd[val].args[0]) == 0)
-		{
-			err_val = ft_atoi(data->cmd[val].args[0]);
-			if (err_val > 256)
-				ft_exit(NULL, data, (err_val - 256));
-			else
-				ft_exit(NULL, data, err_val);
-		}
-		else
-		{
-			ft_printf(1, "bash: exit: %s: numeric argument required\n", data->cmd[val].args[0]);
-			ft_exit(NULL, data, 2);
-		}
+		exit_if_blt_exit_bis(data, val);
 	}
 }
 

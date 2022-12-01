@@ -21,6 +21,7 @@ LST_SRCS	=	builtins.c				\
 				p_args_utils.c			\
 				p_args.c				\
 				p_back_slash.c			\
+				p_check_cmd_bis.c		\
 				p_check_cmd.c			\
 				p_cmd_bis.c				\
 				p_cmd_len.c				\
@@ -34,6 +35,7 @@ LST_SRCS	=	builtins.c				\
 				p_replace_var_env.c		\
 				p_set_args_bis.c		\
 				p_set_args.c			\
+				path_bis.c				\
 				path.c					\
 				printdata.c				\
 				pwd.c					\

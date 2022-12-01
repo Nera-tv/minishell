@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 10:37:22 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 14:44:50 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ void	free_data_cmd_bis(t_data *data, int i)
 	free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
 	if (data->cmd[i].args_len)
 		free(data->cmd[i].args_len);
-	// printf("OSKUR: %p\n", data->cmd[i].cmd_path[0]);
 	if (data->cmd[i].int_path == 1 && data->cmd[i].cmd_path[0])
-		//crash lors de ce if quand exec "pwd | ls"
-		//DOTO il ne faut pas que free le commande il faut aussi free les arg
 		free(data->cmd[i].cmd_path[0]);
 	if (data->cmd[i].int_path == 1 && data->cmd[i].cmd_path)
 	{

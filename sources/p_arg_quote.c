@@ -43,7 +43,8 @@ char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env)
 	while (i < data->nb_env)
 	{
 		if (ft_cmp_var_env(var_env, data->env[i].name) == 0)
-			return (ret_db_quote_in_arg(data, line, var_env, data->env[i].content));
+			return (ret_db_quote_in_arg(data, line, var_env, \
+				data->env[i].content));
 		i++;
 	}
 	return (ret_db_quote_in_arg(data, line, var_env, "\0"));
