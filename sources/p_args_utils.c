@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_args_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:27:59 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 23:58:13 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:16:12 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_args_len(t_data *data, int val)
 	data->cmd[val].args_len = malloc(sizeof(int)
 			* nb_args(data->cmd[val].args));
 	if (!data->cmd[val].args_len)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < data->cmd[val].nbr_args)
 	{
 		data->cmd[val].args_len[i] = ft_strlen(data->cmd[val].args[i]);

@@ -26,6 +26,7 @@ void	init_data(t_data *data, char **envp, char **argv)
 	ft_lst_env_fill(data);
 	put_path_data(data);
 	data->status = 0;
+	data->err_nbr = 0;
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -33,7 +34,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	if (argc != 1)
-		ft_exit("Error: no argument needed", &data);
+		ft_exit("Error: no argument needed", &data, 2);
 	init_data(&data, envp, argv);
 	while (1)
 	{
@@ -47,5 +48,4 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
-
 //UPDATE OLDPWD

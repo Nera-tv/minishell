@@ -20,13 +20,12 @@ void	lancement(t_data *data)
 	i = 0;
 	data->forkid = malloc(sizeof(int) * data->nbr_cmds);
 	if (!data->forkid)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < data->nbr_cmds)
 	{
 		if (data->cmd[i].cmd[0] == '\0')
 			return ;
 		data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
-		data->cmd[i].int_path = 0;
 		if (data->cmd[i].cmd)
 		{
 			blt = is_builtins(data, i);
@@ -49,11 +48,8 @@ void	read_line(const char *prompt, t_data *data)
 	data->line = readline(prompt);
 	if (data->line && *data->line)
 		add_history(data->line);
-	if (data->line != NULL
-		&& ft_strncmp(data->line, "exit", ft_strlen("exit")) == 0)
-		ft_exit("exit\n", data);
 	if (data->line == NULL)
-		ft_exit("exit\n", data);
+		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
 	lancement(data);
 	free_data_cmd(data);

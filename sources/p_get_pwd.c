@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_get_pwd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 23:43:45 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 12:25:16 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:30:27 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_value_pwd(t_data *data, int i, int j, int k)
 
 	data->pwd = malloc(sizeof(char) * (k + 1));
 	if (data->pwd == NULL)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	v = 0;
 	while (data->envp[i][j + v] != '\0')
 	{

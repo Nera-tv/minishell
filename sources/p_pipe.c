@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_pipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:07:15 by dvilard           #+#    #+#             */
-/*   Updated: 2022/08/28 23:58:23 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:30:48 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	sep_cmd_pipe_bis(t_data *data, int i, int old_len)
 	len = get_cmd_pipe_len(data, old_len);
 	data->cmd[i]._cmd = malloc(sizeof(char) * ((len - old_len) + 2));
 	if (!data->cmd[i]._cmd)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	y = 0;
 	while (data->line[old_len + y] == ' ')
 		old_len++;

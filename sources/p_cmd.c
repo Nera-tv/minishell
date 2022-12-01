@@ -75,8 +75,6 @@ char	*parsing_cmd_name(t_data *data, int val)
 	return (cmd);
 }
 
-
-
 void	get_cmd_name(t_data *data, int val)
 {
 	int	j;
@@ -86,7 +84,7 @@ void	get_cmd_name(t_data *data, int val)
 	data->cmd[val].pos_start_before_cmd_name = len;
 	data->cmd[val].cmd = malloc((sizeof(char) * len) + 1);
 	if (!data->cmd[val].cmd)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	j = 0;
 	while (j < len)
 	{

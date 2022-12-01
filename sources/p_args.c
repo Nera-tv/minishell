@@ -55,7 +55,7 @@ void	get_args(t_data *data, int val)
 			len = get_arg_line_len(data, val, i);
 			data->cmd[val]._args = malloc((sizeof(char) * len) + 1);
 			if (!data->cmd[val]._args)
-				ft_exit(ERRMEMALLOC, data);
+				ft_exit(ERRMEMALLOC, data, 2);
 			ft_arg_cpy(data, val, i);
 			data->cmd[val].args = set_var_args(data, val);
 			args_var_env(data, val);

@@ -22,7 +22,7 @@ char	*strdup_until_equal(char *str, t_data *data)
 		i++;
 	new = malloc(sizeof(char) * (i + 1));
 	if (!new)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	i = 0;
 	while (str[i] != '\0' && str[i] != '=')
 	{
@@ -48,7 +48,7 @@ char	*strdup_start_equal(char *str, t_data *data)
 		j++;
 	new = malloc(sizeof(char) * (j + 1));
 	if (!new)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	j = 0;
 	while (str[i + j] != '\0')
 	{
@@ -67,7 +67,7 @@ void	ft_lst_env_fill(t_data *data)
 	data->nb_env = get_len_for_lst_env(data);
 	data->env = malloc(sizeof(t_list_env) * data->nb_env);
 	if (!data->env)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	while (data->envp[i])
 	{
 		data->env[i].name = strdup_until_equal(data->envp[i], data);

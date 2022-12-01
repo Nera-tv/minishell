@@ -43,8 +43,8 @@ int	ft_cmp_var_env(const char *s1, const char *s2)
 	int	i;
 	int	j;
 
-	i = 1;
-	j = 0;
+	i = 0;
+	j = 1;
 	while (s2[j] != '\0')
 	{
 		if (s1[i] == '\0' && s2[j] != '\0')

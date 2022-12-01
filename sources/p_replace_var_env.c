@@ -16,7 +16,7 @@ char	*if_no_new_w(char *new_w, t_data *data)
 {
 	new_w = malloc(sizeof(char) * 1);
 	if (!new_w)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	new_w[0] = '\0';
 	return (new_w);
 }
@@ -84,7 +84,7 @@ char	*ft_replace_word(const char *s, char *old_w, char *new_w, t_data *data)
 	result = malloc(sizeof(char) * (res + data->cnt_replace
 				* (new_w_len - old_w_len) + 1));
 	if (!result)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	result = replace_word_bis(s, old_w, new_w, result);
 	return (result);
 }

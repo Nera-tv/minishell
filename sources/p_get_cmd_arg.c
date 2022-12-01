@@ -35,7 +35,7 @@ void	get_cmd_arg(t_data *data)
 			i = 0;
 			data->cmd = malloc(sizeof(t_cmd) * (data->nbr_cmds + 1));
 			if (!data->cmd)
-				ft_exit(ERRMEMALLOC, data);
+				ft_exit(ERRMEMALLOC, data, 2);
 			sep_cmd_pipe(data);
 			while (i < data->nbr_cmds)
 			{

@@ -19,13 +19,15 @@ void	exec_builtins(t_data *data, int val, int blt)
 	if (blt == 2)
 		ft_env(data);
 	if (blt == 3)
-		ft_pwd(data, val);
+		ft_pwd(data);
 	if (blt == 4)
 		ft_cd(data, val);
 	if (blt == 5)
 		ft_export(data, val);
 	if (blt == 6)
 		ft_unset(data, val);
+	if (blt == 7)
+		exit_if_blt_exit(data, val);
 }
 
 int	is_builtins(t_data *data, int val)
@@ -48,5 +50,8 @@ int	is_builtins(t_data *data, int val)
 	if (ft_strnncmp(data->cmd[val].cmd, "unset", ft_strlen("unset")) == 0
 		&& data->cmd[val].cmd[5] == '\0')
 		return (6);
+	if (ft_strnncmp(data->cmd[val].cmd, "exit", ft_strlen("exit")) == 0
+		&& data->cmd[val].cmd[4] == '\0')
+		return (7);
 	return (0);
 }

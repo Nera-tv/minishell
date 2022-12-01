@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_set_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 21:37:38 by dvilard           #+#    #+#             */
-/*   Updated: 2022/09/01 12:41:10 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 10:33:40 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**set_var_args(t_data *data, int val)
 	ac = args_count(data->cmd[val]._args);
 	tab = malloc(sizeof(char *) * (ac + 1));
 	if (!tab)
-		ft_exit (ERRMEMALLOC, data);
+		ft_exit (ERRMEMALLOC, data, 2);
 	tab = ft_cpy_arg_to_tab(tab, data->cmd[val]._args, ac);
 	return (tab);
 }

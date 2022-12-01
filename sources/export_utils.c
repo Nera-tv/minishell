@@ -65,7 +65,7 @@ t_list_env	*cp_list_env(t_data *data)
 
 	envcp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
 	if (!envcp)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	i = 0;
 	while (i < data->nb_env)
 	{

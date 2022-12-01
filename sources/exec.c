@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard>                          +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/28 15:24:59 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/01 09:47:14 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	save_output(t_data *data, int val)
 void	if_execve_failed(t_data *data, int val)
 {
 	perror(data->cmd[val].cmd);
-	ft_exit(NULL, data);
+	ft_exit(NULL, data, 2);
 }
 
 int	ft_exec(t_data *data, int val)

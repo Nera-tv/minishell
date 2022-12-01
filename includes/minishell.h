@@ -30,7 +30,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-void	ft_exit(char *msg, t_data *data);
+void	ft_exit(char *msg, t_data *data, int err_nbr);
 void	read_line(const char *prompt, t_data *data);
 
 // utils
@@ -102,10 +102,11 @@ int		ft_cmp_var_env(const char *s1, const char *s2);
 void	ft_echo(t_data *data, int val);
 int		nb_args(char **args);
 void	ft_env(t_data *data);
-void	ft_pwd(t_data *data, int val);
+void	ft_pwd(t_data *data);
 void	check_arg(t_data *data, int val);
 int		is_builtins(t_data *data, int val);
 void	exec_builtins(t_data *data, int val, int blt);
+void	exit_if_blt_exit(t_data *data, int val);
 
 //		cd
 void	ft_cd(t_data *data, int val);

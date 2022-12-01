@@ -12,6 +12,21 @@
 
 #include "../includes/minishell.h"
 
+char	*get_var_env_in_arg_bis(char *str, char *env, int i)
+{
+	int	len;
+
+	len = 0;
+	while (if_end_var_env(str[i + len]) != 1)
+	{
+		env[len] = str[i + len];
+		len++;
+	}
+	env[len] = '\0';
+	env[0] = '$';
+	return (env);
+}
+
 char	*get_var_env_in_arg(char *str, t_data *data)
 {
 	char	*env;
@@ -22,13 +37,15 @@ char	*get_var_env_in_arg(char *str, t_data *data)
 	env = NULL;
 	while (str[i] != '$')
 		i++;
+	if (str[i + 1] == '?')
+		return (ft_strdup("$?"));
 	len = 0;
 	str[i] = '0';
 	while (if_end_var_env(str[i + len]) != 1)
 		len++;
 	env = malloc(sizeof(char) * (len + 1));
 	if (!env)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	len = 0;
 	while (if_end_var_env(str[i + len]) != 1)
 	{

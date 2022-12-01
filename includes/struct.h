@@ -73,6 +73,7 @@ struct s_data
 	int				cnt_replace;
 	int				*forkid;
 	int				*status;
+	int				err_nbr;
 };
 
 #endif

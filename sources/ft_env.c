@@ -19,7 +19,7 @@ void	new_env(t_data *data, char *name, char *content)
 
 	env_tab = malloc(sizeof(t_list_env) * (data->nb_env + 1));
 	if (!env_tab)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	i = 0;
 	while (i < data->nb_env)
 	{
@@ -80,7 +80,7 @@ void	del_env(t_data *data, char *name)
 
 	env_tmp = malloc(sizeof(t_list_env) * (data->nb_env + 1));
 	if (!env_tmp)
-		ft_exit(ERRMEMALLOC, data);
+		ft_exit(ERRMEMALLOC, data, 2);
 	i = 0;
 	while (i < data->nb_env)
 	{

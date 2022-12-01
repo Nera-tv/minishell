@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/30 12:39:20 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/01 09:51:07 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*access_check(char *cmd, char **path, t_data *data)
 	{
 		ret = ft_strjoin(path[i], cmd);
 		if (!ret)
-			ft_exit(ERRMEMALLOC, data);
+			ft_exit(ERRMEMALLOC, data, 2);
 		if (!access(ret, X_OK))
 			return (ret);
 		free(ret);

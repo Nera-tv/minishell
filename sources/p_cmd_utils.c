@@ -12,6 +12,18 @@
 
 #include "../includes/minishell.h"
 
+int	sp_quote_in_cmd(char *line, int len)
+{
+	line = shift_in_tab(line, len);
+	while (line[len] != '\0' && line[len] != '\'')
+		len++;
+	if (line[len] == '\'')
+		line = shift_in_tab(line, len);
+	if (len > 0)
+		len--;
+	return (len);
+}
+
 char	*ft_str_tolower(char *str)
 {
 	int	i;
