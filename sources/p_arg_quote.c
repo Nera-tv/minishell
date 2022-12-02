@@ -18,7 +18,11 @@ char	*ret_db_quote_in_arg(t_data *data, char *line,
 	char	*tmp;
 
 	tmp = NULL;
-	tmp = ft_replace_word(line, var_env, replace, data);
+	var_env = ft_strjoin("$", var_env);
+	if (if_end_var_env(var_env[1]) == 0 || if_end_var_env(var_env[1]) == 2)
+		tmp = ft_replace_word(line, var_env, replace, data);
+	else
+		tmp = ft_strdup(line);
 	free(line);
 	return (tmp);
 }
@@ -32,9 +36,10 @@ char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env)
 	i = 0;
 	tmp = NULL;
 	err_val = NULL;
-	if (ft_strnncmp(var_env, "$?", 2) == 0)
+	if (ft_strnncmp(var_env, "?", 1) == 0)
 	{
 		err_val = ft_itoa(data->err_nbr);
+		var_env = ft_strjoin("$", var_env);
 		tmp = ft_replace_word(line, var_env, err_val, data);
 		free(line);
 		free(err_val);
@@ -42,7 +47,7 @@ char	*db_quote_in_arg_bis(t_data *data, char *line, char *var_env)
 	}
 	while (i < data->nb_env)
 	{
-		if (ft_cmp_var_env(var_env, data->env[i].name) == 0)
+		if (ft_strnncmp(var_env, data->env[i].name, strlen(var_env)) == 0)
 			return (ret_db_quote_in_arg(data, line, var_env, \
 				data->env[i].content));
 		i++;

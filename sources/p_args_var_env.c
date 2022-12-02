@@ -19,36 +19,46 @@ char	*get_var_env_in_arg_bis(char *str, char *env, int i)
 	len = 0;
 	while (if_end_var_env(str[i + len]) != 1)
 	{
+		if (if_end_var_env(str[i + len]) == 2)
+		{
+			env[len] = str[i + len];
+			len++;
+			break ;
+		}
 		env[len] = str[i + len];
 		len++;
 	}
 	env[len] = '\0';
-	env[0] = '$';
 	return (env);
 }
 
 char	*get_var_env_in_arg(char *str, t_data *data)
 {
-	char	*env;
 	int		i;
 	int		len;
+	char	*env;
 
 	i = 0;
 	env = NULL;
 	while (str[i] != '$')
 		i++;
 	if (str[i + 1] == '?')
-		return (ft_strdup("$?"));
+		return (ft_strdup("?"));
+	i++;
 	len = 0;
-	str[i] = '0';
 	while (if_end_var_env(str[i + len]) != 1)
+	{
+		if (if_end_var_env(str[i + len]) == 2)
+		{
+			len++;
+			break ;
+		}
 		len++;
+	}
 	env = malloc(sizeof(char) * (len + 1));
 	if (!env)
 		ft_exit(ERRMEMALLOC, data, 2);
-	env = get_var_env_in_arg_bis(str, env, i);
-	str[i] = '$';
-	return (env);
+	return (get_var_env_in_arg_bis(str, env, i));
 }
 
 int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
@@ -57,7 +67,13 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	char	*arg;
 
 	arg = data->cmd[val].args[arg_count];
-	if (arg[len] == '\'')
+	if (arg[len] == '\\')
+	{
+		printf("%c -- %d\n", arg[len], len);
+		shift_in_tab(arg, len);
+		printf("%c -- %d\n", arg[len], len);
+	}
+	else if (arg[len] == '\'')
 		len = sp_quote_in_arg(arg, len);
 	else if (arg[len] == '\"')
 	{
@@ -66,9 +82,11 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	}
 	else if (arg[len] == '$' && arg[len + 1] != '\0')
 	{
+		printf("%c -- %d\n", arg[len], len);
 		var_env = get_var_env_in_arg(arg, data);
 		arg = db_quote_in_arg_bis(data, arg, var_env);
 		free(var_env);
+		printf("%s -- %d\n", arg, len);
 	}
 	data->cmd[val].args[arg_count] = arg;
 	return (len);

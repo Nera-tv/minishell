@@ -33,28 +33,30 @@ int	if_var_env(char *str, char c)
 
 int	if_end_var_env(char c)
 {
-	if (ft_isalnum(c) == 0)
-		return (1);
-	return (0);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (0);
+	else if (c >= '0' && c <= '9')
+		return (2);
+	return (1);
 }
 
 int	ft_cmp_var_env(const char *s1, const char *s2)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 1;
-	while (s2[j] != '\0')
+	printf("%s -- %s\n", s1, s2);
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		if (s1[i] == '\0' && s2[j] != '\0')
+		if (s1[i] == '\0' && s2[i] != '\0')
 			return (1);
-		if (s1[i] != s2[j])
+		if (s1[i] != s2[i])
 			return (1);
 		i++;
-		j++;
 	}
-	if (s1[i] != '\0' && s2[j] == '=')
+	if (s1[i] != '\0' && s2[i] == '\0')
+		return (1);
+	if (s1[i] == '\0' && s2[i] != '\0')
 		return (1);
 	return (0);
 }
