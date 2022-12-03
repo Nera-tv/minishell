@@ -42,6 +42,7 @@ void	lancement(t_data *data)
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < data->nbr_cmds)
 	{
+		creating_pipes(data, i);
 		lancement_bis(data, i);
 		i++;
 	}

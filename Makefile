@@ -37,6 +37,7 @@ LST_SRCS	=	builtins.c				\
 				p_set_args.c			\
 				path_bis.c				\
 				path.c					\
+				pipes.c					\
 				printdata.c				\
 				pwd.c					\
 				readline.c				\
@@ -175,8 +176,7 @@ test :
 	@./${NAME}
 
 leak :
-	@${MAKE}
-	@leaks --atExit -- ./${NAME}
+	@while true; do leaks minishell; sleep 1.6; clear; done
 
 git :
 	@${MAKE} fclean

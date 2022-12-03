@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/01 09:47:14 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/03 12:10:20 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ int	save_output(t_data *data, int val)
 {
 	if (val != 0)
 	{
-		if (close(data->pipe.pipein[0] < 0)
-			|| close(data->pipe.pipein[1] < 0))
+		if (close(data->pipein[0] < 0)
+			|| close(data->pipein[1] < 0))
 			return (-1);
 	}
-	data->pipe.pipein[0] = data->pipe.pipeout[0];
-	data->pipe.pipein[1] = data->pipe.pipeout[1];
+	data->pipein[0] = data->pipeout[0];
+	data->pipein[1] = data->pipeout[1];
 	return (0);
 }
 
@@ -88,6 +88,8 @@ int	ft_exec(t_data *data, int val)
 		return (-1);
 	if (forkid == 0)
 	{
+		if (managing_pipes(data, val) < 0)
+			return (-1);
 		if (execve(data->cmd[val].cmd_path[0],
 				data->cmd[val].cmd_path, data->envp) < 0)
 			if_execve_failed(data, val);

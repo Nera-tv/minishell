@@ -24,18 +24,11 @@ typedef struct s_data		t_data;
 typedef struct s_cmd		t_cmd;
 typedef struct s_arg		t_arg;
 typedef struct s_list_env	t_list_env;
-typedef struct s_pipe		t_pipe;
 
 struct s_list_env
 {
 	char	*name;
 	char	*content;
-};
-
-struct s_pipe
-{
-	int		pipein[2];
-	int		pipeout[2];
 };
 
 struct s_cmd
@@ -59,7 +52,6 @@ struct s_cmd
 struct s_data
 {
 	t_cmd			*cmd;
-	t_pipe			pipe;
 	int				nbr_cmds;
 	int				start;
 	char			*line;
@@ -74,6 +66,8 @@ struct s_data
 	int				*forkid;
 	int				*status;
 	int				err_nbr;
+	int				pipein[2];
+	int				pipeout[2];
 };
 
 #endif

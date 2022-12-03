@@ -55,6 +55,8 @@ void	wait_all_pids(t_data *data);							// -> wait.c
 void	sep_cmd_pipe(t_data *data);
 int		check_line_pipe(t_data *data);
 void	get_nbr_cmd(t_data *data);
+int		creating_pipes(t_data *data, int val);					// -> pipes.c
+int		managing_pipes(t_data *data, int val);					// -> pipes.c
 
 //		path
 void	search_path(t_data *data, int val);							// -> path.c
