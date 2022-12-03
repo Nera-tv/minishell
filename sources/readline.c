@@ -12,24 +12,40 @@
 
 #include "../includes/minishell.h"
 
-void	lancement_bis(t_data *data, int i)
+void	built_or_execve(t_data *data, int i)
 {
+	int	forkid;
 	int	blt;
 
-	if (data->cmd[i].cmd[0] == '\0')
-		return ;
-	data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
-	if (data->cmd[i].cmd)
+	forkid = fork();
+	if (forkid < 0)
+		ft_exit(ERRFORK, data, 1);
+	if (forkid == 0)
 	{
+		if (data->nbr_cmds > 1)
+			managing_pipes(data, i);
 		blt = is_builtins(data, i);
 		if (blt > 0)
 			exec_builtins(data, i, blt);
 		else
 		{
 			search_path(data, i);
-			data->forkid[i] = ft_exec(data, i);
+			ft_exec(data, i);
 		}
+		ft_exit(NULL, data, 0);
 	}
+	else
+		save_output(data, i);
+	data->forkid[i] = forkid;
+}
+
+void	lancement_bis(t_data *data, int i)
+{
+	if (data->cmd[i].cmd[0] == '\0')
+		return ;
+	data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
+	if (data->cmd[i].cmd)
+		built_or_execve(data, i);
 }
 
 void	lancement(t_data *data)

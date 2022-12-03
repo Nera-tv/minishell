@@ -6,59 +6,11 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/03 12:10:20 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:23:14 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-/*
-int	ft_execve(t_data *data, int val)
-{
-	// if (close(data->cmd->pipe.pipeout[0]) < 0)
-	// 	return (-1);
-	// if (cmd_to_exec == 0 && data->nbr_cmds == 1) // if 1 seule commande
-	// {
-		// if () //if file input
-		// 	;
-		// else //Sinon
-		// 	;
-		// if () //if file output
-		// 	;
-	// 	else //Sinon
-	// 		;
-	// }
-	// else if (cmd_to_exec == 0)
-	// {
-	// 	if ()//if file input alors ça (<)
-	// 		;
-	// 	else // sans file input
-	// 	{
-	// 		if (dup2(data->cmd->pipe.pipeout[1], 1) < 0
-	// 			|| close (data->cmd->pipe.pipeout[1]))
-	// 			return (-1);
-	// 	}
-	// }
-	// else if (cmd_to_exec == data->nbr_cmds - 1) // Si dernière commande
-	// {
-		// if ()//if file output alors ça, attention si append(>>) ou trunc(>)
-		// 	;
-	// 	else // sans file output
-	// 	{
-	// 		if (close(data->cmd->pipe.pipeout[1]) < 0
-	// 			|| close(data->cmd->pipe.pipeout[0]) < 0
-	// 			|| dup2(data->cmd->pipe.pipein[1], 0) < 0
-	// 			|| close(data->cmd->pipe.pipein[1]) < 0
-	// 			|| close(data->cmd->pipe.pipein[0]) < 0)
-	// 			return (-1);
-	// 	}
-	// }
-	// else
-	// {
-	
-	// }
-	
-	return (0);
-}*/
 
 int	save_output(t_data *data, int val)
 {
@@ -73,28 +25,13 @@ int	save_output(t_data *data, int val)
 	return (0);
 }
 
-void	if_execve_failed(t_data *data, int val)
-{
-	perror(data->cmd[val].cmd);
-	ft_exit(NULL, data, 2);
-}
-
 int	ft_exec(t_data *data, int val)
 {
-	int	forkid;
-
-	forkid = fork();
-	if (forkid < 0)
-		return (-1);
-	if (forkid == 0)
+	if (execve(data->cmd[val].cmd_path[0],
+			data->cmd[val].cmd_path, data->envp) < 0)
 	{
-		if (managing_pipes(data, val) < 0)
-			return (-1);
-		if (execve(data->cmd[val].cmd_path[0],
-				data->cmd[val].cmd_path, data->envp) < 0)
-			if_execve_failed(data, val);
+		perror(data->cmd[val].cmd);
+		ft_exit(NULL, data, 2);
 	}
-	else
-		save_output(data, val);
-	return (forkid);
+	return (0);
 }

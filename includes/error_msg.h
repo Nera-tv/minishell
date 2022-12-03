@@ -14,5 +14,7 @@
 # define ERROR_MSG_H
 
 # define ERRMEMALLOC "memory allocation error"
+# define ERRPIPE "error with pipes, couldn't open a pipe."
+# define ERRFORK "error with fork, couldn't "
 
 #endif
