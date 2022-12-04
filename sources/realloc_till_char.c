@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:47:02 by tweidema          #+#    #+#             */
-/*   Updated: 2022/11/23 16:36:29 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:10:48 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	len_until_char(char *str, int c)
 	return (i);
 }
 
-char	*realloc_till_char(char *str, int c, int need_free)
+char	*realloc_till_char(char *str, int c, int need_free, t_data *data)
 {
 	size_t	i;
 	size_t	len;
@@ -34,7 +34,7 @@ char	*realloc_till_char(char *str, int c, int need_free)
 		return (NULL);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
-		return (NULL);
+		ft_exit(ERRMEMALLOC, data, 1);
 	while (i < len)
 	{
 		ret[i] = str[i];

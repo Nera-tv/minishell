@@ -34,8 +34,7 @@ void	built_or_execve(t_data *data, int i)
 		}
 		ft_exit(NULL, data, 0);
 	}
-	else
-		save_output(data, i);
+	save_output(data, i);
 	data->forkid[i] = forkid;
 }
 
@@ -70,9 +69,12 @@ void	read_line(const char *prompt, t_data *data)
 	data->line = readline(prompt);
 	if (data->line && *data->line)
 		add_history(data->line);
+	// printf("data->line ==%s==\n", data->line);
 	if (data->line == NULL)
 		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
 	lancement(data);
 	free_data_cmd(data);
+	//close(0);
+	//dprintf(2, "%s %d\n", strerror(errno), errno);
 }

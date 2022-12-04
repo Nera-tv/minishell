@@ -15,6 +15,8 @@
 
 # define ERRMEMALLOC "memory allocation error"
 # define ERRPIPE "error with pipes, couldn't open a pipe."
-# define ERRFORK "error with fork, couldn't "
+# define ERRFORK "error with fork, couldn't initialize a fork."
+# define ERRFD "error with file descriptors, couldn't open or close a file \
+descriptor."
 
 #endif

@@ -11,6 +11,7 @@ LST_SRCS	=	builtins.c				\
 				export_utils.c			\
 				export.c				\
 				exec.c					\
+				exec_bis.c				\
 				ft_env.c				\
 				list_env_bis.c			\
 				list_env.c				\
@@ -41,6 +42,7 @@ LST_SRCS	=	builtins.c				\
 				printdata.c				\
 				pwd.c					\
 				readline.c				\
+				realloc_till_char.c		\
 				unset.c					\
 				wait.c					
 
