@@ -73,6 +73,9 @@ void	read_line(const char *prompt, t_data *data)
 	if (data->line == NULL)
 		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
+	if (ft_strnncmp(data->cmd[0].cmd, "exit", ft_strlen("exit")) == 0
+        && data->cmd[0].cmd[4] == '\0' && data->nbr_cmds == 1)
+        exit_if_blt_exit(data, 0);
 	lancement(data);
 	free_data_cmd(data);
 	//close(0);
