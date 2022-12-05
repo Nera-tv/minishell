@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:47:02 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/04 16:10:48 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:39:17 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ char	*realloc_till_char(char *str, int c, int need_free, t_data *data)
 	if (need_free == 1)
 		free(str);
 	return (ret);
+}
+
+char	*skip_this_char(char *str, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i] && str[i] == (char)c)
+		i++;
+	return (&str[i]);
 }

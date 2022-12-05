@@ -51,7 +51,7 @@ int	is_builtins(t_data *data, int val)
 		&& data->cmd[val].cmd[5] == '\0')
 		return (6);
 	if (ft_strnncmp(data->cmd[val].cmd, "exit", ft_strlen("exit")) == 0
-        && data->cmd[val].cmd[4] == '\0')
-        return (7);
+		&& data->cmd[val].cmd[4] == '\0')
+		return (7);
 	return (0);
 }
