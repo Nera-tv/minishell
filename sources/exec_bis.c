@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/04 16:44:11 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:41:55 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_me_file_output(t_data *data, int val)
 	till_next = NULL;
 	dprintf(2, "Je suis ici %s\n", ft_strchr(data->cmd[val]._cmd, '>'));
 	if (!ft_strchr(data->cmd[val]._cmd, '>'))
-		return (1);
+		return (0);
 	file_output = ft_strdup(ft_strchr(data->cmd[val]._cmd, '>'));
 	if (!file_output)
 		return (-1); //Erreur de si la personne essaie d'ouvrir un fichier qui n'a pas de nom

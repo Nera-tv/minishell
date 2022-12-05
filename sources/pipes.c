@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:51:43 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/04 16:37:17 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:45:23 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	redirect_pipeout(t_data	*data, int val)
 {
 	int	fd;
 
-	fd = get_me_file_output(data, val);
-	if (close(data->pipeout[0]) < 0 || dup2(data->pipeout[1], fd) < 0
+	fd = 0;
+	if (close(data->pipeout[0]) < 0 || dup2(data->pipeout[1], 1) < 0
 		|| close(data->pipeout[1]) < 0)
 		ft_exit(ERRPIPE, data, 1);
+	fd = get_me_file_output(data, val);
+	if (fd)
+		dup2(fd, 1);
 }
 
 void	redirect_pipein(t_data	*data, int val)
@@ -29,9 +32,11 @@ void	redirect_pipein(t_data	*data, int val)
 	fd = 0;
 	if (val)
 		;
-	if (close(data->pipein[1]) < 0 || dup2(data->pipein[0], fd) < 0
+	if (close(data->pipein[1]) < 0 || dup2(data->pipein[0], 0) < 0
 		|| close(data->pipein[0]) < 0)
 		ft_exit(ERRPIPE, data, 1);
+	if (fd)
+		dup2(fd, 0);
 }
 
 int	managing_pipes(t_data *data, int val)
