@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:07:15 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 10:30:48 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:39:41 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@ int	get_cmd_pipe_len(t_data *data, int old_len)
 
 	len = old_len;
 	while (data->line[len] != '|' && data->line[len] != '\0')
+	{
+		if (data->line[len] == '\"')
+		{
+			len++;
+			while (data->line[len] != '\"' && data->line[len] != '\0')
+				len++;
+		}
+		else if (data->line[len] == '\'')
+		{
+			len++;
+			while (data->line[len] != '\'' && data->line[len] != '\0')
+				len++;
+		}
 		len++;
+	}
 	len--;
 	while (data->line[len] == ' ')
 		len--;
@@ -44,7 +58,21 @@ int	sep_cmd_pipe_bis(t_data *data, int i, int old_len)
 	}
 	data->cmd[i]._cmd[y] = '\0';
 	while (data->line[len] != '|' && data->line[len] != '\0')
+	{
+		if (data->line[len] == '\"')
+		{
+			len++;
+			while (data->line[len] != '\"' && data->line[len] != '\0')
+				len++;
+		}
+		else if (data->line[len] == '\'')
+		{
+			len++;
+			while (data->line[len] != '\'' && data->line[len] != '\0')
+				len++;
+		}
 		len++;
+	}
 	len++;
 	old_len = len;
 	return (old_len);

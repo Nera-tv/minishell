@@ -64,7 +64,7 @@ struct s_data
 	int				indic_first_cd;
 	int				cnt_replace;
 	int				*forkid;
-	int				*status;
+	int				status;
 	int				err_nbr;
 	int				pipein[2];
 	int				pipeout[2];

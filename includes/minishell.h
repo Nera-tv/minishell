@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
-# include <stdio.h>
+# include <signal.h>
 # include "../libraries/libft/libft.h"
 # include "../libraries/libprintf/ft_printf.h"
 # include <readline/readline.h>

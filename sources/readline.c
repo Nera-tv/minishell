@@ -38,8 +38,6 @@ void	built_or_execve(t_data *data, int i)
 
 void	lancement_bis(t_data *data, int i)
 {
-	if (data->cmd[i].cmd[0] == '\0')
-		return ;
 	data->cmd[i].nbr_args = nb_args(data->cmd[i].args);
 	if (data->cmd[i].cmd)
 		built_or_execve(data, i);
@@ -56,6 +54,8 @@ void	lancement(t_data *data)
 	while (i < data->nbr_cmds)
 	{
 		creating_pipes(data, i);
+		if (data->cmd[i].cmd[0] == '\0')
+			return ;
 		lancement_bis(data, i);
 		i++;
 	}
