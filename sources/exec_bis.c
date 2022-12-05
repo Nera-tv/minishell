@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/05 10:41:55 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:14:12 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	opening_file_output(char *file_output, char *till_next, int fd, t_data *d)
 		}
 		if (fd < 0)
 			ft_exit(ERRFD, d, 1);
-		dprintf(2, "foutput = %s\n", file_output);
 		file_output = ft_strchr(file_output, '>');
 	}
 	return (fd);
@@ -51,7 +50,6 @@ int	get_me_file_output(t_data *data, int val)
 	i = 0;
 	fd = 1;
 	till_next = NULL;
-	dprintf(2, "Je suis ici %s\n", ft_strchr(data->cmd[val]._cmd, '>'));
 	if (!ft_strchr(data->cmd[val]._cmd, '>'))
 		return (0);
 	file_output = ft_strdup(ft_strchr(data->cmd[val]._cmd, '>'));

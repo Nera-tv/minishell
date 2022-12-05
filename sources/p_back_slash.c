@@ -37,5 +37,4 @@ void	remove_quote_in_back_slash(t_data *data, int val, int arg_count)
 	int	i;
 
 	i = ft_strlen_c_to_c(data->cmd[val].args[arg_count], '\\');
-	printf("%d\n", i);
 }

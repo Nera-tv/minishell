@@ -69,9 +69,7 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	arg = data->cmd[val].args[arg_count];
 	if (arg[len] == '\\')
 	{
-		printf("%c -- %d\n", arg[len], len);
 		shift_in_tab(arg, len);
-		printf("%c -- %d\n", arg[len], len);
 	}
 	else if (arg[len] == '\'')
 		len = sp_quote_in_arg(arg, len);
@@ -82,11 +80,9 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	}
 	else if (arg[len] == '$' && arg[len + 1] != '\0')
 	{
-		printf("%c -- %d\n", arg[len], len);
 		var_env = get_var_env_in_arg(arg, data);
 		arg = db_quote_in_arg_bis(data, arg, var_env);
 		free(var_env);
-		printf("%s -- %d\n", arg, len);
 	}
 	data->cmd[val].args[arg_count] = arg;
 	return (len);

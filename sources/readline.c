@@ -14,13 +14,12 @@
 
 void	built_or_execve(t_data *data, int i)
 {
-	int	forkid;
 	int	blt;
 
-	forkid = fork();
-	if (forkid < 0)
+	data->forkid[i] = fork();
+	if (data->forkid[i] < 0)
 		ft_exit(ERRFORK, data, 1);
-	if (forkid == 0)
+	if (data->forkid[i] == 0)
 	{
 		if (data->nbr_cmds > 1)
 			managing_pipes(data, i);
@@ -35,7 +34,6 @@ void	built_or_execve(t_data *data, int i)
 		ft_exit(NULL, data, 0);
 	}
 	save_output(data, i);
-	data->forkid[i] = forkid;
 }
 
 void	lancement_bis(t_data *data, int i)
@@ -69,15 +67,16 @@ void	read_line(const char *prompt, t_data *data)
 	data->line = readline(prompt);
 	if (data->line && *data->line)
 		add_history(data->line);
-	// printf("data->line ==%s==\n", data->line);
+	//printf("data->line ==%s==\n", data->line);
+	//dprintf(2, "%s %d\n", strerror(errno), errno);
 	if (data->line == NULL)
 		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
 	if (ft_strnncmp(data->cmd[0].cmd, "exit", ft_strlen("exit")) == 0
         && data->cmd[0].cmd[4] == '\0' && data->nbr_cmds == 1)
         exit_if_blt_exit(data, 0);
+	//sleep(100);
 	lancement(data);
 	free_data_cmd(data);
 	//close(0);
-	//dprintf(2, "%s %d\n", strerror(errno), errno);
 }
