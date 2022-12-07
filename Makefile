@@ -11,11 +11,12 @@ LST_SRCS	=	builtins.c					\
 				export_utils.c				\
 				export.c					\
 				exec.c						\
-				exec_bis.c					\
 				ft_env.c					\
 				list_env_bis.c				\
 				list_env.c					\
 				main.c						\
+				opening_files.c				\
+				out_redir.c					\
 				p_args_var_env_bis.c		\
 				p_args_var_env.c			\
 				p_arg_quote.c				\

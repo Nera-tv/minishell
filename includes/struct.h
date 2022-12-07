@@ -45,6 +45,7 @@ struct s_cmd
 	char	**cmd_path;
 	char	*file_output;
 	char	*file_input;
+	char	**redirections;
 	int		input_method;
 	int		output_method;
 	int		nbr_args;

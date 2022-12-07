@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:51:43 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/05 11:53:54 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/07 14:21:46 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	redirect_pipeout(t_data	*data, int val)
 	if (close(data->pipeout[0]) < 0 || dup2(data->pipeout[1], 1) < 0
 		|| close(data->pipeout[1]) < 0)
 		ft_exit(ERRPIPE, data, 1);
-	fd = get_me_file_output(data, val);
+	fd = opening_file_output(data, val);
 	if (fd)
 		dup2(fd, 1);
 }
