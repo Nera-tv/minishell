@@ -45,6 +45,8 @@ void	get_cmd_arg(t_data *data);
 int		if_only_space(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
+int		ret_error_pipe_parse(t_data *data, char *msg);
+int		check_line_pipe_go_back(t_data *data, int i);	
 
 // exec
 int		ft_execve(t_data *data, int cmd);						// -> exec.c

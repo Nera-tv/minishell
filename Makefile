@@ -1,49 +1,50 @@
 .PHONY :	re fclean clean all
 .SILENT:
 
-LST_SRCS	=	builtins.c				\
-				cd_bis.c				\
-				cd_utils.c				\
-				cd.c					\
-				echo.c					\
-				env.c					\
-				exit.c					\
-				export_utils.c			\
-				export.c				\
-				exec.c					\
-				exec_bis.c				\
-				ft_env.c				\
-				list_env_bis.c			\
-				list_env.c				\
-				main.c					\
-				p_args_var_env_bis.c	\
-				p_args_var_env.c		\
-				p_arg_quote.c			\
-				p_args_utils.c			\
-				p_args.c				\
-				p_back_slash.c			\
-				p_check_cmd_bis.c		\
-				p_check_cmd.c			\
-				p_cmd_bis.c				\
-				p_cmd_len.c				\
-				p_cmd_utils.c			\
-				p_cmd.c					\
-				p_free_cmd.c			\
-				p_get_cmd_arg_utils.c	\
-				p_get_cmd_arg.c			\
-				p_get_pwd.c				\
-				p_pipe.c				\
-				p_replace_var_env.c		\
-				p_set_args_bis.c		\
-				p_set_args.c			\
-				path_bis.c				\
-				path.c					\
-				pipes.c					\
-				printdata.c				\
-				pwd.c					\
-				readline.c				\
-				realloc_till_char.c		\
-				unset.c					\
+LST_SRCS	=	builtins.c					\
+				cd_bis.c					\
+				cd_utils.c					\
+				cd.c						\
+				echo.c						\
+				env.c						\
+				exit.c						\
+				export_utils.c				\
+				export.c					\
+				exec.c						\
+				exec_bis.c					\
+				ft_env.c					\
+				list_env_bis.c				\
+				list_env.c					\
+				main.c						\
+				p_args_var_env_bis.c		\
+				p_args_var_env.c			\
+				p_arg_quote.c				\
+				p_args_utils.c				\
+				p_args.c					\
+				p_back_slash.c				\
+				p_check_cmd_bis.c			\
+				p_check_cmd.c				\
+				p_cmd_bis.c					\
+				p_cmd_len.c					\
+				p_cmd_utils.c				\
+				p_cmd.c						\
+				p_free_cmd.c				\
+				p_get_cmd_arg_utils_bis.c	\
+				p_get_cmd_arg_utils.c		\
+				p_get_cmd_arg.c				\
+				p_get_pwd.c					\
+				p_pipe.c					\
+				p_replace_var_env.c			\
+				p_set_args_bis.c			\
+				p_set_args.c				\
+				path_bis.c					\
+				path.c						\
+				pipes.c						\
+				printdata.c					\
+				pwd.c						\
+				readline.c					\
+				realloc_till_char.c			\
+				unset.c						\
 				wait.c					
 
 

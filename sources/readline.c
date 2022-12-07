@@ -67,8 +67,6 @@ void	read_line(const char *prompt, t_data *data)
 	data->line = readline(prompt);
 	if (data->line && *data->line)
 		add_history(data->line);
-	//printf("data->line ==%s==\n", data->line);
-	//dprintf(2, "%s %d\n", strerror(errno), errno);
 	if (data->line == NULL)
 		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
@@ -76,8 +74,13 @@ void	read_line(const char *prompt, t_data *data)
 		&& ft_strnncmp(data->cmd[0].cmd, "exit", ft_strlen("exit")) == 0 \
 		&& data->cmd[0].cmd[4] == '\0' && data->nbr_cmds == 1)
 		exit_if_blt_exit(data, 0);
-	//sleep(100);
 	lancement(data);
 	free_data_cmd(data);
-	//close(0);
 }
+
+/*
+**	//printf("data->line ==%s==\n", data->line);
+**	//dprintf(2, "%s %d\n", strerror(errno), errno);
+**	//sleep(100);
+**	//close(0);
+*/

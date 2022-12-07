@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait.c                                             :+:      :+:    :+:   */
+/*   p_get_cmd_arg_utils_bis.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 15:48:32 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 11:07:25 by dvilard          ###   ########.fr       */
+/*   Created: 2022/12/07 11:19:55 by dvilard           #+#    #+#             */
+/*   Updated: 2022/12/07 11:25:03 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	status_to_error(int status)
+int	check_line_pipe_go_back(t_data *data, int i)
 {
-	if (WIFEXITED(status))
-		return (WEXITSTATUS(status));
-	if (WIFSIGNALED(status))
-		return (WTERMSIG(status) + 128);
-	return (1);
+	i--;
+	while (data->line[i] == ' ')
+		i--;
+	if (data->line[i] == '|')
+	{
+		return (ret_error_pipe_parse(data, \
+		"minishell: syntax error: unexpected end of file\n"));
+	}
+	return (i);
 }
 
-void	wait_all_pids(t_data *data)
+int	ret_error_pipe_parse(t_data *data, char *msg)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->nbr_cmds)
-	{
-		waitpid(data->forkid[i], &data->status, 0);
-		i++;
-	}
-	data->err_nbr = status_to_error(data->status);
+	data->err_nbr = 2;
+	ft_putstr_fd(msg, 1);
+	return (1);
 }

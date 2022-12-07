@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/05 16:39:30 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/07 11:26:28 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,50 @@ int	if_only_space(t_data *data)
 	return (0);
 }
 
+int	check_line_pipe_bis_bis(t_data *data, int i)
+{
+	i++;
+	while (data->line[i] == ' ')
+		i++;
+	if (data->line[i] == '|')
+	{
+		data->err_nbr = 2;
+		if (data->line[i - 1] != '|')
+		{
+			ft_putstr_fd(\
+			"minishell: syntax error near unexpected token `|'\n", 1);
+		}
+		else
+		{
+			ft_putstr_fd(\
+			"minishell: syntax error near unexpected token `||'\n", 1);
+		}
+		return (1);
+	}
+	return (i);
+}
+
+int	check_line_pipe_bis(t_data *data, int i)
+{
+	if (data->line[i] == '\"')
+	{
+		i++;
+		while (data->line[i] != '\"' && data->line[i] != '\0')
+			i++;
+	}
+	else if (data->line[i] == '\'')
+	{
+		i++;
+		while (data->line[i] != '\'' && data->line[i] != '\0')
+			i++;
+	}
+	else if (data->line[i] == '|')
+	{
+		i = check_line_pipe_bis_bis(data, i);
+	}
+	return (i);
+}
+
 int	check_line_pipe(t_data *data)
 {
 	int	i;
@@ -35,53 +79,18 @@ int	check_line_pipe(t_data *data)
 		return (1);
 	while (data->line[i] == ' ')
 		i++;
-	
 	if (data->line[i] == '|' && data->line[i + 1] != '|')
 	{
-		data->err_nbr = 2;
-		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 1);
-		return (1);
+		return (ret_error_pipe_parse(data, \
+			"minishell: syntax error near unexpected token `|'\n"));
 	}
 	while (data->line[i] != '\0')
 	{
-		if (data->line[i] == '\"')
-		{
+		i = check_line_pipe_bis(data, i);
+		if (data->line[i] != '\0')
 			i++;
-			while (data->line[i] != '\"' && data->line[i] != '\0')
-				i++;
-		}
-		else if (data->line[i] == '\'')
-		{
-			i++;
-			while (data->line[i] != '\'' && data->line[i] != '\0')
-				i++;
-		}
-		else if (data->line[i] == '|')
-		{
-			i++;
-			while (data->line[i] == ' ')
-				i++;
-			if (data->line[i] == '|')
-			{
-				data->err_nbr = 2;
-				if (data->line[i - 1] != '|')
-					ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 1);
-				else 
-					ft_putstr_fd("minishell: syntax error near unexpected token `||'\n", 1);
-				return (1);
-			}
-		}
-		i++;
 	}
-	i--;
-	while (data->line[i] == ' ')
-		i--;
-	if (data->line[i] == '|')
-	{
-		data->err_nbr = 2;
-		ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 1);
-		return (1);
-	}
+	i = check_line_pipe_go_back(data, i);
 	return (0);
 }
 

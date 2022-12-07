@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/05 16:33:19 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:27:08 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	opening_file_output(char *file_output, char *till_next, int fd, t_data *d)
 		}
 		if (fd < 0)
 			ft_exit(ERRFD, d, 1);
-		file_output = ft_strchr(file_output[1], '>');
+		file_output = ft_strchr(&file_output[1], '>');
 	}
 	dprintf(2, "ofo ==%s==\n", file_output);
 	return (fd);
