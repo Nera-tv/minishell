@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 13:51:07 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:00:54 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	if_trunc(char *file_output, t_data *data, int val)
 	int		fd;
 
 	till_next = skip_this_char(&file_output[1], ' ');
-	till_next = realloc_till_char(till_next, ' ', 0, d);
+	till_next = realloc_till_char(till_next, ' ', 0, data);
 	fd = open(till_next, O_CREAT | O_TRUNC | O_WRONLY,
 			S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
 	if (close(fd) < 0)
@@ -33,7 +33,7 @@ void	if_append(char *file_output, t_data *data, int val)
 	char	*till_next;
 
 	till_next = skip_this_char(&file_output[2], ' ');
-	till_next = realloc_till_char(till_next, ' ', 0, d);
+	till_next = realloc_till_char(till_next, ' ', 0, data);
 	file_output = &file_output[1];
 	fd = open(till_next, O_CREAT | O_APPEND | O_WRONLY,
 			S_IWUSR | S_IRUSR | S_IRGRP | S_IROTH);
@@ -54,6 +54,7 @@ int	opening_file_output(char *file_output, t_data *d, int val)
 			if_trunc(file_output, d, val);
 		file_output = ft_strchr(&file_output[1], '>');
 	}
+	return (0);
 }
 
 int	get_me_file_output(t_data *data, int val)
@@ -67,8 +68,8 @@ int	get_me_file_output(t_data *data, int val)
 	file_output = ft_strdup(ft_strchr(data->cmd[val]._cmd, '>'));
 	if (!file_output)
 		return (-1); //Erreur de si la personne essaie d'ouvrir un fichier qui n'a pas de nom
-	fd = opening_file_output(file_output, data, val);
+	opening_file_output(file_output, data, val);
 	if (file_output)
 		free(file_output);
-	return (fd);
+	return (0);
 }

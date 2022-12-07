@@ -40,6 +40,7 @@ size_t	ft_strlen_m(const char *tab);
 int		if_end_var_env(char c);
 char	*realloc_till_char(char *str, int c, int f, t_data *data);// -> rea....c
 size_t	len_until_char(char *str, int c);			// -> realloc_till_char.c
+char	*skip_this_char(char *str, int c);			// -> realloc_till_char.c
 
 // parsing
 void	get_cmd_arg(t_data *data);
@@ -64,7 +65,7 @@ int		managing_pipes(t_data *data, int val);					// -> pipes.c
 
 //		redirections
 int		get_me_file_output(t_data *data, int val);				// -> exec_bis.c
-int		opening_file_output(char *file_outp, char *till_ne, int fd, t_data *d);
+int		opening_file_output(char *file_outp, t_data *d, int val);// -> exec_bis.
 
 //		path
 void	search_path(t_data *data, int val);							// -> path.c
