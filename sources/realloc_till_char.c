@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   realloc_till_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:47:02 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 13:26:10 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:49:44 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*realloc_till_char(char *str, int c, int need_free, t_data *data)
 		return (NULL);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
-		ft_exit(ERRMEMALLOC, data, 1);
+		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < len)
 	{
 		ret[i] = str[i];

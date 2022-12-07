@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 16:34:52 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:55:20 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	get_me_file_redirect(t_data *data, int val)
 	if (!data->cmd[val].redirections)
 		return (0);
 	storing_file_output(data->cmd[val].redirections, data, val);
-	storing_file_input()
+	// storing_file_input();
 	return (0);
 }

@@ -25,6 +25,7 @@ LST_SRCS	=	builtins.c					\
 				p_back_slash.c				\
 				p_check_cmd_bis.c			\
 				p_check_cmd.c				\
+				p_check_line_lt_gt.c		\
 				p_cmd_bis.c					\
 				p_cmd_len.c					\
 				p_cmd_utils.c				\

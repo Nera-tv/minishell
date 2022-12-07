@@ -27,17 +27,20 @@ char	*replace_word_bis(const char *s, const char *old_w,
 	int		new_w_len;
 	int		old_w_len;
 	int		i;
+	int		cnt;
 
 	new_w_len = ft_strlen(new_w);
 	old_w_len = ft_strlen(old_w);
 	i = 0;
+	cnt = 0;
 	while (*s)
 	{
-		if (ft_strstr(s, old_w) == s)
+		if (ft_strstr(s, old_w) == s && cnt == 0)
 		{
 			ft_strcpy(&result[i], new_w);
 			i += new_w_len;
 			s += old_w_len;
+			cnt++;
 		}
 		else
 			result[i++] = *s++;
@@ -55,7 +58,7 @@ int	ft_replace_word_while(const char *s, char *old_w,
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (ft_strstr(&s[i], old_w) == &s[i])
+		if (ft_strstr(&s[i], old_w) == &s[i] && data->cnt_replace == 0)
 		{
 			data->cnt_replace++;
 			i += old_w_len - 1;

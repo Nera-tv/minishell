@@ -46,6 +46,9 @@ struct s_cmd
 	char	*file_output;
 	char	*file_input;
 	char	**redirections;
+	char	**redirection;
+	int		nb_redir;
+	int		if_redir;
 	int		input_method;
 	int		output_method;
 	int		nbr_args;

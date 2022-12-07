@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:48:30 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/01 15:04:23 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:45:44 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	fill_arg_path(t_data *data, int val)
 	i = 1;
 	while (i < data->cmd[val].nbr_args + 1)
 	{
-		printf("%s\n", data->cmd[val].args[i - 1]);
+		//printf("%s\n", data->cmd[val].args[i - 1]);
 		data->cmd[val].cmd_path[i] = data->cmd[val].args[i - 1];
 		i++;
 	}
