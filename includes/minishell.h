@@ -72,6 +72,9 @@ int		put_path_data(t_data *data);								// -> path.c
 char	*add_slash_to_path(char *path);								// -> path.c
 char	*access_check(char *cmd, char **path, t_data *data);		// -> path.c
 
+//		signal
+void	init_sig_callbacks(int flag);
+
 //		cmd
 void	get_cmd_name(t_data *data, int val);
 int		get_cmd_len(t_data *data, int val);

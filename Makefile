@@ -44,6 +44,7 @@ LST_SRCS	=	builtins.c					\
 				pwd.c						\
 				readline.c					\
 				realloc_till_char.c			\
+				signal.c					\
 				unset.c						\
 				wait.c					
 
