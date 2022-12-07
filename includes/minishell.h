@@ -13,8 +13,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "error_msg.h"
-# include "struct.h"
 # include <pthread.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -22,6 +20,9 @@
 # include <string.h>
 # include <sys/time.h>
 # include <signal.h>
+# include <termios.h>
+# include "error_msg.h"
+# include "struct.h"
 # include "../libraries/libft/libft.h"
 # include "../libraries/libprintf/ft_printf.h"
 # include <readline/readline.h>

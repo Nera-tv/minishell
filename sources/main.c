@@ -51,7 +51,7 @@ void	ctrlc_handler(int sig, siginfo_t *info, void *ctx)
 	}
 	write(1, "\n", 1);
 	rl_on_new_line();
-    rl_replace_line("", 0);
+	rl_replace_line("", 0);
 	if (g_status == 0)
 		rl_redisplay();
 	(void)sig;
@@ -61,16 +61,15 @@ void	ctrlc_handler(int sig, siginfo_t *info, void *ctx)
 
 void	init_sig_callbacks(int flag)
 {
-	struct sigaction    act;
+	struct sigaction	act;
+
 	ft_memset(&act, 0, sizeof(struct sigaction));
-	// CTRL C
-	act.__sigaction_u.__sa_sigaction = ctrlc_handler; // pointeur sur fonction void f(int, siginfo_t, void *)
+	act.__sigaction_u.__sa_sigaction = ctrlc_handler;
 	if (flag)
 		act.__sigaction_u.__sa_sigaction = ctrlc_handler_bis;
 	act.sa_flags = SA_SIGINFO | SA_RESTART;
 	sigaction(SIGINT, &act, NULL);
-	// CTRL
-	//act.__sigaction_u.__sa_sigaction = ctrlslash_handler;
+	act.__sigaction_u.__sa_sigaction = ctrlslash_handler;
 	if (flag)
 		act.__sigaction_u.__sa_sigaction = ctrlslash_handler_bis;
 	act.sa_flags = SA_SIGINFO | SA_RESTART;
@@ -104,6 +103,10 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 		ft_exit("Error: no argument needed", &data, 2);
 	init_data(&data, envp, argv);
+	tcgetattr(0, &data.original);
+	data.silent = data.original;
+	data.silent.c_lflag &= ~ECHOCTL;
+	tcsetattr(0, TCSANOW, &data.silent);
 	while (1)
 	{
 		if (data.start == 0)

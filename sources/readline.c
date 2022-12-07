@@ -48,6 +48,7 @@ void	lancement(t_data *data)
 	int	i;
 
 	i = 0;
+	tcsetattr(0, TCSANOW, &data->original);
 	data->forkid = malloc(sizeof(int) * data->nbr_cmds);
 	if (!data->forkid)
 		ft_exit(ERRMEMALLOC, data, 2);
@@ -60,6 +61,7 @@ void	lancement(t_data *data)
 		i++;
 	}
 	wait_all_pids(data);
+	tcsetattr(0, TCSANOW, &data->silent);
 }
 
 void	read_line(const char *prompt, t_data *data)

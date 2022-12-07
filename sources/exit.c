@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 15:01:59 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:46:51 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void	ft_exit(char *msg, t_data *data, int err_nbr)
 			j++;
 		}
 	}
+	tcsetattr(0, TCSANOW, &data->original);
 	exit(err_nbr);
 }

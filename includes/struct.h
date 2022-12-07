@@ -70,6 +70,8 @@ struct s_data
 	int				err_nbr;
 	int				pipein[2];
 	int				pipeout[2];
+	struct termios	original;
+	struct termios	silent;
 };
 
 #endif
