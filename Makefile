@@ -62,6 +62,9 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Wextra -Werror -fsanitize=address -g3
+RLPATH		:=  $$HOME/.brew/opt/readline
+RLPATHINC	:=  $(RLPATH)/include
+RLPATHLIB	:=  $(RLPATH)/lib
 RLOFLAGS	:=	-lreadline
 NAME		:= 	minishell
 HEADER		:=	${P_INC}minishell.h				\
@@ -111,12 +114,12 @@ RST 		=	\033[0m
 all: print_header makelft makelpf ${NAME} usage print_bottom
 
 ${NAME} : ${P_OBJS} ${OBJS} ${HEADER} ${LFTA} ${LPFA}
-	@${CC} ${CFLAGS} ${OBJS} -o $(NAME) ${RLOFLAGS} ${LFTA} ${LPFA}
+	@${CC} ${CFLAGS} ${OBJS} -o $(NAME) -L$(RLPATHLIB) ${RLOFLAGS} ${LFTA} ${LPFA}
 	@printf "\n$(GREEN)$(BOLD)Binary $(NAME) created$(RESET)	✅\n"
 
 $(P_OBJS)%.o: $(P_SRCS)%.c $(HEADER) $(LFTA) $(LPFA) Makefile | $(P_OBJS)
-	@${CC} ${CFLAGS} -c $< -o $@
-	@printf "$(FAINT)$(CC) $(CFLAGS) $(RLOFLAGS) -c -o $(RESET)$(CYAN)$(BOLD)$@$(RESET) $(FAINT)$(BLUE)$<$(RESET)\n"
+	@${CC} ${CFLAGS} -I$(RLPATHINC) -c $< -o $@
+	@printf "$(FAINT)$(CC) $(CFLAGS) -c -o $(RESET)$(CYAN)$(BOLD)$@$(RESET) $(FAINT)$(BLUE)$<$(RESET)\n"
 
 $(P_OBJS):
 	@mkdir -p $(P_OBJS)

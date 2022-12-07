@@ -12,9 +12,77 @@
 
 #include "../includes/minishell.h"
 
+void	ctrlslash_handler_bis(int sig, siginfo_t *info, void *ctx)
+{
+	(void)sig;
+	(void)info;
+	(void)ctx;
+}
+
+void	ctrlslash_handler(int a, siginfo_t *t, void *c)
+{
+	if (g_status == 1)
+	{
+		write(2, "Quit: 3\n", 8);
+	}
+	else if (g_status == 0)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	(void)a;
+	(void)t;
+	(void)c;
+}
+
+void	ctrlc_handler_bis(int sig, siginfo_t *info, void *ctx)
+{
+	(void)sig;
+	(void)info;
+	(void)ctx;
+}
+
+void	ctrlc_handler(int sig, siginfo_t *info, void *ctx)
+{
+	if (g_status == 3)
+	{
+		g_status = 128 + dup(0);
+		close(0);
+	}
+	write(1, "\n", 1);
+	rl_on_new_line();
+    rl_replace_line("", 0);
+	if (g_status == 0)
+		rl_redisplay();
+	(void)sig;
+	(void)info;
+	(void)ctx;
+}
+
+void	init_sig_callbacks(int flag)
+{
+	struct sigaction    act;
+	ft_memset(&act, 0, sizeof(struct sigaction));
+	// CTRL C
+	act.__sigaction_u.__sa_sigaction = ctrlc_handler; // pointeur sur fonction void f(int, siginfo_t, void *)
+	if (flag)
+		act.__sigaction_u.__sa_sigaction = ctrlc_handler_bis;
+	act.sa_flags = SA_SIGINFO | SA_RESTART;
+	sigaction(SIGINT, &act, NULL);
+	// CTRL
+	//act.__sigaction_u.__sa_sigaction = ctrlslash_handler;
+	if (flag)
+		act.__sigaction_u.__sa_sigaction = ctrlslash_handler_bis;
+	act.sa_flags = SA_SIGINFO | SA_RESTART;
+	sigaction(SIGQUIT, &act, NULL);
+	(void)flag;
+}
+
 void	init_data(t_data *data, char **envp, char **argv)
 {
 	ft_memset(data, 0, sizeof(t_data));
+	g_status = 0;
+	init_sig_callbacks(0);
 	data->cmd = NULL;
 	data->nbr_cmds = 0;
 	data->start = 0;

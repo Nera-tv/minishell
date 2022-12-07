@@ -20,6 +20,8 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+int							g_status;
+
 typedef struct s_data		t_data;
 typedef struct s_cmd		t_cmd;
 typedef struct s_arg		t_arg;
