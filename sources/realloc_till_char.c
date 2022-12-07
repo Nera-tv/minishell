@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   realloc_till_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:47:02 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 11:07:47 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:26:10 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	len_until_char(char *str, int c)
 	size_t	i;
 
 	i = 0;
-	while (str && str[i] && str[i] != (char)c)
+	while (str && str[i] && str[i] != (char)c && str[i] != '>')
 		i++;
 	return (i);
 }

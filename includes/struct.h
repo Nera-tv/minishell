@@ -43,6 +43,10 @@ struct s_cmd
 	char	*argl;
 	char	**args;
 	char	**cmd_path;
+	char	*file_output;
+	char	*file_input;
+	int		input_method;
+	int		output_method;
 	int		nbr_args;
 	int		*args_len;
 	int		pos_start_before_cmd_name;
