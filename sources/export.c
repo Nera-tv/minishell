@@ -79,7 +79,7 @@ void	ft_export(t_data *data, int val)
 			content = get_content(data->cmd[val].args[i]);
 			name = get_name(data->cmd[val].args[i]);
 			if (check_name(data, name, content) == 0)
-				new_env(data, name, content);
+				return (new_env(data, name, content));
 			i++;
 		}
 	}

@@ -92,7 +92,6 @@ void	get_cmd_name(t_data *data, int val)
 		j++;
 	}
 	data->cmd[val].cmd[j] = '\0';
-	
 	data->cmd[val].cmd = parsing_cmd_name(data, val);
 	check_cmd(data, val);
 }

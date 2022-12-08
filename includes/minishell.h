@@ -48,7 +48,8 @@ int		if_only_space(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
 int		ret_error_pipe_parse(t_data *data, char *msg);
-int		check_line_pipe_go_back(t_data *data, int i);	
+int		check_line_pipe_go_back(t_data *data, int i);
+void	get_redir(t_data *data, int val);	
 
 // exec
 int		ft_execve(t_data *data, int cmd);						// -> exec.c

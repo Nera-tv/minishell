@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 14:44:50 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:27:24 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	free_args(char **args, int nbr_args)
 
 void	free_data_cmd_bis(t_data *data, int i)
 {
+	int	j;
+
 	if (data->cmd[i]._args)
 		free(data->cmd[i]._args);
 	free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
@@ -39,6 +41,13 @@ void	free_data_cmd_bis(t_data *data, int i)
 		free(data->cmd[i].cmd_path);
 		data->cmd[i].int_path = 0;
 	}
+	j = 0;
+	while (j < data->cmd[i].nb_redir)
+	{
+		free(data->cmd[i].redirection[j]);
+		j++;
+	}
+	free(data->cmd[i].redirection);
 }
 
 void	free_data_cmd(t_data *data)
@@ -60,5 +69,9 @@ void	free_data_cmd(t_data *data)
 		free(data->cmd);
 	data->nbr_cmds = 0;
 	free(data->line);
-	free(data->forkid);
+	if (data->forkid)
+	{
+		free(data->forkid);
+		data->forkid = NULL;
+	}
 }
