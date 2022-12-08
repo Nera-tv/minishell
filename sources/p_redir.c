@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/08 13:42:07 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:37:16 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	get_redir(t_data *data, int val)
 			data->cmd[val]._cmd = tmp;
 			printf("%s\n", data->cmd[val].redirection[j - 1]);
 		}
+		if (data->cmd[val]._cmd[i] != '\0')
 		i++;
 	}
 	ft_remove_spaces(data, val);
