@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/09 11:51:48 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:56:06 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	get_me_file_redirect(t_data *data, int val)
 {
 	data->cmd[val].output_method = 0;
 	data->cmd[val].input_method = 0;
-	dprintf(2, "redir = %p\n", data->cmd[val].redirections);
-	if (!data->cmd[val].redirections[0])
+	dprintf(2, "redir = %p\n", data->cmd[val].redirection);
+	if (!data->cmd[val].redirection[0])
 		return (0);
-	dprintf(2, "%p\n", data->cmd[val].redirections[0]);
-	storing_file_output(data->cmd[val].redirections, data, val);
-	storing_file_input(data->cmd[val].redirections, data, val);
+	dprintf(2, "%p\n", data->cmd[val].redirection[0]);
+	storing_file_output(data->cmd[val].redirection, data, val);
+	storing_file_input(data->cmd[val].redirection, data, val);
 	return (0);
 }
