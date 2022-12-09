@@ -66,10 +66,15 @@ int		managing_pipes(t_data *data, int val);					// -> pipes.c
 
 //		redirections
 int		get_me_file_output(t_data *data, int val);			// -> out_redir.c
+int		get_me_file_redirect(t_data *data, int val);		// -> out_redir.c
 int		storing_file_output(char **file_outp, t_data *d, int val);// -> out_redi
 void	if_append(char *file_output, t_data *data, int val);// -> out_redir.c
 void	if_trunc(char *file_output, t_data *data, int val);	// -> out_redir.c
 int		opening_file_output(t_data *data, int val);		// -> opening_files.c
+int		storing_file_input(char **file_input, t_data *data, int val);// -> in_re
+void	if_heredoc(char *file_input, t_data *data, int val);	// -> in_redir.c
+void	if_file_open(char *file_input, t_data *data, int val);	// -> in_redir.c
+int		fillin_my_here_doc(char *word, t_data *data);			// -> in_redir.c
 
 //		path
 void	search_path(t_data *data, int val);							// -> path.c

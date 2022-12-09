@@ -12,6 +12,7 @@ LST_SRCS	=	builtins.c					\
 				export.c					\
 				exec.c						\
 				ft_env.c					\
+				in_redir.c					\
 				list_env_bis.c				\
 				list_env.c					\
 				main.c						\

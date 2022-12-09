@@ -18,5 +18,6 @@
 # define ERRFORK "error with fork, couldn't initialize a fork."
 # define ERRFD "error with file descriptors, couldn't open or close a file \
 descriptor."
+# define ERRHDOC "the heredoc word couldn't be found."
 
 #endif

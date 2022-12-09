@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 11:51:43 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 14:21:46 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:35:35 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	creating_pipes(t_data *data, int val)
 	if (data->nbr_cmds == 1 && !ft_strchr(data->cmd[val]._cmd, '<')
 		&& !ft_strchr(data->cmd[val]._cmd, '>'))
 		return (0);
+	get_me_file_redirect(data, val);
 	if (val < data->nbr_cmds - 1)
 	{
 		if (pipe(data->pipeout) < 0)

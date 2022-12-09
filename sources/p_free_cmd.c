@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/08 14:27:24 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 11:17:44 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	free_data_cmd(t_data *data)
 	while (i < data->nbr_cmds)
 	{
 		if (data->cmd[i].cmd[0] != '\0')
-		{
 			free_data_cmd_bis(data, i);
-		}
+		if (data->cmd[i].input_method == 2)
+			unlink(".minishell_heredoc");
 		free(data->cmd[i].cmd);
 		free(data->cmd[i]._cmd);
 		i++;

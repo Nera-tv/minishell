@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:21:14 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/07 16:55:20 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:51:48 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	if_trunc(char *file_output, t_data *data, int val)
 	char	*till_next;
 	int		fd;
 
+	dprintf(2, "foutput = %s\n", file_output);
 	till_next = skip_this_char(&file_output[1], ' ');
 	till_next = realloc_till_char(till_next, ' ', 0, data);
 	fd = open(till_next, O_CREAT | O_TRUNC | O_WRONLY,
@@ -62,13 +63,13 @@ int	storing_file_output(char **file_output, t_data *d, int val)
 
 int	get_me_file_redirect(t_data *data, int val)
 {
-	size_t	i;
-
-	i = 0;
 	data->cmd[val].output_method = 0;
-	if (!data->cmd[val].redirections)
+	data->cmd[val].input_method = 0;
+	dprintf(2, "redir = %p\n", data->cmd[val].redirections);
+	if (!data->cmd[val].redirections[0])
 		return (0);
+	dprintf(2, "%p\n", data->cmd[val].redirections[0]);
 	storing_file_output(data->cmd[val].redirections, data, val);
-	// storing_file_input();
+	storing_file_input(data->cmd[val].redirections, data, val);
 	return (0);
 }
