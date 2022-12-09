@@ -47,6 +47,8 @@ void	get_cmd_arg(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
 void	get_redir(t_data *data, int val);
+char	*cp_redir(char *str, int i, t_data *data);
+int		get_redir_bis(t_data *data, int val, int i);
 int		if_only_space(t_data *data);
 int		ret_error_pipe_parse(t_data *data, char *msg);
 int		check_line_pipe_go_back(t_data *data, int i);

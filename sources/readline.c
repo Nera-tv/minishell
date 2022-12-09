@@ -54,11 +54,14 @@ void	lancement(t_data *data)
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (i < data->nbr_cmds)
 	{
-		creating_pipes(data, i);
-		if (data->cmd[i].cmd[0] == '\0')
-			return ;
-		lancement_bis(data, i);
-		i++;
+		if (data->cmd[i]._cmd)
+		{
+			creating_pipes(data, i);
+			if (data->cmd[i].cmd[0] == '\0')
+				return ;
+			lancement_bis(data, i);
+			i++;
+		}
 	}
 	wait_all_pids(data);
 	tcsetattr(0, TCSANOW, &data->silent);
@@ -118,7 +121,7 @@ void	read_line(const char *prompt, t_data *data)
 	if (data->line == NULL)
 		ft_exit("exit\n", data, 0);
 	get_cmd_arg(data);
-	if (if_blt_only_arg(data) == 0)
+	if (if_blt_only_arg(data) == 0 && data->only_spaces == 0)
 		lancement(data);
 	free_data_cmd(data);
 }

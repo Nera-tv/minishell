@@ -37,6 +37,7 @@ LST_SRCS	=	builtins.c					\
 				p_get_cmd_arg.c				\
 				p_get_pwd.c					\
 				p_pipe.c					\
+				p_redir_bis.c				\
 				p_redir.c					\
 				p_replace_var_env.c			\
 				p_set_args_bis.c			\

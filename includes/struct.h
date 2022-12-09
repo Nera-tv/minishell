@@ -63,6 +63,7 @@ struct s_data
 	t_cmd			*cmd;
 	int				nbr_cmds;
 	int				start;
+	int				only_spaces;
 	char			*line;
 	char			*pwd;
 	char			**envp;

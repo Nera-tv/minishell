@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:19:55 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 13:55:33 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 14:33:21 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_line_pipe_go_back(t_data *data, int i)
 {
 	i--;
-	while (data->line[i] == ' ')
+	while (i > 0 && data->line[i] == ' ')
 		i--;
 	if (data->line[i] == '|')
 	{

@@ -61,5 +61,8 @@ void	get_cmd_arg(t_data *data)
 		}
 	}
 	else
+	{
 		ft_putstr_fd(data->err_msg, 2);
+		data->err_msg = NULL;
+	}
 }
