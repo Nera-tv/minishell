@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/07 11:26:28 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 13:55:48 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ int	check_line_pipe_bis_bis(t_data *data, int i)
 		data->err_nbr = 2;
 		if (data->line[i - 1] != '|')
 		{
-			ft_putstr_fd(\
-			"minishell: syntax error near unexpected token `|'\n", 1);
+			data->err_msg = \
+			"minishell: syntax error near unexpected token `|'\n";
 		}
 		else
 		{
-			ft_putstr_fd(\
-			"minishell: syntax error near unexpected token `||'\n", 1);
+			data->err_msg = \
+			"minishell: syntax error near unexpected token `||'\n";
 		}
-		return (1);
+		return (-1);
 	}
 	return (i);
 }
@@ -64,9 +64,7 @@ int	check_line_pipe_bis(t_data *data, int i)
 			i++;
 	}
 	else if (data->line[i] == '|')
-	{
-		i = check_line_pipe_bis_bis(data, i);
-	}
+		return (check_line_pipe_bis_bis(data, i));
 	return (i);
 }
 
@@ -87,10 +85,14 @@ int	check_line_pipe(t_data *data)
 	while (data->line[i] != '\0')
 	{
 		i = check_line_pipe_bis(data, i);
+		if (i == -1)
+			return (1);
 		if (data->line[i] != '\0')
 			i++;
 	}
 	i = check_line_pipe_go_back(data, i);
+	if (i == -1)
+			return (1);
 	return (0);
 }
 

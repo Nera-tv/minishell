@@ -29,6 +29,7 @@ void	init_data(t_data *data, char **envp, char **argv)
 	put_path_data(data);
 	data->status = 0;
 	data->err_nbr = 0;
+	data->err_msg = NULL;
 }
 
 int	main(int argc, char **argv, char **envp)

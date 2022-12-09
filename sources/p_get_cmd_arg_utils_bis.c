@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:19:55 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/07 11:25:03 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 13:55:33 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	check_line_pipe_go_back(t_data *data, int i)
 		i--;
 	if (data->line[i] == '|')
 	{
-		return (ret_error_pipe_parse(data, \
-		"minishell: syntax error: unexpected end of file\n"));
+		ret_error_pipe_parse(data, \
+		"minishell: syntax error: unexpected end of file\n");
+		return (-1);
 	}
 	return (i);
 }
@@ -28,6 +29,6 @@ int	check_line_pipe_go_back(t_data *data, int i)
 int	ret_error_pipe_parse(t_data *data, char *msg)
 {
 	data->err_nbr = 2;
-	ft_putstr_fd(msg, 1);
+	data->err_msg = msg;
 	return (1);
 }

@@ -75,6 +75,7 @@ struct s_data
 	int				*forkid;
 	int				status;
 	int				err_nbr;
+	char			*err_msg;
 	int				pipein[2];
 	int				pipeout[2];
 	struct termios	original;

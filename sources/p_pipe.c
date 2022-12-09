@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:07:15 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/07 11:12:10 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:11:37 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	sep_cmd_pipe_bis_bis(t_data *data, int len)
 			while (data->line[len] != '\'' && data->line[len] != '\0')
 				len++;
 		}
-		len++;
+		if (data->line[len] != '\0')
+			len++;
 	}
 	return (len);
 }
