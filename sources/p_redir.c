@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 16:46:57 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:22:42 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	get_nb_redir_bis(char *str, int i)
 	if (str[i] == '\"')
 	{
 		i++;
-		while (str[i] != '\"'  && str[i] != '\0')
+		while (str[i] != '\"' && str[i] != '\0')
 			i++;
 	}
 	if (str[i] == '\'')
 	{
 		i++;
-		while (str[i] != '\''  && str[i] != '\0')
+		while (str[i] != '\'' && str[i] != '\0')
 			i++;
 	}
 	return (i);

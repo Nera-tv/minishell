@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:14:02 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 16:44:11 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:22:50 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	get_redir_bis_quote(char *str, int i)
 	if (str[i] == '\"')
 	{
 		i++;
-		while (str[i] != '\"'  && str[i] != '\0')
+		while (str[i] != '\"' && str[i] != '\0')
 			i++;
 	}
 	if (str[i] == '\'')
 	{
 		i++;
-		while (str[i] != '\''  && str[i] != '\0')
+		while (str[i] != '\'' && str[i] != '\0')
 			i++;
 	}
 	return (i);
