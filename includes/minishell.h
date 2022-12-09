@@ -134,6 +134,8 @@ void	exec_builtins(t_data *data, int val, int blt);
 void	exit_if_blt_exit(t_data *data, int val);
 int		nb_args(char **args);
 int		is_builtins(t_data *data, int val);
+int		if_blt_only_arg_bis(t_data *data, int indic);
+int		if_blt_only_arg(t_data *data);
 
 //		cd
 void	ft_cd(t_data *data, int val);

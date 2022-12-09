@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	if (argc != 1)
-		ft_exit("Error: no argument needed", &data, 2);
+		ft_exit("Error: no argument needed\n", &data, 2);
 	init_data(&data, envp, argv);
 	tcgetattr(0, &data.original);
 	data.silent = data.original;

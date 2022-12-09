@@ -6,11 +6,28 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 14:23:07 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:46:57 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	get_nb_redir_bis(char *str, int i)
+{
+	if (str[i] == '\"')
+	{
+		i++;
+		while (str[i] != '\"'  && str[i] != '\0')
+			i++;
+	}
+	if (str[i] == '\'')
+	{
+		i++;
+		while (str[i] != '\''  && str[i] != '\0')
+			i++;
+	}
+	return (i);
+}
 
 int	get_nb_redir(t_data *data, int val)
 {
@@ -21,6 +38,7 @@ int	get_nb_redir(t_data *data, int val)
 	j = 0;
 	while (data->cmd[val]._cmd[i] != '\0')
 	{
+		i = get_nb_redir_bis(data->cmd[val]._cmd, i);
 		if (data->cmd[val]._cmd[i] == '<')
 		{
 			if (data->cmd[val]._cmd[i + 1] != '<')
@@ -31,7 +49,8 @@ int	get_nb_redir(t_data *data, int val)
 			if (data->cmd[val]._cmd[i + 1] != '>')
 				j++;
 		}
-		i++;
+		if (data->cmd[val]._cmd[i] != '\0')
+			i++;
 	}
 	return (j);
 }

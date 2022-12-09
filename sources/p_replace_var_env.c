@@ -89,5 +89,6 @@ char	*ft_replace_word(const char *s, char *old_w, char *new_w, t_data *data)
 	if (!result)
 		ft_exit(ERRMEMALLOC, data, 2);
 	result = replace_word_bis(s, old_w, new_w, result);
+	free(old_w);
 	return (result);
 }
