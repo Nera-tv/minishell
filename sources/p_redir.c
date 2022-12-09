@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 11:26:32 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 11:48:53 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*cp_redir(char *str, int i, t_data *data)
 		len++;
 	while (str[i + len] != ' ' && str[i + len] != '\0')
 		len++;
-	printf("%d\n", len);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		ft_exit(ERRMEMALLOC, data, 2);
@@ -84,6 +83,7 @@ void	ft_remove_spaces_bis(t_data *data, int val, int i, char *str)
 		}
 		i++;
 	}
+	str[j] = '\0';
 	free(data->cmd[val]._cmd);
 	data->cmd[val]._cmd = str;
 }
@@ -95,7 +95,7 @@ void	ft_remove_spaces(t_data *data, int val)
 
 	i = 0;
 	str = NULL;
-	str = ft_calloc(sizeof(char),ft_strlen(data->cmd[val]._cmd) + 1);
+	str = malloc(sizeof(char) * ft_strlen(data->cmd[val]._cmd) + 1);
 	if (!str)
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (data->cmd[val]._cmd[i] == ' ' || data->cmd[val]._cmd[i] == '\t')
@@ -131,5 +131,6 @@ void	get_redir(t_data *data, int val)
 		if (data->cmd[val]._cmd[i] != '\0')
 			i++;
 	}
+	data->cmd[val]._cmd[i] = '\0';
 	ft_remove_spaces(data, val);
 }
