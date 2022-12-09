@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/08 14:37:16 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 11:26:32 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ char	*cp_redir(char *str, int i, t_data *data)
 
 	len = 0;
 	ret = NULL;
-	while (str[i + len] != ' ')
+	while (str[i + len] != ' ' && (str[i + len] == '>' || str[i + len] == '<'))
 		len++;
 	while (str[i + len] == ' ')
 		len++;
 	while (str[i + len] != ' ' && str[i + len] != '\0')
 		len++;
+	printf("%d\n", len);
 	ret = malloc(sizeof(char) * (len + 1));
 	if (!ret)
 		ft_exit(ERRMEMALLOC, data, 2);
@@ -128,7 +129,7 @@ void	get_redir(t_data *data, int val)
 			printf("%s\n", data->cmd[val].redirection[j - 1]);
 		}
 		if (data->cmd[val]._cmd[i] != '\0')
-		i++;
+			i++;
 	}
 	ft_remove_spaces(data, val);
 }

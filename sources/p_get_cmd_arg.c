@@ -25,6 +25,31 @@ void	init_cmds(t_data *data, int val)
 	//printf(".args %s\n", data->cmd[val].args[0]);
 }
 
+int check_line_redir_bis(t_data *data, int i)
+{
+	if (data->line[i] != '<')
+	{
+
+	}
+	else if (data->line[i] != '>')
+	{
+		
+	}
+	return (0);
+}
+
+int	check_line_redir(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->line[i] != '<' && data->line[i] != '>' && data->line[i] != '\0')
+		i++;
+	if (data->line[i] != '<' || data->line[i] != '>')
+		return (check_line_redir_bis(data, i));
+	return (0);
+}
+
 int	check_line(t_data *data)
 {
 	if (check_line_pipe(data) == 1)
