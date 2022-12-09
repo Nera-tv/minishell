@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 12:17:14 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/07 13:46:51 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 10:37:06 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exit_if_blt_exit(t_data *data, int val)
 	err_val = 0;
 	ft_printf(2, "exit\n");
 	if (data->cmd[val].nbr_args == 0)
-		ft_exit(NULL, data, 0);
+		ft_exit(NULL, data, data->err_nbr);
 	else if (data->cmd[val].nbr_args > 1)
 	{
 		if (if_str_or_nbr(data->cmd[val].args[0]) == 0)
