@@ -21,8 +21,7 @@ void	built_or_execve(t_data *data, int i)
 		ft_exit(ERRFORK, data, 1);
 	if (data->forkid[i] == 0)
 	{
-		if (data->nbr_cmds > 1)
-			managing_pipes(data, i);
+		managing_pipes(data, i);
 		blt = is_builtins(data, i);
 		if (blt > 0)
 			exec_builtins(data, i, blt);

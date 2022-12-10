@@ -80,6 +80,10 @@ void	get_cmd_name(t_data *data, int val)
 	int	j;
 	int	len;
 
+	data->cmd[val].output_method = 0;
+	data->cmd[val].input_method = 0;
+	data->cmd[val].file_input = NULL;
+	data->cmd[val].file_output = NULL;
 	len = get_cmd_len(data, val);
 	data->cmd[val].pos_start_before_cmd_name = len;
 	data->cmd[val].cmd = malloc((sizeof(char) * len) + 1);

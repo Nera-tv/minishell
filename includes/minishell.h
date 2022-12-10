@@ -75,6 +75,7 @@ int		get_me_file_redirect(t_data *data, int val);		// -> out_redir.c
 int		storing_file_output(char **file_outp, t_data *d, int val);// -> out_redi
 int		opening_file_output(t_data *data, int val);		// -> opening_files.c
 int		storing_file_input(char **file_input, t_data *data, int val);// -> in_re
+int		opening_file_input(t_data *data, int val);		// -> opening_files.c
 int		fillin_my_here_doc(char *word, t_data *data);			// -> in_redir.c
 
 //		path

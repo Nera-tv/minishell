@@ -6,7 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:46:18 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/09 11:21:34 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:35:25 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@ void	if_file_open(char *file_input, t_data *data, int val)
 	till_next = realloc_till_char(till_next, ' ', 0, data);
 	fd = open(till_next, O_RDONLY);
 	if (close(fd) < 0)
-		ft_exit(ERRFD, data, 1);
+	{
+		free (till_next);
+		return ;
+	}
 	data->cmd[val].file_input = till_next;
 	data->cmd[val].input_method = 1;
-	free(till_next);
 }
 
 void	if_heredoc(char *file_input, t_data *data, int val)
 {
 	char	*till_next;
 
-	till_next = skip_this_char(&file_input[1], ' ');
+	till_next = skip_this_char(&file_input[2], ' ');
 	till_next = realloc_till_char(till_next, ' ', 0, data);
 	fillin_my_here_doc(till_next, data);
-	data->cmd[val].file_input = ft_strdup(".minishell_heredoc");
+	data->cmd[val].file_input = ".minishell_heredoc";
 	data->cmd[val].input_method = 2;
 	free(till_next);
 }
@@ -53,9 +55,11 @@ int	fillin_my_here_doc(char *word, t_data *data)
 	if (fd < 0)
 		ft_exit(ERRFD, data, 1);
 	gnl = readline("here_doc $> ");
-	while (ft_strncmp(gnl, word, word_len))
+	while (gnl && (ft_strncmp(gnl, word, word_len)
+			|| ft_strlen(gnl) != word_len))
 	{
 		write(fd, gnl, ft_strlen(gnl));
+		ft_putchar_fd('\n', fd);
 		free(gnl);
 		gnl = readline("here_doc $> ");
 	}
@@ -67,10 +71,10 @@ int	fillin_my_here_doc(char *word, t_data *data)
 
 int	storing_file_input(char	**file_input, t_data *data, int val)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (file_input[i])
+	while (i < data->cmd[val].nb_redir)
 	{
 		if (file_input[i][0] == '<' && file_input[i][1] == '<')
 			if_heredoc(file_input[i], data, val);

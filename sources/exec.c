@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/05 13:14:00 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:41:10 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	save_output(t_data *data, int val)
 	{
 		if (close(data->pipein[0]) < 0
 			|| close(data->pipein[1]) < 0)
-			return (-1);
+			ft_exit(ERRFD, data, 2);
 	}
 	data->pipein[0] = data->pipeout[0];
 	data->pipein[1] = data->pipeout[1];

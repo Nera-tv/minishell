@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_bis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:34:12 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 15:02:26 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:29:05 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ int	put_path_data(t_data *data)
 	i = 0;
 	path = search_path_env(data->envp);
 	if (!path)
-		return (-1);
+		ft_exit("Path was not found.\n", data, 2);
 	data->path = ft_split(path, ':');
 	if (!data->path)
-		return (-1);
+		ft_exit(ERRMEMALLOC, data, 2);
 	while (data->path[i])
 	{
 		data->path[i] = add_slash_to_path(data->path[i]);
 		if (!data->path[i])
-			return (-1);
+			ft_exit(ERRMEMALLOC, data, 2);
 		i++;
 	}
 	return (0);
