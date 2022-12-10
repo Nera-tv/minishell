@@ -32,7 +32,7 @@ int	check_line(t_data *data)
 			return (1);
 		return (1);
 	}
-	if (check_line_redir(data) == 1)
+	else if (check_line_redir(data) == 1)
 		return (1);
 	return (0);
 }

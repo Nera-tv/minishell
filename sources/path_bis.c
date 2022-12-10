@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:34:12 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/01 15:02:26 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/10 17:38:21 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ char	*access_check(char *cmd, char **path, t_data *data)
 }
 
 //Va chercher dans la variable d'environnement l'emplacement de PATH
-char	*search_path_env(char **env)
+char	*search_path_env(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (env[i])
+	while (i < data->nb_env)
 	{
-		if (ft_strncmp("PATH=", env[i], 5) == 0)
-			return (&env[i][5]);
+		if (ft_strncmp("PATH", data->env[i].name, 4) == 0)
+			return (data->env[i].content);
 		i++;
 	}
 	return (NULL);
@@ -70,21 +70,12 @@ char	*add_slash_to_path(char *path)
 int	put_path_data(t_data *data)
 {
 	char	*path;
-	int		i;
 
-	i = 0;
-	path = search_path_env(data->envp);
+	path = search_path_env(data);
 	if (!path)
 		return (-1);
 	data->path = ft_split(path, ':');
 	if (!data->path)
 		return (-1);
-	while (data->path[i])
-	{
-		data->path[i] = add_slash_to_path(data->path[i]);
-		if (!data->path[i])
-			return (-1);
-		i++;
-	}
 	return (0);
 }

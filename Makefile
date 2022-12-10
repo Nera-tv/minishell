@@ -67,7 +67,7 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -g3 #-fsanitize=address -g3
+CFLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address -g3
 RLPATH		:=  $$HOME/.brew/opt/readline
 RLPATHINC	:=  $(RLPATH)/include
 RLPATHLIB	:=  $(RLPATH)/lib

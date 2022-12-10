@@ -67,8 +67,8 @@ void	check_cmd_dot(t_data *data, int val)
 	if (data->cmd[val].cmd[0] == '.' && data->cmd[val].cmd[1] == '\0')
 	{
 		data->err_nbr = 2;
-		ft_printf(1, "minishell: .: filename argument required\n.: \
-			usage: . filename [arguments]\n");
+		ft_printf(1, "minishell: .: filename argument required \
+			\n.: usage: . filename [arguments]\n");
 		data->cmd[val].cmd[0] = '\0';
 	}
 	if (data->cmd[val].cmd[0] == '.' && data->cmd[val].cmd[1] == '.' \
