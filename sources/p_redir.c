@@ -6,11 +6,28 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 11:48:53 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:22:42 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	get_nb_redir_bis(char *str, int i)
+{
+	if (str[i] == '\"')
+	{
+		i++;
+		while (str[i] != '\"' && str[i] != '\0')
+			i++;
+	}
+	if (str[i] == '\'')
+	{
+		i++;
+		while (str[i] != '\'' && str[i] != '\0')
+			i++;
+	}
+	return (i);
+}
 
 int	get_nb_redir(t_data *data, int val)
 {
@@ -21,6 +38,7 @@ int	get_nb_redir(t_data *data, int val)
 	j = 0;
 	while (data->cmd[val]._cmd[i] != '\0')
 	{
+		i = get_nb_redir_bis(data->cmd[val]._cmd, i);
 		if (data->cmd[val]._cmd[i] == '<')
 		{
 			if (data->cmd[val]._cmd[i + 1] != '<')
@@ -31,7 +49,8 @@ int	get_nb_redir(t_data *data, int val)
 			if (data->cmd[val]._cmd[i + 1] != '>')
 				j++;
 		}
-		i++;
+		if (data->cmd[val]._cmd[i] != '\0')
+			i++;
 	}
 	return (j);
 }
@@ -106,8 +125,6 @@ void	ft_remove_spaces(t_data *data, int val)
 void	get_redir(t_data *data, int val)
 {
 	int		i;
-	int		j;
-	char	*tmp;
 
 	i = 0;
 	data->cmd[val].nb_redir = get_nb_redir(data, val);
@@ -115,22 +132,7 @@ void	get_redir(t_data *data, int val)
 			* data->cmd[val].nb_redir);
 	if (!data->cmd[val].redirection)
 		ft_exit(ERRMEMALLOC, data, 2);
-	j = 0;
-	while (data->cmd[val]._cmd[i] != '\0')
-	{
-		if (data->cmd[val]._cmd[i] == '<' || data->cmd[val]._cmd[i] == '>')
-		{
-			data->cmd[val].redirection[j] = cp_redir(data->cmd[val]._cmd,
-					i, data);
-			tmp = ft_replace_word(data->cmd[val]._cmd,
-					data->cmd[val].redirection[j++], "", data);
-			free(data->cmd[val]._cmd);
-			data->cmd[val]._cmd = tmp;
-			printf("%s\n", data->cmd[val].redirection[j - 1]);
-		}
-		if (data->cmd[val]._cmd[i] != '\0')
-			i++;
-	}
+	i = get_redir_bis(data, val, i);
 	data->cmd[val]._cmd[i] = '\0';
 	ft_remove_spaces(data, val);
 }

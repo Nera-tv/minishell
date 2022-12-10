@@ -24,6 +24,7 @@ LST_SRCS	:=	ft_atoi.c				\
 				ft_strcmp.c				\
 				ft_strcpy.c				\
 				ft_strchr.c				\
+				ft_strcjoin.c			\
 				ft_strdup.c				\
 				ft_striteri.c			\
 				ft_strjoin.c			\

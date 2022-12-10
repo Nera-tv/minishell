@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   p_free_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 12:30:11 by dvilard           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/10 14:31:55 by tweidema         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/09 17:22:03 by dvilard          ###   ########.fr       */
+>>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +29,15 @@ void	free_args(char **args, int nbr_args)
 	free(args);
 }
 
+void	free_data_cmd_redir(t_data *data, int i)
+{
+	free(data->cmd[i].cmd);
+	free(data->cmd[i]._cmd);
+	free(data->cmd[i].redirection);
+}
+
 void	free_data_cmd_bis(t_data *data, int i)
 {
-	int	j;
-
 	if (data->cmd[i]._args)
 		free(data->cmd[i]._args);
 	free_args(data->cmd[i].args, nb_args(data->cmd[i].args));
@@ -41,13 +50,6 @@ void	free_data_cmd_bis(t_data *data, int i)
 		free(data->cmd[i].cmd_path);
 		data->cmd[i].int_path = 0;
 	}
-	j = 0;
-	while (j < data->cmd[i].nb_redir)
-	{
-		free(data->cmd[i].redirection[j]);
-		j++;
-	}
-	free(data->cmd[i].redirection);
 }
 
 void	free_data_cmd(t_data *data)
@@ -55,8 +57,9 @@ void	free_data_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->nbr_cmds)
+	if (data->only_spaces == 0)
 	{
+<<<<<<< HEAD
 		if (data->cmd[i].cmd[0] != '\0')
 			free_data_cmd_bis(data, i);
 		if (data->cmd[i].input_method == 2)
@@ -68,9 +71,20 @@ void	free_data_cmd(t_data *data)
 		free(data->cmd[i].cmd);
 		free(data->cmd[i]._cmd);
 		i++;
+=======
+		while (i < data->nbr_cmds)
+		{
+			if (data->cmd[i].cmd[0] != '\0')
+				free_data_cmd_bis(data, i);
+			if (data->cmd[i].input_method == 2)
+				unlink(".minishell_heredoc");
+			free_data_cmd_redir(data, i);
+			i++;
+		}
+		if (data->cmd)
+			free(data->cmd);
+>>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
 	}
-	if (data->cmd)
-		free(data->cmd);
 	data->nbr_cmds = 0;
 	free(data->line);
 	if (data->forkid)

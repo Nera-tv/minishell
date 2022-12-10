@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 13:55:48 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:33:46 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int	if_only_space(t_data *data)
 	while (data->line[i] != '\0')
 	{
 		if (data->line[i] != ' ')
+		{
+			data->only_spaces = 0;
 			return (1);
+		}
 		i++;
 	}
+	data->only_spaces = 1;
 	return (0);
 }
 
@@ -92,7 +96,7 @@ int	check_line_pipe(t_data *data)
 	}
 	i = check_line_pipe_go_back(data, i);
 	if (i == -1)
-			return (1);
+		return (1);
 	return (0);
 }
 

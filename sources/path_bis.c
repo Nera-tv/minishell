@@ -6,7 +6,11 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:34:12 by dvilard           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/09 16:29:05 by tweidema         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/10 17:38:21 by dvilard          ###   ########.fr       */
+>>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +42,15 @@ char	*access_check(char *cmd, char **path, t_data *data)
 }
 
 //Va chercher dans la variable d'environnement l'emplacement de PATH
-char	*search_path_env(char **env)
+char	*search_path_env(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (env[i])
+	while (i < data->nb_env)
 	{
-		if (ft_strncmp("PATH=", env[i], 5) == 0)
-			return (&env[i][5]);
+		if (ft_strncmp("PATH", data->env[i].name, 4) == 0)
+			return (data->env[i].content);
 		i++;
 	}
 	return (NULL);
@@ -70,14 +74,13 @@ char	*add_slash_to_path(char *path)
 int	put_path_data(t_data *data)
 {
 	char	*path;
-	int		i;
 
-	i = 0;
-	path = search_path_env(data->envp);
+	path = search_path_env(data);
 	if (!path)
 		ft_exit("Path was not found.\n", data, 2);
 	data->path = ft_split(path, ':');
 	if (!data->path)
+<<<<<<< HEAD
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (data->path[i])
 	{
@@ -86,5 +89,8 @@ int	put_path_data(t_data *data)
 			ft_exit(ERRMEMALLOC, data, 2);
 		i++;
 	}
+=======
+		return (-1);
+>>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
 	return (0);
 }

@@ -15,6 +15,8 @@
 
 # include <pthread.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
@@ -35,24 +37,26 @@
 void	ft_exit(char *msg, t_data *data, int err_nbr);
 void	read_line(const char *prompt, t_data *data);
 
-// utils
+//		utils
 size_t	ft_strlen_m(const char *tab);
 size_t	len_until_char(char *str, int c);			// -> realloc_till_char.c
 char	*realloc_till_char(char *str, int c, int f, t_data *data);// -> rea....c
 char	*skip_this_char(char *str, int c);			// -> realloc_till_char.c
 int		if_end_var_env(char c);
 
-// parsing
+//		parsing
 void	get_cmd_arg(t_data *data);
 void	free_data_cmd(t_data *data);
 void	get_pwd(t_data *data);
 void	get_redir(t_data *data, int val);
+char	*cp_redir(char *str, int i, t_data *data);
+int		get_redir_bis(t_data *data, int val, int i);
 int		if_only_space(t_data *data);
 int		ret_error_pipe_parse(t_data *data, char *msg);
 int		check_line_pipe_go_back(t_data *data, int i);
 int		check_line_redir(t_data *data);
 
-// exec
+//		exec
 void	wait_all_pids(t_data *data);							// -> wait.c
 int		ft_execve(t_data *data, int cmd);						// -> exec.c
 int		save_output(t_data *data, int cmd_to_exec);				// -> exec.c
@@ -133,6 +137,8 @@ void	exec_builtins(t_data *data, int val, int blt);
 void	exit_if_blt_exit(t_data *data, int val);
 int		nb_args(char **args);
 int		is_builtins(t_data *data, int val);
+int		if_blt_only_arg_bis(t_data *data, int indic);
+int		if_blt_only_arg(t_data *data);
 
 //		cd
 void	ft_cd(t_data *data, int val);

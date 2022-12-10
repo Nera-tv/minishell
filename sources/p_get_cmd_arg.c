@@ -22,7 +22,6 @@ void	init_cmds(t_data *data, int val)
 	data->cmd[val].nbr_args = nb_args(data->cmd[val].args);
 	if (data->cmd[val]._args)
 		get_args_len(data, val);
-	//printf(".args %s\n", data->cmd[val].args[0]);
 }
 
 int	check_line(t_data *data)
@@ -33,8 +32,8 @@ int	check_line(t_data *data)
 			return (1);
 		return (1);
 	}
-	if (check_line_redir(data) == 1)
-			return (1);
+	else if (check_line_redir(data) == 1)
+		return (1);
 	return (0);
 }
 
@@ -61,5 +60,8 @@ void	get_cmd_arg(t_data *data)
 		}
 	}
 	else
+	{
 		ft_putstr_fd(data->err_msg, 2);
+		data->err_msg = NULL;
+	}
 }

@@ -63,6 +63,7 @@ struct s_data
 	t_cmd			*cmd;
 	int				nbr_cmds;
 	int				start;
+	int				only_spaces;
 	char			*line;
 	char			*pwd;
 	char			**envp;
@@ -78,6 +79,7 @@ struct s_data
 	char			*err_msg;
 	int				pipein[2];
 	int				pipeout[2];
+	struct stat		stat;
 	struct termios	original;
 	struct termios	silent;
 };
