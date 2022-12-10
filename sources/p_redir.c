@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_redir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 17:22:42 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/10 18:01:43 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,6 @@ void	get_redir(t_data *data, int val)
 		ft_exit(ERRMEMALLOC, data, 2);
 	i = get_redir_bis(data, val, i);
 	data->cmd[val]._cmd[i] = '\0';
+	dprintf(2, "Data redir = --%s--\n", data->cmd[val].redirection[0]);
 	ft_remove_spaces(data, val);
 }

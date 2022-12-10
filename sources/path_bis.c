@@ -6,11 +6,7 @@
 /*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:34:12 by dvilard           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/09 16:29:05 by tweidema         ###   ########.fr       */
-=======
-/*   Updated: 2022/12/10 17:38:21 by dvilard          ###   ########.fr       */
->>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
+/*   Updated: 2022/12/10 17:53:41 by tweidema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +76,6 @@ int	put_path_data(t_data *data)
 		ft_exit("Path was not found.\n", data, 2);
 	data->path = ft_split(path, ':');
 	if (!data->path)
-<<<<<<< HEAD
-		ft_exit(ERRMEMALLOC, data, 2);
-	while (data->path[i])
-	{
-		data->path[i] = add_slash_to_path(data->path[i]);
-		if (!data->path[i])
-			ft_exit(ERRMEMALLOC, data, 2);
-		i++;
-	}
-=======
 		return (-1);
->>>>>>> 0319c2e4e3b72f879fad28095570ac6252a9b32c
 	return (0);
 }
