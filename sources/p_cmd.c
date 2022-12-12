@@ -69,7 +69,8 @@ char	*parsing_cmd_name(t_data *data, int val)
 	{
 		len = parsing_cmd_name_bis(data, val, len);
 		cmd = data->cmd[val].cmd;
-		if (cmd[len] != '\0' && cmd[len] != '\"' && cmd[len] != '\'')
+		if (cmd[len] != '\0' && cmd[len] != '\"' \
+			&& cmd[len] != '\'' && cmd[len] != '$')
 			len++;
 	}
 	return (cmd);

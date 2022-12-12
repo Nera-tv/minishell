@@ -67,11 +67,7 @@ int	parsing_arg_bis(t_data *data, int val, int len, int arg_count)
 	char	*arg;
 
 	arg = data->cmd[val].args[arg_count];
-	if (arg[len] == '\\')
-	{
-		shift_in_tab(arg, len);
-	}
-	else if (arg[len] == '\'')
+	if (arg[len] == '\'')
 		len = sp_quote_in_arg(arg, len);
 	else if (arg[len] == '\"')
 	{
@@ -99,7 +95,8 @@ char	*parsing_arg(t_data *data, int val, int arg_count)
 	{
 		len = parsing_arg_bis(data, val, len, arg_count);
 		arg = data->cmd[val].args[arg_count];
-		if (arg[len] != '\0' && arg[len] != '\"' && arg[len] != '\'')
+		if (arg[len] != '\0' && arg[len] != '\"' \
+			&& arg[len] != '\'' && arg[len] != '$')
 			len++;
 	}
 	return (arg);

@@ -26,6 +26,7 @@ LST_SRCS	=	builtins.c					\
 				p_back_slash.c				\
 				p_check_cmd_bis.c			\
 				p_check_cmd.c				\
+				p_check_line_lt_gt_bis.c	\
 				p_check_line_lt_gt.c		\
 				p_cmd_bis.c					\
 				p_cmd_len.c					\
@@ -67,7 +68,7 @@ OBJS		:=	$(addprefix ${P_OBJS},${LST_OBJS})
 
 
 CC			:=	gcc
-CFLAGS		:=	-Wall -Wextra -Werror -g3 #-fsanitize=address -g3
+CFLAGS		:=	-Wall -Wextra -Werror -g3 -fsanitize=address -g3
 RLPATH		:=  $$HOME/.brew/opt/readline
 RLPATHINC	:=  $(RLPATH)/include
 RLPATHLIB	:=  $(RLPATH)/lib

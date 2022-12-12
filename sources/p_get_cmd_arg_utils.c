@@ -6,7 +6,7 @@
 /*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:43:40 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/09 15:33:46 by dvilard          ###   ########.fr       */
+/*   Updated: 2022/12/12 13:35:55 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	get_nbr_cmd(t_data *data)
 		}
 		else if (data->line[i] == '|')
 			data->nbr_cmds++;
-		i++;
+		if (data->line[i] != '\0')
+			i++;
 	}
 }

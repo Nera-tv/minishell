@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:53 by tweidema          #+#    #+#             */
-/*   Updated: 2022/12/10 17:48:16 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/12 10:42:38 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	save_output(t_data *data, int val)
 void	ft_stat_check_bis(t_data *data, int val, char *msg)
 {
 	ft_printf(2, "minishell: %s: %s\n", data->cmd[val].cmd, msg);
-	data->err_nbr = 126;	
+	data->err_nbr = 126;
 }
 
 int	ft_stat_check(t_data *data, int val, char *str)
@@ -70,17 +70,17 @@ char	**built_env(t_data *data, t_list_env *env)
 		i++;
 	}
 	return (envp);
-} 
+}
 
 int	ft_exec(t_data *data, int val)
 {
-	dprintf(2, "%p %s\n", data->cmd[val].cmd_path[0], data->cmd[val].cmd_path[0]);
 	if (ft_stat_check(data, val, data->cmd[val].cmd_path[0]) == 0)
 	{
-		execve(data->cmd[val].cmd_path[0], data->cmd[val].cmd_path, built_env(data, data->env));
-		dprintf(2, "%p %d\n", data->cmd[val].cmd_path[0], errno);
-		ft_printf(2, "minishell: %s: %s\n", data->cmd[val].cmd, strerror(errno));
-		ft_exit(NULL, data, 2);	
+		execve(data->cmd[val].cmd_path[0], data->cmd[val].cmd_path, \
+			built_env(data, data->env));
+		ft_printf(2, "minishell: %s: %s\n", data->cmd[val].cmd, \
+			strerror(errno));
+		ft_exit(NULL, data, 2);
 	}
 	return (0);
 }

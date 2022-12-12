@@ -55,6 +55,10 @@ int		if_only_space(t_data *data);
 int		ret_error_pipe_parse(t_data *data, char *msg);
 int		check_line_pipe_go_back(t_data *data, int i);
 int		check_line_redir(t_data *data);
+int		ret_check_redir(t_data *data, char *msg, int err_nb);
+int		get_redir_bis_quote(char *str, int i);
+char	*cp_redir_quote(char *str, char *cp,  int *i, int *j);
+int		check_line_redir_quater(t_data *data, int i);
 
 //		exec
 void	wait_all_pids(t_data *data);							// -> wait.c

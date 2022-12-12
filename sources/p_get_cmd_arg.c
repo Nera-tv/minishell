@@ -26,11 +26,11 @@ void	init_cmds(t_data *data, int val)
 
 int	check_line(t_data *data)
 {
+	dprintf(2,)
 	if (check_line_pipe(data) == 1)
 	{
 		if (check_line_redir(data) == 1)
 			return (1);
-		return (1);
 	}
 	else if (check_line_redir(data) == 1)
 		return (1);
@@ -44,9 +44,9 @@ void	get_cmd_arg(t_data *data)
 	data->cmd = NULL;
 	if (check_line(data) == 0)
 	{
-		get_nbr_cmd(data);
 		if (if_only_space(data) == 1)
 		{
+			get_nbr_cmd(data);
 			i = 0;
 			data->cmd = malloc(sizeof(t_cmd) * (data->nbr_cmds + 1));
 			if (!data->cmd)

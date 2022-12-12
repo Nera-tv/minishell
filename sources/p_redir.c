@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_redir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tweidema <tweidema@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: dvilard <dvilard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:57:52 by dvilard           #+#    #+#             */
-/*   Updated: 2022/12/10 18:01:43 by tweidema         ###   ########.fr       */
+/*   Updated: 2022/12/12 13:39:21 by dvilard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,6 @@ int	get_nb_redir(t_data *data, int val)
 	return (j);
 }
 
-char	*cp_redir(char *str, int i, t_data *data)
-{
-	int		j;
-	int		len;
-	char	*ret;
-
-	len = 0;
-	ret = NULL;
-	while (str[i + len] != ' ' && (str[i + len] == '>' || str[i + len] == '<'))
-		len++;
-	while (str[i + len] == ' ')
-		len++;
-	while (str[i + len] != ' ' && str[i + len] != '\0')
-		len++;
-	ret = malloc(sizeof(char) * (len + 1));
-	if (!ret)
-		ft_exit(ERRMEMALLOC, data, 2);
-	j = 0;
-	while (j < len)
-	{
-		ret[j] = str[i + j];
-		j++;
-	}
-	ret[j] = '\0';
-	return (ret);
-}
-
 void	ft_remove_spaces_bis(t_data *data, int val, int i, char *str)
 {
 	int	j;
@@ -89,7 +62,7 @@ void	ft_remove_spaces_bis(t_data *data, int val, int i, char *str)
 
 	j = 0;
 	flg = 0;
-	while (data->cmd[val]._cmd[i])
+	while (data->cmd[val]._cmd[i] != '\0')
 	{
 		if (data->cmd[val]._cmd[i] == ' ' || data->cmd[val]._cmd[i] == '\t')
 			flg = 1;
@@ -98,9 +71,11 @@ void	ft_remove_spaces_bis(t_data *data, int val, int i, char *str)
 			if (flg)
 				str[j++] = ' ';
 			flg = 0;
+			str = cp_redir_quote(data->cmd[val]._cmd, str, &i, &j);
 			str[j++] = data->cmd[val]._cmd[i];
 		}
-		i++;
+		if (data->cmd[val]._cmd[i] != '\0')
+			i++;
 	}
 	str[j] = '\0';
 	free(data->cmd[val]._cmd);
@@ -114,7 +89,7 @@ void	ft_remove_spaces(t_data *data, int val)
 
 	i = 0;
 	str = NULL;
-	str = malloc(sizeof(char) * ft_strlen(data->cmd[val]._cmd) + 1);
+	str = malloc(sizeof(char) * ft_strlen(data->cmd[val]._cmd) + 2);
 	if (!str)
 		ft_exit(ERRMEMALLOC, data, 2);
 	while (data->cmd[val]._cmd[i] == ' ' || data->cmd[val]._cmd[i] == '\t')
@@ -134,6 +109,5 @@ void	get_redir(t_data *data, int val)
 		ft_exit(ERRMEMALLOC, data, 2);
 	i = get_redir_bis(data, val, i);
 	data->cmd[val]._cmd[i] = '\0';
-	dprintf(2, "Data redir = --%s--\n", data->cmd[val].redirection[0]);
 	ft_remove_spaces(data, val);
 }
