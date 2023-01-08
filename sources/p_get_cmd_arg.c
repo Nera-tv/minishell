@@ -26,7 +26,6 @@ void	init_cmds(t_data *data, int val)
 
 int	check_line(t_data *data)
 {
-	dprintf(2,)
 	if (check_line_pipe(data) == 1)
 	{
 		if (check_line_redir(data) == 1)

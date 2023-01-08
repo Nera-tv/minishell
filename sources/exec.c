@@ -38,7 +38,7 @@ int	ft_stat_check(t_data *data, int val, char *str)
 	cmd = data->cmd[val].cmd;
 	if (cmd == NULL)
 		return (-1);
-	if (cmd == '\0')
+	if (*cmd == '\0')
 		return (1);
 	if (str == NULL)
 		stat(cmd, &data->stat);

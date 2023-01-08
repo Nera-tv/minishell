@@ -64,14 +64,14 @@ void	init_sig_callbacks(int flag)
 	struct sigaction	act;
 
 	ft_memset(&act, 0, sizeof(struct sigaction));
-	act.__sigaction_u.__sa_sigaction = ctrlc_handler;
+	act.sa_sigaction = ctrlc_handler;
 	if (flag)
-		act.__sigaction_u.__sa_sigaction = ctrlc_handler_bis;
+		act.sa_sigaction = ctrlc_handler_bis;
 	act.sa_flags = SA_SIGINFO | SA_RESTART;
 	sigaction(SIGINT, &act, NULL);
-	act.__sigaction_u.__sa_sigaction = ctrlslash_handler;
+	act.sa_sigaction = ctrlslash_handler;
 	if (flag)
-		act.__sigaction_u.__sa_sigaction = ctrlslash_handler_bis;
+		act.sa_sigaction = ctrlslash_handler_bis;
 	act.sa_flags = SA_SIGINFO | SA_RESTART;
 	sigaction(SIGQUIT, &act, NULL);
 	(void)flag;

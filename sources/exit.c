@@ -46,9 +46,6 @@ void	exit_if_blt_exit_bis(t_data *data, int val)
 
 void	exit_if_blt_exit(t_data *data, int val)
 {
-	int	err_val;
-
-	err_val = 0;
 	ft_printf(2, "exit\n");
 	if (data->cmd[val].nbr_args == 0)
 		ft_exit(NULL, data, data->err_nbr);
